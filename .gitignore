@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 godot/.godot/
 build/
+
+[Dd]ebug/
+[Rr]elease/
+x64/
+[Bb]in/
+[Oo]bj/
