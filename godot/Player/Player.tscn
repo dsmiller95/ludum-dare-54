@@ -14,7 +14,7 @@ physics_material_override = SubResource("PhysicsMaterial_ihj4j")
 angular_damp = 10.0
 script = ExtResource("1_liico")
 AccelerationForce = 5000
-RotationalAcceleration = 20000
+RotationalAcceleration = 40000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5.96046e-08, 0.500001)
