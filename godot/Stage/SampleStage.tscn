@@ -7,7 +7,6 @@
 [node name="Game" type="Node"]
 
 [node name="Stage" type="Node2D" parent="."]
-y_sort_enabled = true
 script = ExtResource("1_ft3i6")
 SceneToSpawn = ExtResource("2_otyry")
 SpawnArea = Rect2(200, -2000, 2000, 3000)
