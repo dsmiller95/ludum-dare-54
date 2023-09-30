@@ -18,8 +18,7 @@ public partial class RandomSpawner : Node2D
         rng.Randomize();
         ISamplePoints pointSampler = new SampleHaltonPoints();
         foreach (var nextPoint in pointSampler
-                     .SampleVector2Field(rng.RandiRange(1, int.MaxValue), SpawnArea)
-                     .Take(SpawnNum))
+                     .SampleVector2Field(rng.RandiRange(1, int.MaxValue), SpawnArea, SpawnNum))
         {
             var instance = SceneToSpawn.Instantiate<Node2D>();
             instance.GlobalPosition = this.ToGlobal(nextPoint);

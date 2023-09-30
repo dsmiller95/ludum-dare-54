@@ -59,13 +59,15 @@ public class SampleHaltonPoints : ISamplePoints
 {
     public IEnumerable<Vector2> SampleVector2Field(
         int seed,
-        Rect2 spawnArea)
+        Rect2 spawnArea,
+        int sampleNum = 100)
     {
         return HaltonSequence.SampleVector2Field(
             2,
             3,
             seed,
             spawnArea.End,
-            spawnArea.Position);
+            spawnArea.Position,
+            sampleNum);
     }
 }
