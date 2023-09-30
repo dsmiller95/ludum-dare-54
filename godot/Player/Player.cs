@@ -1,18 +1,12 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody2D
+public partial class Player : RigidBody2D
 {
-	[Export]
-	public int Speed { get; set; } = 400; // How fast the player will move (pixels/sec).
-
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+	[Export] public int AccelerationForce { get; set; } = 400; // How fast the player will accelerate (pixels/sec^2).
+	[Export] public int MaximumVelocity { get; set; } = 400; // the max velocity the player will move (pixels/sec).
+	
+	private Vector2 GetInputVectorNormalized()
 	{
 		var velocity = Vector2.Zero; // The player's movement vector.
 
@@ -36,10 +30,22 @@ public partial class Player : CharacterBody2D
 			velocity.Y -= 1;
 		}
 
-		if (velocity.Length() > 0)
+		velocity = velocity.Normalized();
+		return velocity;
+	}
+
+	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+	{
+		var input = GetInputVectorNormalized(); 
+		
+		state.ApplyCentralForce(input * AccelerationForce);
+
+		var velocityMagnitude = state.LinearVelocity.Length();
+		if (velocityMagnitude > MaximumVelocity)
 		{
-			velocity = velocity.Normalized() * Speed;
-			Position += velocity * (float)delta;
+			velocityMagnitude = MaximumVelocity;
+			state.LinearVelocity = state.LinearVelocity.Normalized() * velocityMagnitude;
 		}
+		
 	}
 }
