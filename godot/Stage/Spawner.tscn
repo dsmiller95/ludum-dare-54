@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dagjn7kmu8eyo"]
+
+[ext_resource type="Script" path="res://Stage/Spawner.cs" id="1_waivr"]
+[ext_resource type="PackedScene" uid="uid://ch5cmv64s2foe" path="res://Audience/Attendee.tscn" id="2_6r0ct"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_unypi"]
+resource_local_to_scene = true
+size = Vector2(1935, 834)
+
+[node name="Spawner" type="CollisionShape2D"]
+position = Vector2(1188, 485)
+shape = SubResource("RectangleShape2D_unypi")
+debug_color = Color(0.933333, 0.243137, 0.215686, 0.419608)
+script = ExtResource("1_waivr")
+SceneToSpawn = ExtResource("2_6r0ct")

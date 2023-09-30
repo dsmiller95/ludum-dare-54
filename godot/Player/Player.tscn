@@ -1,16 +1,39 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcnvfslpm7ybr"]
+[gd_scene load_steps=8 format=3 uid="uid://bcnvfslpm7ybr"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_liico"]
+[ext_resource type="Texture2D" uid="uid://cy8lp8e4tmft2" path="res://Assets/Main_idle_test_2.png" id="2_nritk"]
 [ext_resource type="Resource" uid="uid://cc4qk0buurl2q" path="res://Player/default_person_physics.tres" id="2_0l1pw"]
-[ext_resource type="Texture2D" uid="uid://dh4abd5cdln13" path="res://Assets/lil guy hat.png" id="2_7m5xk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ihj4j"]
 friction = 1000.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_4oay7"]
+atlas = ExtResource("2_nritk")
+region = Rect2(0, 0, 10, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4dnq"]
+atlas = ExtResource("2_nritk")
+region = Rect2(31, 0, 10, 18)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s32vo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4oay7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4dnq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v67ay"]
 height = 40.0
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="Player" type="RigidBody2D"]
+y_sort_enabled = true
 rotation = -1.5708
 physics_material_override = SubResource("PhysicsMaterial_ihj4j")
 angular_damp = 10.0
@@ -18,12 +41,14 @@ script = ExtResource("1_liico")
 AccelerationForce = 5000.0
 PersonMovement = ExtResource("2_0l1pw")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(41, 0.000148296)
 rotation = 1.5708
 scale = Vector2(5, 5)
-texture = ExtResource("2_7m5xk")
+sprite_frames = SubResource("SpriteFrames_s32vo")
+autoplay = "default"
+frame_progress = 0.0462815
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_v67ay")
