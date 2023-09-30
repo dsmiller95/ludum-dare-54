@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using DotnetLibrary;
 
 public partial class Player : RigidBody2D
 {
@@ -43,39 +44,44 @@ public partial class Player : RigidBody2D
 		return Input.IsActionPressed("turn_side");
 	}
 
-	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+	private Vector2? DesiredForwardDirection(Vector2 input)
 	{
-		var input = GetInputVectorNormalized();
-		var inputAcceleration = input * AccelerationForce;
-		
-		var activeFriction = state.LinearVelocity * -ActiveFrictionCoefficient;
-		
-		state.ApplyCentralForce(inputAcceleration + activeFriction);
-
-		var velocityMagnitude = state.LinearVelocity.Length();
-		if (velocityMagnitude > MaximumVelocity)
-		{
-			velocityMagnitude = MaximumVelocity;
-			state.LinearVelocity = state.LinearVelocity.Normalized() * velocityMagnitude;
-		}
-
-
 		if (input.Length() > 0.01 && (!lastTurnInput.HasValue || !IsInputTurnedToSide()))
 		{
 			lastTurnInput = input;
 		}
 
-		if (lastTurnInput.HasValue)
+		if (!lastTurnInput.HasValue) return null;
+		
+		var targetForward = lastTurnInput.Value;
+		if (IsInputTurnedToSide())
 		{
-			var targetForward = lastTurnInput.Value;
-			var currentForward = state.Transform.X;
-			if (IsInputTurnedToSide())
-			{
-				targetForward = targetForward.Rotated(Mathf.Pi / 2);
-			}
-			var turnAngleDeltaRadians = currentForward.AngleTo(targetForward);
-			var turnForce = turnAngleDeltaRadians * RotationalAcceleration;
-			state.ApplyTorque(turnForce);
+			targetForward = targetForward.Rotated(Mathf.Pi / 2);
 		}
+
+		return targetForward;
+	}
+
+	public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+	{
+		var myPhysics = new PersonPhysics
+		{
+			AccelerationForce = AccelerationForce,
+			RotationalAcceleration = RotationalAcceleration,
+			MaximumVelocity = MaximumVelocity,
+			ActiveFrictionCoefficient = ActiveFrictionCoefficient
+		};
+		
+		var input = GetInputVectorNormalized();
+		var desiredLinearForce = input * AccelerationForce;
+		var desiredLookDirection = DesiredForwardDirection(input);
+
+		var integrationResult = myPhysics.GetLinearForce(
+			desiredLinearForce,
+			desiredLookDirection,
+			state.LinearVelocity,
+			state.Transform.X);
+		
+		integrationResult.ApplyTo(state);
 	}
 }
