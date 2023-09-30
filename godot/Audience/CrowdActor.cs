@@ -21,11 +21,13 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     
     private readonly ICrowdActor crowdActorImpl = new CalmCrowdActor(0.5f);
     private PersonBody personBody;
-    
+    private PersonPhysics myPhysics;
+
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
         personBody = new PersonBody(this);
+        myPhysics = PersonMovement.GetConfiguredPhysics();
     }
 
     public PersonBody GetBody()
@@ -38,9 +40,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         
         crowdActorImpl.Update(delta);
         
-        var myPhysics = PersonMovement.GetConfiguredPhysics()
-            .WithModifiedFriction(crowdActorImpl.GetFirmness());
-        
         // calculate friction force manually, rather than instantiating a unique physics material per actor
         // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
         // var firmnessFrictionForce = this.LinearVelocity * -frictionFactor;
@@ -51,7 +50,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
             selfMoveForce,
             Vector2.Up,
             this.LinearVelocity,
-            this.Transform.X);
+            this.Transform.X,
+            crowdActorImpl.GetFirmness());
         integrationResult.ApplyTo(this);
     }
 
