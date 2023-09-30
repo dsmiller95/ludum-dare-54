@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://ch5cmv64s2foe"]
 
 [ext_resource type="Script" path="res://Audience/CrowdActor.cs" id="1_3k8cn"]
-[ext_resource type="Resource" uid="uid://cc4qk0buurl2q" path="res://Player/default_person_physics.tres" id="2_1rguq"]
+[ext_resource type="Resource" uid="uid://kx2svc877k54" path="res://Audience/audience_person_physics.tres" id="2_hktw3"]
 [ext_resource type="Texture2D" uid="uid://drgv7v4xt5cys" path="res://Assets/lil guy hair.png" id="2_rqabt"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbsgs"]
@@ -28,8 +28,7 @@ contact_monitor = true
 angular_damp = 10.0
 script = ExtResource("1_3k8cn")
 calmness = 0.1
-assumedPushForce = 0.1
-PersonMovement = ExtResource("2_1rguq")
+PersonMovement = ExtResource("2_hktw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_v67ay")

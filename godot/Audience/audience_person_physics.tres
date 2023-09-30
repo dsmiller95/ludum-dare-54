@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PersonPhysicsDefinition" load_steps=2 format=3 uid="uid://kx2svc877k54"]
+
+[ext_resource type="Script" path="res://Audience/PersonPhysicsDefinition.cs" id="1_a18hq"]
+
+[resource]
+script = ExtResource("1_a18hq")
+RotationalAcceleration = 40000
+MaximumVelocity = 400
+ActiveFrictionCoefficient = 5

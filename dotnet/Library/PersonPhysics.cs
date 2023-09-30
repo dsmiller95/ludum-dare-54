@@ -6,7 +6,6 @@ namespace DotnetLibrary;
 
 public record PersonPhysics
 {
-	public float AccelerationForce { get; init; } = 400; // How fast to accelerate (pixels/sec^2).
 	public float RotationalAcceleration { get; init; } = 400; // How much force will apply to keep facing forward (kg pixels^2 / sec^2 radians) aka (Torque / radian)
 	public float MaximumVelocity { get; init; } = 400; // the max velocity of movement. (pixels/sec).
 	public float ActiveFrictionCoefficient { get; init; } = 10; // Resistance to movement. force / velocity (kg/s)
@@ -26,7 +25,7 @@ public record PersonPhysics
 		
 		var activeFriction = currentLinearVelocity * -ActiveFrictionCoefficient;
 
-		integrationResult.LinearAcceleration = desiredLinearForce * AccelerationForce + activeFriction;
+		integrationResult.LinearAcceleration = desiredLinearForce + activeFriction;
 
 		var velocityMagnitude = currentLinearVelocity.Length();
 		if (velocityMagnitude > MaximumVelocity)

@@ -5,7 +5,8 @@ using LudumDare54.Audience;
 
 public partial class Player : RigidBody2D, IHavePersonBody
 {
-	[Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
+	[Export] public float AccelerationForce { get; set; } = 400; // How fast to accelerate (pixels/sec^2).
+    [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
 	
 	private Vector2? lastTurnInput = null;
 	
@@ -81,7 +82,7 @@ public partial class Player : RigidBody2D, IHavePersonBody
 		var myPhysics = PersonMovement.GetConfiguredPhysics();
 		
 		var input = GetInputVectorNormalized();
-		var desiredLinearForce = input;
+		var desiredLinearForce = input * AccelerationForce;
 		var desiredLookDirection = DesiredForwardDirection(input);
 
 		var integrationResult = myPhysics.GetLinearForce(
