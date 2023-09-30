@@ -78,9 +78,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
 
         var pushEvent = new PushEvent(pushVector);
         crowdActorImpl.ReceivePushEvent(pushEvent);
-        
-        GD.Print("CrowdActor.OnBodyEntered: emitted push event: " + pushEvent);
-
     }
     
     
