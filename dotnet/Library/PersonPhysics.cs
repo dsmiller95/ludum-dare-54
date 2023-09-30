@@ -4,18 +4,18 @@ using Godot;
 
 namespace DotnetLibrary;
 
-public class PersonPhysics
+public record  PersonPhysics
 {
-	public int AccelerationForce { get; set; } = 400; // How fast to accelerate (pixels/sec^2).
-	public int RotationalAcceleration { get; set; } = 400; // How much force will apply to keep facing forward (kg pixels^2 / sec^2 radians) aka (Torque / radian)
-	public int MaximumVelocity { get; set; } = 400; // the max velocity of movement. (pixels/sec).
-	public int ActiveFrictionCoefficient { get; set; } = 10; // Resistance to movement. force / velocity (kg/s)
-
-	public ForceIntegrationResult GetLinearForce(
+	public float RotationalAcceleration { get; init; } = 400; // How much force will apply to keep facing forward (kg pixels^2 / sec^2 radians) aka (Torque / radian)
+	public float MaximumVelocity { get; init; } = 400; // the max velocity of movement. (pixels/sec).
+	public float ActiveFrictionCoefficient { get; init; } = 10; // Resistance to movement. force / velocity (kg/s)
+	
+	public ForceIntegrationResult ComputeIntegrationResult(
 		Vector2 desiredLinearForce, 
 		Vector2? turnTowardsTarget,
 		Vector2 currentLinearVelocity,
-		Vector2 currentForward
+		Vector2 currentForward,
+		float frictionModifier = 1
 	)
 	{
 		var integrationResult = new ForceIntegrationResult()
@@ -24,7 +24,7 @@ public class PersonPhysics
 			AppliedTorque = 0
 		};
 		
-		var activeFriction = currentLinearVelocity * -ActiveFrictionCoefficient;
+		var activeFriction = currentLinearVelocity * -(ActiveFrictionCoefficient * frictionModifier);
 
 		integrationResult.LinearAcceleration = desiredLinearForce + activeFriction;
 
