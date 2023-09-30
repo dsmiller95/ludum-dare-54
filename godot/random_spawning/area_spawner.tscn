@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://14d6y0ms2kra"]
+
+[ext_resource type="Script" path="res://RandomSpawner.cs" id="1_k0n7n"]
+[ext_resource type="PackedScene" uid="uid://5hxlsceohei3" path="res://simple_character_body.tscn" id="2_aifu6"]
+
+[node name="area spawner" type="Node2D"]
+
+[node name="spawn halton" type="Node2D" parent="." node_paths=PackedStringArray("ParentNode")]
+script = ExtResource("1_k0n7n")
+ParentNode = NodePath(".")
+SceneToSpawn = ExtResource("2_aifu6")
+SpawnNum = 200
+
+[node name="spawn gradient density" type="Node2D" parent="." node_paths=PackedStringArray("ParentNode")]
+position = Vector2(250, 0)
+script = ExtResource("1_k0n7n")
+ParentNode = NodePath(".")
+SceneToSpawn = ExtResource("2_aifu6")
+SpawnNum = 200
+SampleType = 1
