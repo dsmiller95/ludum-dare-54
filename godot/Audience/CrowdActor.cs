@@ -1,43 +1,58 @@
+using DotnetLibrary;
 using DotnetLibrary.Audience;
 using Godot;
 
 namespace LudumDare54.Audience;
 
-public partial class CrowdActor : RigidBody2D
+public partial class CrowdActor : RigidBody2D, IHavePersonBody
 {
     [Export]
     private float calmness = 0.5f;
-    
-    [Export]
-    private float frictionMultiplier = 1f;
     
     /// <summary>
     /// global move force identifier. should be set based on the physics system config.
     /// individual crowd actor impls may have their own scaling for this force
     /// </summary>
     [Export]
-    private float moveForceMultiplier = 1f;
+    private float moveForceMultiplier = 5f;
     
     [Export]
-    private float assumedPushForce = 1f;
+    private float assumedPushForce = 100f;
     
     private readonly ICrowdActor crowdActorImpl = new CalmCrowdActor(0.5f);
-    
+    private PersonBody personBody;
+    private PersonPhysics myPhysics;
+
+    [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
+        personBody = new PersonBody(this);
+        myPhysics = PersonMovement.GetConfiguredPhysics();
     }
 
+    public PersonBody GetBody()
+    {
+        return personBody;
+    }
     public override void _PhysicsProcess(double delta)
     {
+        personBody._PhysicsProcess();
+        
         crowdActorImpl.Update(delta);
         
         // calculate friction force manually, rather than instantiating a unique physics material per actor
-        var frictionFactor = crowdActorImpl.GetFirmness() * frictionMultiplier;
-        var firmnessFrictionForce = this.LinearVelocity * -frictionFactor;
+        // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
+        // var firmnessFrictionForce = this.LinearVelocity * -frictionFactor;
 
         var selfMoveForce = crowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
         
-        ApplyCentralForce(selfMoveForce + firmnessFrictionForce);
+        var integrationResult = myPhysics.ComputeIntegrationResult(
+            selfMoveForce,
+            Vector2.Up,
+            this.LinearVelocity,
+            this.Transform.X,
+            crowdActorImpl.GetFirmness());
+        integrationResult.ApplyTo(this);
     }
 
     public void OnBodyEntered(Node bodyGeneric)
@@ -47,7 +62,15 @@ public partial class CrowdActor : RigidBody2D
             GD.PrintErr("CrowdActor.OnBodyEntered: colliding body is not a node 2D");
             return;
         }
-        
+        // if (body is not IHavePersonBody personOwner)
+        // {
+        //     GD.PrintErr("CrowdActor.OnBodyEntered: colliding body is not a Person Body");
+        //     return;
+        // }
+        //
+        // var person = personOwner.GetBody();
+        // var delta = person.GetVelocityDelta();
+        //
         // assume a certain push force magnitude
         var pushForce = assumedPushForce;
         var pushDirection = GlobalPosition - body.GlobalPosition;
@@ -55,5 +78,14 @@ public partial class CrowdActor : RigidBody2D
 
         var pushEvent = new PushEvent(pushVector);
         crowdActorImpl.ReceivePushEvent(pushEvent);
+        
+        GD.Print("CrowdActor.OnBodyEntered: emitted push event: " + pushEvent);
+
+    }
+    
+    
+    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
+    {
+        return;
     }
 }
