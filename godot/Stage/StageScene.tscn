@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0t485e0jfteq"]
+
+[ext_resource type="Script" path="res://Stage/StageScene.cs" id="1_ft3i6"]
+[ext_resource type="PackedScene" uid="uid://ch5cmv64s2foe" path="res://Audience/Attendee.tscn" id="2_otyry"]
+[ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="3_mgqr0"]
+
+[node name="Game" type="Node"]
+
+[node name="Stage" type="Node2D" parent="."]
+script = ExtResource("1_ft3i6")
+SceneToSpawn = ExtResource("2_otyry")
+SpawnArea = Rect2(200, -2000, 2000, 3000)
+SpawnNum = 1000
+FacingSkew = 30
+
+[node name="RigidBody2D" parent="Stage" instance=ExtResource("3_mgqr0")]
+position = Vector2(604, 569)

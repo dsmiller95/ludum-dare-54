@@ -20,6 +20,7 @@ animations = [{
 }]
 
 [node name="Attendee" type="RigidBody2D"]
+rotation = -1.5708
 physics_material_override = SubResource("PhysicsMaterial_kbsgs")
 max_contacts_reported = 2
 contact_monitor = true
