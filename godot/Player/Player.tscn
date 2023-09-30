@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://bcnvfslpm7ybr"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_liico"]
+[ext_resource type="Resource" uid="uid://cc4qk0buurl2q" path="res://Player/default_person_physics.tres" id="2_0l1pw"]
 [ext_resource type="Texture2D" uid="uid://dh4abd5cdln13" path="res://Assets/lil guy hat.png" id="2_7m5xk"]
-[ext_resource type="Resource" uid="uid://w70v5jv0fiqs" path="res://Player/default_person_physics.tres" id="2_ee64n"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ihj4j"]
 friction = 1000.0
@@ -15,7 +15,7 @@ rotation = -1.5708
 physics_material_override = SubResource("PhysicsMaterial_ihj4j")
 angular_damp = 10.0
 script = ExtResource("1_liico")
-PersonMovement = ExtResource("2_ee64n")
+PersonMovement = ExtResource("2_0l1pw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
