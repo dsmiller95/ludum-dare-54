@@ -1,15 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://bcnvfslpm7ybr"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_liico"]
-[ext_resource type="Texture2D" uid="uid://the4ot4tkk85" path="res://Audience/happy.png" id="1_vli7w"]
+[ext_resource type="Texture2D" uid="uid://dh4abd5cdln13" path="res://Assets/lil guy hat.png" id="2_7m5xk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ihj4j"]
 friction = 1000.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v67ay"]
-height = 78.0
+height = 40.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
+rotation = -1.5708
 physics_material_override = SubResource("PhysicsMaterial_ihj4j")
 angular_damp = 10.0
 script = ExtResource("1_liico")
@@ -17,10 +18,11 @@ AccelerationForce = 5000
 RotationalAcceleration = 40000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(5.96046e-08, 0.500001)
+texture_filter = 1
+position = Vector2(41, 0.000148296)
 rotation = 1.5708
-scale = Vector2(1.21875, 0.421875)
-texture = ExtResource("1_vli7w")
+scale = Vector2(5, 5)
+texture = ExtResource("2_7m5xk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_v67ay")
