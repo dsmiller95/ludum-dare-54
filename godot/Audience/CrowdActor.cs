@@ -62,27 +62,20 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
             GD.PrintErr("CrowdActor.OnBodyEntered: colliding body is not a node 2D");
             return;
         }
-        // if (body is not IHavePersonBody personOwner)
-        // {
-        //     GD.PrintErr("CrowdActor.OnBodyEntered: colliding body is not a Person Body");
-        //     return;
-        // }
-        //
-        // var person = personOwner.GetBody();
-        // var delta = person.GetVelocityDelta();
-        //
-        // assume a certain push force magnitude
-        var pushForce = assumedPushForce;
+        
+        if (body is not IHavePersonBody otherPerson)
+        {
+            GD.PrintErr("CrowdActor.OnBodyEntered: colliding body is not a Person Body");
+            return;
+        }
+        
+        var person = otherPerson.GetBody();
         var pushDirection = GlobalPosition - body.GlobalPosition;
-        var pushVector = pushDirection.Normalized() * pushForce;
+        var pushVector = pushDirection.Normalized() * person.GetAverageSpeed();
 
         var pushEvent = new PushEvent(pushVector);
         crowdActorImpl.ReceivePushEvent(pushEvent);
-        
-        GD.Print("CrowdActor.OnBodyEntered: emitted push event: " + pushEvent);
-
     }
-    
     
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
