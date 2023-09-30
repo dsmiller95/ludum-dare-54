@@ -10,11 +10,11 @@ friction = 1000.0
 height = 78.0
 
 [node name="RigidBody2D" type="RigidBody2D"]
+rotation = -1.5708
 physics_material_override = SubResource("PhysicsMaterial_ihj4j")
 angular_damp = 10.0
 script = ExtResource("1_liico")
 AccelerationForce = 5000
-RotationalAcceleration = 40000
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(5.96046e-08, 0.500001)
