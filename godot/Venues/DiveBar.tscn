@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="2_g32c0"]
 
 [node name="DiveBar" type="Node2D"]
+y_sort_enabled = true
 
 [node name="Attendee" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(734, 556)
