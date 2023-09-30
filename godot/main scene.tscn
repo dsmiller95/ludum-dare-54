@@ -1,20 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkwpig3e73elp"]
+[gd_scene load_steps=2 format=3 uid="uid://b0t485e0jfteq"]
 
-[ext_resource type="Script" path="res://CrowdActorDummy.cs" id="2_8u7ut"]
-[ext_resource type="Texture2D" uid="uid://dljdw38argqkx" path="res://icon.svg" id="2_bonaj"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_0clhe"]
+[ext_resource type="PackedScene" uid="uid://5hxlsceohei3" path="res://simple_character_body.tscn" id="1_15jm0"]
 
 [node name="Node" type="Node"]
 
 [node name="crowd scene" type="Node2D" parent="."]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="crowd scene"]
-script = ExtResource("2_8u7ut")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="crowd scene/CharacterBody2D"]
-shape = SubResource("CircleShape2D_0clhe")
-
-[node name="Sprite2D" type="Sprite2D" parent="crowd scene/CharacterBody2D"]
-position = Vector2(300, 300)
-texture = ExtResource("2_bonaj")
+[node name="CharacterBody2D" parent="crowd scene" instance=ExtResource("1_15jm0")]
