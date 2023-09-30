@@ -7,3 +7,20 @@ build/
 x64/
 [Bb]in/
 [Oo]bj/
+
+godot/addons/FMOD/editor/cache/fmod_project_cache.tres
+
+
+# Mono-specific ignores
+.mono/
+data_*/
+mono_crash.*.json
+
+.DS_Store
+godot/addons/FMOD/native/src/**/*.obj
+godot/addons/FMOD/native/src/**/*.os
+godot/addons/FMOD/native/src/**/*.o
+godot/addons/FMOD/tests/fmod_test_project/.user
+godot/addons/FMOD/tests/fmod_test_project/.unsaved
+
+!godot/addons/FMOD/native/lib/**/*
