@@ -1,22 +1,34 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch5cmv64s2foe"]
+[gd_scene load_steps=9 format=3 uid="uid://ch5cmv64s2foe"]
 
 [ext_resource type="Script" path="res://Audience/CrowdActor.cs" id="1_3k8cn"]
-[ext_resource type="Texture2D" uid="uid://drgv7v4xt5cys" path="res://Assets/lil guy hair.png" id="2_rqabt"]
+[ext_resource type="Script" path="res://Audience/RandomAnimationStart.cs" id="3_u801b"]
+[ext_resource type="Texture2D" uid="uid://dongkcxjsjs0f" path="res://Assets/idle_test.png" id="3_uqs4c"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbsgs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v67ay"]
 height = 36.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_1thxb"]
+atlas = ExtResource("3_uqs4c")
+region = Rect2(0, 0, 8, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifynw"]
+atlas = ExtResource("3_uqs4c")
+region = Rect2(31, 0, 8, 17)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_mwdxp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rqabt")
+"texture": SubResource("AtlasTexture_1thxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifynw")
 }],
 "loop": true,
-"name": &"default",
-"speed": 5.0
+"name": &"new_animation",
+"speed": 4.0
 }]
 
 [node name="Attendee" type="RigidBody2D"]
@@ -36,9 +48,13 @@ shape = SubResource("CapsuleShape2D_v67ay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(47, -0.99983)
+position = Vector2(37, 1.00013)
 rotation = 1.5708
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_mwdxp")
+animation = &"new_animation"
+frame = 1
+frame_progress = 0.659579
+script = ExtResource("3_u801b")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
