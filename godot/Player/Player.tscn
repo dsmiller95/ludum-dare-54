@@ -32,6 +32,7 @@ animations = [{
 height = 40.0
 
 [node name="Player" type="RigidBody2D"]
+y_sort_enabled = true
 rotation = -1.5708
 physics_material_override = SubResource("PhysicsMaterial_ihj4j")
 angular_damp = 10.0
