@@ -46,12 +46,4 @@ public record  PersonPhysics
 		
 		return integrationResult;
 	}
-
-	public PersonPhysics WithModifiedFriction(float frictionMultiplier)
-	{
-		return this with
-		{
-			ActiveFrictionCoefficient = ActiveFrictionCoefficient * frictionMultiplier
-		};
-	}
 }
