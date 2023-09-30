@@ -87,19 +87,5 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)
     {
         return;
-        var frictionFactor = crowdActorImpl.GetFirmness();
-        var desiredLinearForce = crowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
-        var desiredLookDirection = desiredLinearForce.Normalized();
-
-        var myPhysics = PersonMovement.GetConfiguredPhysics()
-            .WithModifiedFriction(frictionFactor);
-        
-        var integrationResult = myPhysics.ComputeIntegrationResult(
-            desiredLinearForce,
-            desiredLookDirection,
-            state.LinearVelocity,
-            state.Transform.X);
-		  
-        integrationResult.ApplyTo(state);
     }
 }

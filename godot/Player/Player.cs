@@ -69,6 +69,8 @@ public partial class Player : RigidBody2D, IHavePersonBody
 		if (!lastTurnInput.HasValue) return null;
 		
 		var targetForward = lastTurnInput.Value;
+		targetForward += Vector2.Up * 2;
+		
 		if (IsInputTurnedToSide())
 		{
 			targetForward = targetForward.Rotated(Mathf.Pi / 2);
