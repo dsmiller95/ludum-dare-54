@@ -4,13 +4,15 @@ using Godot;
 
 namespace DotnetLibrary;
 
-public record PersonPhysics
+public record  PersonPhysics
 {
 	public float RotationalAcceleration { get; init; } = 400; // How much force will apply to keep facing forward (kg pixels^2 / sec^2 radians) aka (Torque / radian)
 	public float MaximumVelocity { get; init; } = 400; // the max velocity of movement. (pixels/sec).
 	public float ActiveFrictionCoefficient { get; init; } = 10; // Resistance to movement. force / velocity (kg/s)
 
-	public ForceIntegrationResult GetLinearForce(
+	public float UprightingWeight { get; init; } = 0.9f;
+	
+	public ForceIntegrationResult ComputeIntegrationResult(
 		Vector2 desiredLinearForce, 
 		Vector2? turnTowardsTarget,
 		Vector2 currentLinearVelocity,

@@ -85,7 +85,7 @@ public partial class Player : RigidBody2D, IHavePersonBody
 		var desiredLinearForce = input * AccelerationForce;
 		var desiredLookDirection = DesiredForwardDirection(input);
 
-		var integrationResult = myPhysics.GetLinearForce(
+		var integrationResult = myPhysics.ComputeIntegrationResult(
 			desiredLinearForce,
 			desiredLookDirection,
 			state.LinearVelocity,

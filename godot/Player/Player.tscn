@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bcnvfslpm7ybr"]
+[gd_scene load_steps=9 format=3 uid="uid://bcnvfslpm7ybr"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_liico"]
-[ext_resource type="Texture2D" uid="uid://cy8lp8e4tmft2" path="res://Assets/Main_idle_test_2.png" id="2_nritk"]
 [ext_resource type="Resource" uid="uid://cc4qk0buurl2q" path="res://Player/default_person_physics.tres" id="2_0l1pw"]
+[ext_resource type="Texture2D" uid="uid://cy8lp8e4tmft2" path="res://Assets/Main_idle_test_2.png" id="2_nritk"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ihj4j"]
 friction = 1000.0

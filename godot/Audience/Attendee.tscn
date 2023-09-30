@@ -1,9 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://ch5cmv64s2foe"]
+[gd_scene load_steps=10 format=3 uid="uid://ch5cmv64s2foe"]
 
 [ext_resource type="Script" path="res://Audience/CrowdActor.cs" id="1_3k8cn"]
+[ext_resource type="Resource" uid="uid://kx2svc877k54" path="res://Audience/audience_person_physics.tres" id="2_hktw3"]
 [ext_resource type="Script" path="res://Audience/RandomAnimationStart.cs" id="3_u801b"]
 [ext_resource type="Texture2D" uid="uid://dongkcxjsjs0f" path="res://Assets/idle_test.png" id="3_uqs4c"]
-[ext_resource type="Resource" uid="uid://kx2svc877k54" path="res://Audience/audience_person_physics.tres" id="2_hktw3"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbsgs"]
 
@@ -40,7 +40,6 @@ max_contacts_reported = 2
 contact_monitor = true
 angular_damp = 10.0
 script = ExtResource("1_3k8cn")
-calmness = 0.1
 PersonMovement = ExtResource("2_hktw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

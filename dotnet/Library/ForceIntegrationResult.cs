@@ -17,4 +17,13 @@ public record struct ForceIntegrationResult
         }
         state.ApplyTorque(AppliedTorque);
     }
+    public void ApplyTo(RigidBody2D state)
+    {
+        state.ApplyCentralForce(LinearAcceleration);
+        if (LinearVelocityOverride.HasValue)
+        {
+            state.LinearVelocity = LinearVelocityOverride.Value;
+        }
+        state.ApplyTorque(AppliedTorque);
+    }
 }

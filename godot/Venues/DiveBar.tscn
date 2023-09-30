@@ -8,75 +8,57 @@ y_sort_enabled = true
 
 [node name="Attendee" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(734, 556)
-assumedPushForce = 100.0
 
 [node name="Attendee2" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(168, 477)
-assumedPushForce = 100.0
 
 [node name="Attendee3" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(689, 260)
-assumedPushForce = 100.0
 
 [node name="Attendee4" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(906, 68)
-assumedPushForce = 100.0
 
 [node name="Attendee5" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(382, 128)
-assumedPushForce = 100.0
 
 [node name="Attendee6" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(554, 355)
-assumedPushForce = 100.0
 
 [node name="Attendee7" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(617, 489)
-assumedPushForce = 100.0
 
 [node name="Attendee8" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(1051, 101)
-assumedPushForce = 100.0
 
 [node name="Attendee9" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(810, 460)
-assumedPushForce = 100.0
 
 [node name="Attendee10" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(110, 286)
-assumedPushForce = 100.0
 
 [node name="Attendee11" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(214, 349)
-assumedPushForce = 100.0
 
 [node name="Attendee12" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(1064, 404)
-assumedPushForce = 100.0
 
 [node name="Attendee13" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(407, 256)
-assumedPushForce = 100.0
 
 [node name="Attendee14" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(715, 133)
-assumedPushForce = 100.0
 
 [node name="Attendee15" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(929, 499)
-assumedPushForce = 100.0
 
 [node name="Attendee16" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(663, 361)
-assumedPushForce = 100.0
 
 [node name="Attendee17" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(207, 212)
-assumedPushForce = 100.0
 
 [node name="Attendee18" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(947, 337)
-assumedPushForce = 100.0
 
 [node name="Player" parent="." instance=ExtResource("2_g32c0")]
 position = Vector2(595, 591)

@@ -9,9 +9,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export]
     private float calmness = 0.5f;
     
-    [Export]
-    private float frictionMultiplier = 5f;
-    
     /// <summary>
     /// global move force identifier. should be set based on the physics system config.
     /// individual crowd actor impls may have their own scaling for this force
@@ -41,20 +38,21 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         
         crowdActorImpl.Update(delta);
         
-        var desiredLinearForce = crowdActorImpl.GetCurrentSelfMoveForce();
-        if (desiredLinearForce.Length() < 0.1) return;
-        GD.Print("CrowdActor._PhysicsProcess: desired force: " + desiredLinearForce);
-
         var myPhysics = PersonMovement.GetConfiguredPhysics()
             .WithModifiedFriction(crowdActorImpl.GetFirmness());
         
         // calculate friction force manually, rather than instantiating a unique physics material per actor
-        var frictionFactor = myPhysics.ActiveFrictionCoefficient;
-        var firmnessFrictionForce = this.LinearVelocity * -frictionFactor;
+        // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
+        // var firmnessFrictionForce = this.LinearVelocity * -frictionFactor;
 
         var selfMoveForce = crowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
-
-        ApplyCentralForce(selfMoveForce + firmnessFrictionForce);
+        
+        var integrationResult = myPhysics.ComputeIntegrationResult(
+            selfMoveForce,
+            Vector2.Up,
+            this.LinearVelocity,
+            this.Transform.X);
+        integrationResult.ApplyTo(this);
     }
 
     public void OnBodyEntered(Node bodyGeneric)
@@ -96,7 +94,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         var myPhysics = PersonMovement.GetConfiguredPhysics()
             .WithModifiedFriction(frictionFactor);
         
-        var integrationResult = myPhysics.GetLinearForce(
+        var integrationResult = myPhysics.ComputeIntegrationResult(
             desiredLinearForce,
             desiredLookDirection,
             state.LinearVelocity,
