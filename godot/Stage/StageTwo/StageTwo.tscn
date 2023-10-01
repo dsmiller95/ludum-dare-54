@@ -221,7 +221,6 @@ MaxDistance = 1000.0
 MaxSpeed = 30.0
 
 [node name="Floor" parent="Stage" instance=ExtResource("6_43vxe")]
-visible = false
 position = Vector2(1219, -1465)
 
 [node name="Paths" type="Node2D" parent="Stage"]
