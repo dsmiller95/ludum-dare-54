@@ -7,21 +7,21 @@ namespace LudumDare54.Audience;
 public class PersonBody
 {
     private RigidBody2D attachedBody;
-    private Vector2 lastLinearVelocity = Vector2.Zero;
+    private MovingAverage AverageSpeed = new(15);
 
     public PersonBody(RigidBody2D attachedBody)
     {
         this.attachedBody = attachedBody;
     }
 
-    public Vector2 GetVelocityDelta()
+    public float GetAverageSpeed()
     {
-        return attachedBody.LinearVelocity - lastLinearVelocity;
+        return AverageSpeed.Average;
     }
     
     public void _PhysicsProcess()
     {
-        this.lastLinearVelocity = attachedBody.LinearVelocity;
+        AverageSpeed.ComputeAverage(attachedBody.LinearVelocity.Length());
     }
     
 }
