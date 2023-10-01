@@ -1,0 +1,254 @@
+[gd_scene load_steps=19 format=3 uid="uid://d3yvpu1bur3ok"]
+
+[ext_resource type="Script" path="res://Level.gd" id="1_im18a"]
+[ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="2_i0mot"]
+[ext_resource type="Texture2D" uid="uid://btl17hyr6dstm" path="res://Venues/Background.png" id="3_4x2sd"]
+[ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="4_ur8qj"]
+[ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="5_uyi6x"]
+[ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="6_24dit"]
+[ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="7_mxlom"]
+[ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="8_5hhjx"]
+[ext_resource type="Script" path="res://Lighting/StageLight.cs" id="9_ygi26"]
+[ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="10_1qn8m"]
+[ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="11_jta4h"]
+[ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="12_3lguv"]
+[ext_resource type="EventAsset" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="13_n1eu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwjrq"]
+size = Vector2(53, 5180)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5355i"]
+size = Vector2(2150.5, 140)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vcobc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
+size = Vector2(1935, 883)
+
+[sub_resource type="Curve" id="Curve_dgqs3"]
+_data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Game" type="Node"]
+
+[node name="Stage" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("1_im18a")
+
+[node name="Paths" type="Node2D" parent="Stage"]
+
+[node name="Path" parent="Stage/Paths" instance=ExtResource("2_i0mot")]
+position = Vector2(734, 448)
+
+[node name="Floor" type="Sprite2D" parent="Stage"]
+z_index = -2
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(1194, -1564)
+scale = Vector2(33.0938, 80.5)
+texture = ExtResource("3_4x2sd")
+
+[node name="Player" parent="Stage" instance=ExtResource("4_ur8qj")]
+position = Vector2(1169, 885)
+
+[node name="Walls" type="StaticBody2D" parent="Stage"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Walls"]
+position = Vector2(142, -1572)
+shape = SubResource("RectangleShape2D_mwjrq")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Stage/Walls"]
+position = Vector2(2245, -1509)
+shape = SubResource("RectangleShape2D_mwjrq")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Stage/Walls"]
+position = Vector2(1196.25, 1015)
+shape = SubResource("RectangleShape2D_5355i")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Stage/Walls"]
+position = Vector2(1182, -85)
+shape = SubResource("RectangleShape2D_5355i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Stage/Walls"]
+position = Vector2(116, -1541.88)
+scale = Vector2(89.5, 5245.75)
+texture = SubResource("PlaceholderTexture2D_vcobc")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Stage/Walls"]
+position = Vector2(2267, -1520)
+scale = Vector2(89.5, 5245.75)
+texture = SubResource("PlaceholderTexture2D_vcobc")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Stage/Walls"]
+position = Vector2(1163, 1011)
+scale = Vector2(2147, 142)
+texture = SubResource("PlaceholderTexture2D_vcobc")
+
+[node name="CrowdCorral" type="Node2D" parent="Stage"]
+script = ExtResource("5_uyi6x")
+
+[node name="Spawners" type="Area2D" parent="Stage"]
+y_sort_enabled = true
+
+[node name="Spawner" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("6_24dit")]
+position = Vector2(1189, 474.5)
+shape = SubResource("RectangleShape2D_7wftx")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 1000
+
+[node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("7_mxlom")]
+Goal = NodePath("../Goal area")
+player = NodePath("../Player")
+
+[node name="Goal area" parent="Stage" instance=ExtResource("8_5hhjx")]
+position = Vector2(557, -3973)
+
+[node name="Lighting" type="Node" parent="Stage"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Stage/Lighting"]
+color = Color(0.235294, 0.235294, 0.235294, 1)
+
+[node name="StageLight" type="DirectionalLight2D" parent="Stage/Lighting"]
+script = ExtResource("9_ygi26")
+LightIntensity = SubResource("Curve_dgqs3")
+
+[node name="Spotlight" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(2074, -555)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight2" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight3" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(750, -3310)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight4" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(1946, -2477)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight5" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(1397, -2847)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight6" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(1711, -1302)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight7" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(948, -690)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight8" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(750, -2349)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight9" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(579, -1601)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight10" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(1845, 251)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight11" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(558, -1152)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight12" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(1305, -3609)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight13" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(393, -2740)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight14" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(1327, -2006)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight15" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(1119, -1074)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight16" parent="Stage/Lighting" instance=ExtResource("10_1qn8m")]
+position = Vector2(921, -2733)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Audio" type="Node" parent="Stage"]
+
+[node name="StudioBankLoader" type="StudioBankLoader" parent="Stage/Audio"]
+load_on = 1
+num_banks = 1
+bank_0 = ExtResource("11_jta4h")
+
+[node name="CrowdEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+play_event = 1
+event = ExtResource("12_3lguv")
+
+[node name="GuitarEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+play_event = 1
+event = ExtResource("13_n1eu1")
+position = Vector2(1156, -3753)
+
+[connection signal="body_entered" from="Stage/Goal area/Goal" to="Stage" method="_on_goal_body_entered"]
+
+[editable path="Stage/Goal area"]
