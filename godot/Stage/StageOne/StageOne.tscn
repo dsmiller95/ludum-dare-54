@@ -331,6 +331,7 @@ event = ExtResource("7_umxbt")
 
 [node name="GuitarEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
 play_event = 1
+stop_event = 3
 event = ExtResource("12_u4y1s")
 position = Vector2(1156, -3753)
 

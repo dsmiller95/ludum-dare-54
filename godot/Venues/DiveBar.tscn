@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://cmiir4cojqrh0"]
+[gd_scene load_steps=8 format=3 uid="uid://cmiir4cojqrh0"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_vnfw2"]
-[ext_resource type="PackedScene" uid="uid://ch5cmv64s2foe" path="res://Audience/Attendee.tscn" id="1_wquak"]
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="2_g32c0"]
+[ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_kpe2a"]
+[ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="3_3kt1m"]
 [ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="4_2od8b"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="5_hc1wo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgxab"]
+size = Vector2(1935, 883)
 
 [node name="DiveBar" type="Node2D"]
 y_sort_enabled = true
@@ -12,59 +16,17 @@ script = ExtResource("1_vnfw2")
 
 [node name="Audience" type="Node2D" parent="."]
 
-[node name="Attendee" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(734, 556)
+[node name="Spawners" type="Area2D" parent="Audience"]
+y_sort_enabled = true
 
-[node name="Attendee2" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(168, 477)
+[node name="Spawner" parent="Audience/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_kpe2a")]
+position = Vector2(603, 323)
+shape = SubResource("RectangleShape2D_fgxab")
+CrowdCorral = NodePath("../../Crowd Corral")
+SpawnNum = 40
 
-[node name="Attendee3" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(689, 260)
-
-[node name="Attendee4" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(906, 68)
-
-[node name="Attendee5" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(382, 128)
-
-[node name="Attendee6" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(554, 355)
-
-[node name="Attendee7" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(617, 489)
-
-[node name="Attendee8" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(1051, 101)
-
-[node name="Attendee9" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(810, 460)
-
-[node name="Attendee10" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(110, 286)
-
-[node name="Attendee11" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(214, 349)
-
-[node name="Attendee12" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(1064, 404)
-
-[node name="Attendee13" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(407, 256)
-
-[node name="Attendee14" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(715, 133)
-
-[node name="Attendee15" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(929, 499)
-
-[node name="Attendee16" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(663, 361)
-
-[node name="Attendee17" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(207, 212)
-
-[node name="Attendee18" parent="Audience" instance=ExtResource("1_wquak")]
-position = Vector2(947, 337)
+[node name="Crowd Corral" type="Node2D" parent="Audience"]
+script = ExtResource("3_3kt1m")
 
 [node name="Player" parent="." instance=ExtResource("2_g32c0")]
 position = Vector2(595, 591)
