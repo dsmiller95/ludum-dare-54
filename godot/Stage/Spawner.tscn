@@ -8,6 +8,7 @@ resource_local_to_scene = true
 size = Vector2(1935, 834)
 
 [node name="Spawner" type="CollisionShape2D"]
+y_sort_enabled = true
 position = Vector2(1188, 485)
 shape = SubResource("RectangleShape2D_unypi")
 debug_color = Color(0.933333, 0.243137, 0.215686, 0.419608)
