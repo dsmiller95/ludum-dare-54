@@ -106,12 +106,13 @@ public partial class Player : RigidBody2D, IHavePersonBody
 		if (bodyGeneric is RigidBody2D otherBody)
 		{
 			Health.AdjustHealth(-5);
-			var impact = (otherBody.LinearVelocity - LinearVelocity).Length();
+			var impactVector = otherBody.LinearVelocity - LinearVelocity;
+			var impact = impactVector.Length();
 			if (impact > 100)
 			{
 				EmitSignal("HealthDepleted");
 				var spill = GetNode<CpuParticles2D>("SpillParticles");
-				spill.Direction = (otherBody.LinearVelocity - LinearVelocity).Normalized();
+				spill.Direction = new Vector2(impactVector.Y, -impactVector.X);
 				spill.InitialVelocityMin = impact;
 				spill.InitialVelocityMax = impact * 5;
 				spill.Emitting = true;
