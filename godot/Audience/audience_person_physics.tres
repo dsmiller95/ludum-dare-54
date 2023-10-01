@@ -6,4 +6,4 @@
 script = ExtResource("1_a18hq")
 RotationalAcceleration = 40000
 MaximumVelocity = 400
-ActiveFrictionCoefficient = 5
+ActiveFrictionCoefficient = 25
