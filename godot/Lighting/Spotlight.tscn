@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyk3ystmg5yn5"]
+
+[ext_resource type="Texture2D" uid="uid://bbjxwadg54wp1" path="res://Lighting/Circle-light.png" id="1_oh83x"]
+[ext_resource type="Script" path="res://Lighting/RotatingSpotlight.cs" id="2_o6hh4"]
+
+[node name="PointLight2D" type="PointLight2D"]
+texture_filter = 1
+position = Vector2(606, 293)
+scale = Vector2(50, 50)
+color = Color(0.788235, 0.294118, 0.631373, 1)
+texture = ExtResource("1_oh83x")
+script = ExtResource("2_o6hh4")
+MaxDistance = 100.0
