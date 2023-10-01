@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using DotnetLibrary;
 using DotnetLibrary.Audience;
@@ -27,9 +28,12 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     private PersonBody personBody;
     private PersonPhysics myPhysics;
 
+    public CrowdCorral CrowdCorral;
+
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
+        ProcessPriority = 11;
         var options = crowdActorPresetOptions.Cast<ICrowdActorPreset>().Where(x => x != null).ToArray();
         if (options.Length <= 0)
         {
@@ -50,7 +54,19 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     }
     public override void _PhysicsProcess(double delta)
     {
-        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, null);
+        var neighbors = CrowdCorral.GetNeighbors(this);
+        var neighborCrowdActors = new List<NeighborCrowdActor>();
+
+        foreach (var neighbor in neighbors)
+        {
+            neighborCrowdActors.Add(new NeighborCrowdActor
+            {
+                actor = neighbor.crowdActorImpl,
+                relativePosition = neighbor.GlobalPosition
+            });
+        }
+        
+        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighborCrowdActors.ToArray());
         
         // calculate friction force manually, rather than instantiating a unique physics material per actor
         // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
