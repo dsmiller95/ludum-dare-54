@@ -68,8 +68,6 @@ public class FactorBasedCrowdActor : ICrowdActor
     {
         var rageEffect = pushEvent.PushForce.Length() / tuning.PushToRageRatio;
         factors.AddFactor(FactorType.Rage, rageEffect);
-        var newRageEffect = factors.GetNormalized(FactorType.Rage);
-        GD.Print("rage effect: " + rageEffect + " new rage: " + newRageEffect);
     }
 
     public float GetFirmness()
