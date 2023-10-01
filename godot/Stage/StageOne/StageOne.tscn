@@ -123,7 +123,7 @@ position = Vector2(1174, -3751.5)
 shape = SubResource("RectangleShape2D_2dn7y")
 
 [node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
-Goal = NodePath("")
-player = NodePath("")
+Goal = NodePath("../Goal")
+player = NodePath("../Player")
 
 [connection signal="body_entered" from="Stage/Goal" to="Stage" method="_on_goal_body_entered"]
