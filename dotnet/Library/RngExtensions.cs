@@ -9,4 +9,9 @@ public static class RngExtensions
     {
         return new Vector2(rng.RandfRange(min, max), rng.RandfRange(min, max));
     }
+
+    public static T PickRandom<T>(this RandomNumberGenerator rng, IList<T> list)
+    {
+        return list[rng.RandiRange(0, list.Count - 1)];
+    }
 }

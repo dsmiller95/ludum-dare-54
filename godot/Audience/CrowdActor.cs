@@ -1,13 +1,13 @@
+using System.Linq;
 using DotnetLibrary;
 using DotnetLibrary.Audience;
 using Godot;
+using Godot.Collections;
 
 namespace LudumDare54.Audience;
 
 public partial class CrowdActor : RigidBody2D, IHavePersonBody
 {
-    [Export] private CrowdActorType actorType;
-    
     /// <summary>
     /// global move force identifier. should be set based on the physics system config.
     /// individual crowd actor impls may have their own scaling for this force
@@ -18,7 +18,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export]
     private float assumedPushForce = 100f;
     [Export]
-    private Resource crowdActorPreset;
+    private Array<Resource> crowdActorPresetOptions;
     
     private ICrowdActor crowdActorImpl;
     private PersonBody personBody;
@@ -27,12 +27,16 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
-        if (crowdActorPreset is not ICrowdActorPreset preset)
+        var options = crowdActorPresetOptions.Cast<ICrowdActorPreset>().Where(x => x != null).ToArray();
+        if (options.Length <= 0)
         {
-            GD.PrintErr("Resource is not a crowd actor preset");
+            GD.PrintErr("no crowd actor presets provided");
             return;
         }
-        crowdActorImpl = preset.ConstructConfiguredActor();// CrowdActorFactory.GetActor(actorType);
+
+        var rng = new RandomNumberGenerator();
+        rng.Randomize();
+        crowdActorImpl = rng.PickRandom(options).ConstructConfiguredActor();
         personBody = new PersonBody(this);
         myPhysics = PersonMovement.GetConfiguredPhysics();
     }
