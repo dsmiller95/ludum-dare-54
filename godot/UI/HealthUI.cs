@@ -11,7 +11,7 @@ public partial class HealthUI : Control
 
 	public override void _Process(double delta)
 	{
-		if (Health.HealthValue > 90)
+		if (Health.HealthValue > 80)
 		{
 			animation.Animation = "full";
 		}
@@ -22,6 +22,10 @@ public partial class HealthUI : Control
 		else if (Health.HealthValue > 40)
 		{
 			animation.Animation = "half";
+		}
+		else if (Health.HealthValue > 20)
+		{
+			animation.Animation = "below-half";
 		}
 		else if (Health.HealthValue > 1)
 		{

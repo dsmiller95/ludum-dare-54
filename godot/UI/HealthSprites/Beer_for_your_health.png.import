@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3ck4xy0dhrer"
-path="res://.godot/imported/beer-ui-full.png-124822afa229b051366e29646918f49d.ctex"
+uid="uid://516kl8jdugh3"
+path="res://.godot/imported/Beer_for_your_health.png-9de2a57e6c29414077edc888f6a7629d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/HealthSprites/beer-ui-full.png"
-dest_files=["res://.godot/imported/beer-ui-full.png-124822afa229b051366e29646918f49d.ctex"]
+source_file="res://UI/HealthSprites/Beer_for_your_health.png"
+dest_files=["res://.godot/imported/Beer_for_your_health.png-9de2a57e6c29414077edc888f6a7629d.ctex"]
 
 [params]
 
