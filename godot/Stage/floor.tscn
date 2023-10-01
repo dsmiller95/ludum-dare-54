@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpx4h0mhovneq"]
+
+[ext_resource type="Texture2D" uid="uid://btl17hyr6dstm" path="res://Venues/Background.png" id="1_p7d1d"]
+
+[node name="Floor" type="Sprite2D"]
+z_index = -2
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(1194, -1564)
+scale = Vector2(33.0938, 80.5)
+texture = ExtResource("1_p7d1d")

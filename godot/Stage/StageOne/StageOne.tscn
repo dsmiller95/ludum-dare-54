@@ -1,26 +1,23 @@
-[gd_scene load_steps=27 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=25 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
-[ext_resource type="Texture2D" uid="uid://btl17hyr6dstm" path="res://Venues/Background.png" id="1_tym0v"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
 [ext_resource type="Script" path="res://Lighting/StageLight.cs" id="3_228ch"]
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="3_m2j0t"]
+[ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="3_yk581"]
 [ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="4_s3k7p"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="5_05u3q"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="5_espk5"]
+[ext_resource type="PackedScene" uid="uid://bm0pximd300b0" path="res://Stage/Set Peices/wall.tscn" id="5_mhn7y"]
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="6_juosq"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
 [ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="11_tqkk2"]
 [ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mwjrq"]
-size = Vector2(53, 5180)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5355i"]
-size = Vector2(2150.5, 140)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vcobc"]
+[sub_resource type="Curve" id="Curve_dgqs3"]
+_data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
 size = Vector2(1935, 883)
@@ -49,144 +46,28 @@ size = Vector2(1935, 381)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dn7y"]
 size = Vector2(1935, 359.5)
 
-[sub_resource type="Curve" id="Curve_dgqs3"]
-_data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
-point_count = 3
-
 [node name="Game" type="Node"]
 
 [node name="Stage" type="Node2D" parent="."]
 y_sort_enabled = true
 script = ExtResource("1_cyt7s")
 
-[node name="Paths" type="Node2D" parent="Stage"]
+[node name="Audio" type="Node" parent="Stage"]
 
-[node name="Path" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
-position = Vector2(734, 448)
+[node name="StudioBankLoader" type="StudioBankLoader" parent="Stage/Audio"]
+load_on = 1
+num_banks = 1
+bank_0 = ExtResource("6_odtpf")
 
-[node name="Path2" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
-position = Vector2(1003, -497)
-rotation = 0.523598
+[node name="CrowdEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+play_event = 1
+event = ExtResource("7_umxbt")
 
-[node name="Path3" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
-position = Vector2(1680, -1144)
-rotation = 1.0472
-
-[node name="Path4" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
-position = Vector2(2124, -1905)
-
-[node name="Path5" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
-position = Vector2(1882, -2837)
-rotation = -0.523598
-
-[node name="Path6" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
-position = Vector2(1736, -3271)
-rotation = 1.57079
-
-[node name="Path7" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
-position = Vector2(708, -3270)
-rotation = 1.57079
-
-[node name="Floor" type="Sprite2D" parent="Stage"]
-z_index = -2
-texture_filter = 1
-texture_repeat = 2
-position = Vector2(1194, -1564)
-scale = Vector2(33.0938, 80.5)
-texture = ExtResource("1_tym0v")
-
-[node name="Player" parent="Stage" instance=ExtResource("3_m2j0t")]
-position = Vector2(1169, 885)
-
-[node name="Walls" type="StaticBody2D" parent="Stage"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Walls"]
-position = Vector2(142, -1572)
-shape = SubResource("RectangleShape2D_mwjrq")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Stage/Walls"]
-position = Vector2(2245, -1509)
-shape = SubResource("RectangleShape2D_mwjrq")
-
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Stage/Walls"]
-position = Vector2(1196.25, 1015)
-shape = SubResource("RectangleShape2D_5355i")
-
-[node name="Sprite2D" type="Sprite2D" parent="Stage/Walls"]
-position = Vector2(116, -1541.88)
-scale = Vector2(89.5, 5245.75)
-texture = SubResource("PlaceholderTexture2D_vcobc")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Stage/Walls"]
-position = Vector2(2267, -1520)
-scale = Vector2(89.5, 5245.75)
-texture = SubResource("PlaceholderTexture2D_vcobc")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Stage/Walls"]
-position = Vector2(1169, 1049)
-scale = Vector2(2147, 206)
-texture = SubResource("PlaceholderTexture2D_vcobc")
-
-[node name="CrowdCorral" type="Node2D" parent="Stage"]
-script = ExtResource("6_juosq")
-
-[node name="Spawners" type="Area2D" parent="Stage"]
-y_sort_enabled = true
-
-[node name="Spawner" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1189, 474.5)
-shape = SubResource("RectangleShape2D_7wftx")
-CrowdCorral = NodePath("../../CrowdCorral")
-
-[node name="Spawner2" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(735.5, -310)
-shape = SubResource("RectangleShape2D_6swx1")
-CrowdCorral = NodePath("../../CrowdCorral")
-
-[node name="Spawner3" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1181.25, -1119.5)
-shape = SubResource("RectangleShape2D_ka12c")
-CrowdCorral = NodePath("../../CrowdCorral")
-
-[node name="Spawner4" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1718, -312)
-shape = SubResource("RectangleShape2D_fydgb")
-CrowdCorral = NodePath("../../CrowdCorral")
-SpawnNum = 50
-
-[node name="Spawner5" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1179, -1982.5)
-shape = SubResource("RectangleShape2D_4apn8")
-CrowdCorral = NodePath("../../CrowdCorral")
-
-[node name="Spawner6" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1176, -2673)
-shape = SubResource("RectangleShape2D_ndwpj")
-CrowdCorral = NodePath("../../CrowdCorral")
-
-[node name="Spawner7" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1174, -3171)
-shape = SubResource("RectangleShape2D_dih05")
-CrowdCorral = NodePath("../../CrowdCorral")
-
-[node name="Spawner8" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1174, -3555.5)
-shape = SubResource("RectangleShape2D_y8m3c")
-CrowdCorral = NodePath("../../CrowdCorral")
-SpawnNum = 75
-SampleType = 1
-
-[node name="Spawner9" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1174, -3932.25)
-shape = SubResource("RectangleShape2D_2dn7y")
-CrowdCorral = NodePath("../../CrowdCorral")
-
-[node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
-Goal = NodePath("../Goal area")
-player = NodePath("../Player")
-
-[node name="Goal area" parent="Stage" instance=ExtResource("4_s3k7p")]
-position = Vector2(557, -3973)
+[node name="GuitarEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+play_event = 1
+stop_event = 3
+event = ExtResource("12_u4y1s")
+position = Vector2(1156, -3753)
 
 [node name="Lighting" type="Node" parent="Stage"]
 
@@ -318,22 +199,111 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Audio" type="Node" parent="Stage"]
+[node name="Floor" parent="Stage" instance=ExtResource("3_yk581")]
 
-[node name="StudioBankLoader" type="StudioBankLoader" parent="Stage/Audio"]
-load_on = 1
-num_banks = 1
-bank_0 = ExtResource("6_odtpf")
+[node name="Paths" type="Node2D" parent="Stage"]
 
-[node name="CrowdEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
-play_event = 1
-event = ExtResource("7_umxbt")
+[node name="Path" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+position = Vector2(734, 448)
 
-[node name="GuitarEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
-play_event = 1
-stop_event = 3
-event = ExtResource("12_u4y1s")
-position = Vector2(1156, -3753)
+[node name="Path2" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+position = Vector2(1003, -497)
+rotation = 0.523598
+
+[node name="Path3" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+position = Vector2(1680, -1144)
+rotation = 1.0472
+
+[node name="Path4" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+position = Vector2(2124, -1905)
+
+[node name="Path5" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+position = Vector2(1882, -2837)
+rotation = -0.523598
+
+[node name="Path6" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+position = Vector2(1736, -3271)
+rotation = 1.57079
+
+[node name="Path7" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+position = Vector2(708, -3270)
+rotation = 1.57079
+
+[node name="Walls" type="Node2D" parent="Stage"]
+
+[node name="Wall" parent="Stage/Walls" instance=ExtResource("5_mhn7y")]
+
+[node name="Wall2" parent="Stage/Walls" instance=ExtResource("5_mhn7y")]
+position = Vector2(1178, 1067)
+rotation = 1.57079
+scale = Vector2(89.5, 2300)
+
+[node name="Wall3" parent="Stage/Walls" instance=ExtResource("5_mhn7y")]
+position = Vector2(2226, -1570)
+
+[node name="Goal area" parent="Stage" instance=ExtResource("4_s3k7p")]
+position = Vector2(557, -3973)
+
+[node name="Player" parent="Stage" instance=ExtResource("3_m2j0t")]
+position = Vector2(1169, 885)
+
+[node name="CrowdCorral" type="Node2D" parent="Stage"]
+script = ExtResource("6_juosq")
+
+[node name="Spawners" type="Area2D" parent="Stage"]
+y_sort_enabled = true
+
+[node name="Spawner" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1189, 474.5)
+shape = SubResource("RectangleShape2D_7wftx")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="Spawner2" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(735.5, -310)
+shape = SubResource("RectangleShape2D_6swx1")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="Spawner3" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1181.25, -1119.5)
+shape = SubResource("RectangleShape2D_ka12c")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="Spawner4" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1718, -312)
+shape = SubResource("RectangleShape2D_fydgb")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 50
+
+[node name="Spawner5" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1179, -1982.5)
+shape = SubResource("RectangleShape2D_4apn8")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="Spawner6" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1176, -2673)
+shape = SubResource("RectangleShape2D_ndwpj")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="Spawner7" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1174, -3171)
+shape = SubResource("RectangleShape2D_dih05")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="Spawner8" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1174, -3555.5)
+shape = SubResource("RectangleShape2D_y8m3c")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 75
+SampleType = 1
+
+[node name="Spawner9" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1174, -3932.25)
+shape = SubResource("RectangleShape2D_2dn7y")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
+Goal = NodePath("../Goal area")
+player = NodePath("../Player")
 
 [connection signal="body_entered" from="Stage/Goal area/Goal" to="Stage" method="_on_goal_body_entered"]
 
