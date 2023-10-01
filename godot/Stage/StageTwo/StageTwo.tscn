@@ -221,7 +221,6 @@ MaxDistance = 1000.0
 MaxSpeed = 30.0
 
 [node name="Floor" parent="Stage" instance=ExtResource("6_43vxe")]
-visible = false
 position = Vector2(1219, -1465)
 
 [node name="Paths" type="Node2D" parent="Stage"]
@@ -229,14 +228,22 @@ position = Vector2(1219, -1465)
 [node name="Walls" type="Node2D" parent="Stage"]
 
 [node name="Wall" parent="Stage/Walls" instance=ExtResource("8_o7yrb")]
+position = Vector2(146, -1013)
+scale = Vector2(89.5, 4000)
 
 [node name="Wall2" parent="Stage/Walls" instance=ExtResource("8_o7yrb")]
 position = Vector2(1178, 1067)
 rotation = 1.57079
 scale = Vector2(89.5, 2300)
 
+[node name="Wall4" parent="Stage/Walls" instance=ExtResource("8_o7yrb")]
+position = Vector2(1140, -2829)
+rotation = 1.57079
+scale = Vector2(89.5, 2300)
+
 [node name="Wall3" parent="Stage/Walls" instance=ExtResource("8_o7yrb")]
-position = Vector2(2226, -1570)
+position = Vector2(2203, -958)
+scale = Vector2(89.5, 4000)
 
 [node name="Cars" type="Node2D" parent="Stage"]
 
