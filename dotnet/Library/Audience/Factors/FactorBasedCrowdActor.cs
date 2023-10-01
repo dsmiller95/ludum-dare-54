@@ -6,31 +6,40 @@ public class FactorBasedCrowdActor : ICrowdActor
 {
     private readonly IFactorEffect[] effects;
     private readonly FactorTuningParams tuning;
+    private readonly FactorAccumulation accumulation;
     private readonly IProvideFactorOverride? overrideSource;
 
     private Factors factors;
+    
+    public float[] GetRawFactorsUnnormalized()
+    {
+        return factors.GetRawFactorsUnnormalized();
+    }
 
     private AiResult lastAiResult;
     
     public FactorBasedCrowdActor(
         IFactorEffect[] effects,
         FactorTuningParams tuning,
+        FactorAccumulation accumulation,
         IProvideFactorOverride? overrideSource = null)
     {
         this.effects = effects;
         this.tuning = tuning;
+        this.accumulation = accumulation;
         this.overrideSource = overrideSource;
-        factors = new Factors(0.5f);
+        factors = overrideSource?.GetOverrideFactor() ?? new Factors(0.5f);
     }
     
     public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
     {
-        if (overrideSource != null)
+        if (overrideSource is { UseLiveOverride: true })
         {
             this.factors = overrideSource.GetOverrideFactor();
         }
         else
         {
+            this.factors.AccumulateFactors(accumulation, (float)deltaTime);
             this.factors.DecayFactors((float)deltaTime, tuning.FactorDecayRate);
         }
         var aiParams = new AiParams
@@ -66,7 +75,7 @@ public class FactorBasedCrowdActor : ICrowdActor
 
     public void ReceivePushEvent(PushEvent pushEvent)
     {
-        var rageEffect = pushEvent.PushForce.Length() * tuning.PushToRageRatio;
+        var rageEffect = pushEvent.PushForce.Length() / tuning.PushToRageRatio;
         factors.AddFactor(FactorType.Rage, rageEffect);
     }
 
@@ -78,5 +87,14 @@ public class FactorBasedCrowdActor : ICrowdActor
     public Vector2 GetCurrentSelfMoveForce()
     {
         return lastAiResult.AdditionalLinearForce;
+    }
+
+    public CrowdActorEffect GetCrowdEffectLevels()
+    {
+        return new CrowdActorEffect
+        {
+            EnragedEffect = factors.GetNormalized(FactorType.Rage),
+            DrunkEffect = factors.GetNormalized(FactorType.Stupor)
+        };
     }
 }

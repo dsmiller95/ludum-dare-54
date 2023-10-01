@@ -7,6 +7,7 @@ namespace LudumDare54.Audience;
 [GlobalClass]
 public partial class FactorOverrideSource : Resource, IProvideFactorOverride
 {
+    [Export] public bool UseLiveOverride { get; private set; } = true;
     [Export] public float Rage = 0f;
     [Export] public float Stupor = 0f;
     [Export] public float StinkyToAttractive = 0f;

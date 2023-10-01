@@ -1,6 +1,7 @@
 using System.Linq;
 using DotnetLibrary;
 using DotnetLibrary.Audience;
+using DotnetLibrary.Audience.Factors;
 using Godot;
 using Godot.Collections;
 
@@ -17,6 +18,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     
     [Export]
     private float assumedPushForce = 100f;
+    [Export]
+    private ActorEffectsRenderer effectsRenderer;
     [Export]
     private Array<Resource> crowdActorPresetOptions;
     
@@ -64,6 +67,13 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         integrationResult.ApplyTo(this);
 
         personBody._PhysicsProcess();
+        
+        var crowdEffectLevels = crowdActorImpl.GetCrowdEffectLevels();
+        effectsRenderer.RenderEffects(crowdEffectLevels);
+        if (crowdActorImpl is FactorBasedCrowdActor factorBased)
+        {
+            effectsRenderer.RenderDebugRawFactors(factorBased.GetRawFactorsUnnormalized());
+        }
     }
 
     public void OnBodyEntered(Node bodyGeneric)

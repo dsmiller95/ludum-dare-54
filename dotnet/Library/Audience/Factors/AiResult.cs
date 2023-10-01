@@ -4,7 +4,7 @@ namespace DotnetLibrary.Audience.Factors;
 
 public struct AiResult
 {
-    public readonly static AiResult Default = new AiResult
+    public static readonly AiResult Default = new AiResult
     {
         AdditionalLinearForce = Vector2.Zero,
         Firmness = 1

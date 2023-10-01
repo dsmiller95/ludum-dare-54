@@ -11,6 +11,11 @@ public struct Factors
     private float[] normalizedFactors;
     private bool needsNormalize;
 
+    public float[] GetRawFactorsUnnormalized()
+    {
+        return factors;
+    }
+    
     private void Normalize()
     {
         float sum = 0;
@@ -40,6 +45,15 @@ public struct Factors
     public void AddFactor(FactorType factor, float amount)
     {
         factors[(int)factor] += amount;
+        needsNormalize = true;
+    }
+
+    public void AccumulateFactors(FactorAccumulation accumulation, float deltaTime)
+    {
+        for (int i = 0; i < factors.Length; i++)
+        {
+            factors[i] += accumulation.AccumulationsPerSecond[i] * deltaTime;
+        }
         needsNormalize = true;
     }
 

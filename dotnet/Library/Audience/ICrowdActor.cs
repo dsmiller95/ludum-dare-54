@@ -49,6 +49,8 @@ public interface ICrowdActor
     public void ReceivePushEvent(PushEvent pushEvent);
     public float GetFirmness();
     public Vector2 GetCurrentSelfMoveForce();
+    
+    public CrowdActorEffect GetCrowdEffectLevels();
 }
 
 public record struct PushEvent(Vector2 PushForce);
@@ -57,4 +59,13 @@ public record struct NeighborCrowdActor
 {
     public Vector2 relativePosition;
     public ICrowdActor actor;
+}
+
+public record struct CrowdActorEffect
+{
+    public static readonly CrowdActorEffect Zero = new CrowdActorEffect();
+    
+    public float EnragedEffect; // red eyes, red light maybe
+    public float DrunkEffect; // drunk lines
+    public float AlertEffect; // an alert bubble
 }
