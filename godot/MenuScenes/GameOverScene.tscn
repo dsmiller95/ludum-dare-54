@@ -1,3 +1,61 @@
-[gd_scene format=3 uid="uid://b6t7y7o3ev60q"]
+[gd_scene load_steps=4 format=3 uid="uid://b6t7y7o3ev60q"]
+
+[ext_resource type="Script" path="res://MenuScenes/GameOverScene.gd" id="1_srlcx"]
+[ext_resource type="Texture2D" uid="uid://btl17hyr6dstm" path="res://Venues/Background.png" id="2_n24k8"]
+[ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="3_ybvd3"]
 
 [node name="GameOverScene" type="Node2D"]
+script = ExtResource("1_srlcx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576, 324.5)
+scale = Vector2(17.9688, 10.1719)
+texture = ExtResource("2_n24k8")
+
+[node name="PointLight2D" parent="." instance=ExtResource("3_ybvd3")]
+position = Vector2(981, 571)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+MaxDistance = 500.0
+MaxSpeed = 30.0
+
+[node name="PointLight2D2" parent="." instance=ExtResource("3_ybvd3")]
+position = Vector2(958, 187)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+MaxDistance = 500.0
+MaxSpeed = 30.0
+
+[node name="PointLight2D3" parent="." instance=ExtResource("3_ybvd3")]
+position = Vector2(172, 481)
+scale = Vector2(5, 5)
+MaxDistance = 500.0
+MaxSpeed = 30.0
+
+[node name="Label" type="Label" parent="."]
+offset_left = 153.0
+offset_top = 56.0
+offset_right = 1004.0
+offset_bottom = 209.0
+theme_override_font_sizes/font_size = 46
+text = "D'OH!  You ran out of beer!"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="BackButton" type="Button" parent="."]
+offset_left = 429.0
+offset_top = 426.0
+offset_right = 740.0
+offset_bottom = 511.0
+text = "Back to Main Menu"
+
+[node name="RetryButton" type="Button" parent="."]
+offset_left = 429.0
+offset_top = 304.0
+offset_right = 737.0
+offset_bottom = 387.0
+text = "Retry Level"
+
+[connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]
