@@ -169,10 +169,10 @@ position = Vector2(1174, -3932.25)
 shape = SubResource("RectangleShape2D_2dn7y")
 
 [node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
-Goal = NodePath("../Goal")
+Goal = NodePath("../Goal area")
 player = NodePath("../Player")
 
-[node name="Goal" parent="Stage" instance=ExtResource("4_s3k7p")]
+[node name="Goal area" parent="Stage" instance=ExtResource("4_s3k7p")]
 position = Vector2(557, -3973)
 
 [node name="Lighting" type="Node" parent="Stage"]
@@ -321,4 +321,6 @@ play_event = 1
 event = ExtResource("12_u4y1s")
 position = Vector2(1156, -3753)
 
-[connection signal="body_entered" from="Stage/Goal" to="Stage" method="_on_goal_body_entered"]
+[connection signal="body_entered" from="Stage/Goal area/Goal" to="Stage" method="_on_goal_body_entered"]
+
+[editable path="Stage/Goal area"]
