@@ -5,8 +5,8 @@
 
 [sub_resource type="Resource" id="Resource_prof6"]
 script = ExtResource("1_0ixo0")
-Rage = 10.0
-Stupor = 0.0
+Rage = 1.0
+Stupor = 1.0
 StinkyToAttractive = 0.0
 Horny = 0.0
 IntrovertToExtrovert = 0.0
@@ -17,7 +17,7 @@ FactorDecayRate = 0.1
 RandomWalkJitter = 2.0
 OverrideSource = SubResource("Resource_prof6")
 PushToRageRatio = 400.0
-RagePunchChancePerSecond = 1.0
+RagePunchChancePerSecond = 4.0
 RagePunchMinMagnitude = 1.0
-RagePunchMaxMagnitude = 10.0
+RagePunchMaxMagnitude = 30.0
 RagePunchDuration = 0.1
