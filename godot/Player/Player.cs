@@ -105,17 +105,22 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	{
 		if (bodyGeneric is RigidBody2D otherBody)
 		{
-			Health.AdjustHealth(-5);
 			var impactVector = otherBody.LinearVelocity - LinearVelocity;
 			var impact = impactVector.Length();
 			if (impact > 100)
 			{
+				Health.AdjustHealth(-5);
 				EmitSignal("HealthDepleted");
 				var spill = GetNode<CpuParticles2D>("SpillParticles");
 				spill.Direction = new Vector2(impactVector.Y, -impactVector.X);
 				spill.InitialVelocityMin = impact;
 				spill.InitialVelocityMax = impact * 5;
 				spill.Emitting = true;
+
+				if (Health.HealthValue <= 0)
+				{
+					GetTree().ChangeSceneToFile("res://MenuScenes/GameOverScene.tscn");
+				}
 			}
 			else
 			{
