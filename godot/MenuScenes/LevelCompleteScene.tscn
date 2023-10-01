@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://7hpqcm0r12iy"]
+
+[ext_resource type="Script" path="res://MenuScenes/LevelCompleteScene.gd" id="1_cj083"]
+
+[node name="LevelCompleteScene" type="Node2D"]
+script = ExtResource("1_cj083")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1152.0
+offset_bottom = 151.0
+text = "GOOD JOB, YOU BEAT LEVEL {x}!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+offset_left = 372.0
+offset_top = 212.0
+offset_right = 786.0
+offset_bottom = 356.0
+text = "Next level"
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 379.0
+offset_top = 393.0
+offset_right = 786.0
+offset_bottom = 538.0
+text = "Quit to Main Menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
