@@ -6,19 +6,27 @@ public class FactorBasedCrowdActor : ICrowdActor
 {
     private readonly IFactorEffect[] effects;
     private readonly FactorTuningParams tuning;
+    private readonly FactorAccumulation accumulation;
     private readonly IProvideFactorOverride? overrideSource;
 
     private Factors factors;
+    
+    public float[] GetRawFactorsUnnormalized()
+    {
+        return factors.GetRawFactorsUnnormalized();
+    }
 
     private AiResult lastAiResult;
     
     public FactorBasedCrowdActor(
         IFactorEffect[] effects,
         FactorTuningParams tuning,
+        FactorAccumulation accumulation,
         IProvideFactorOverride? overrideSource = null)
     {
         this.effects = effects;
         this.tuning = tuning;
+        this.accumulation = accumulation;
         this.overrideSource = overrideSource;
         factors = overrideSource?.GetOverrideFactor() ?? new Factors(0.5f);
     }
@@ -31,6 +39,7 @@ public class FactorBasedCrowdActor : ICrowdActor
         }
         else
         {
+            this.factors.AccumulateFactors(accumulation, (float)deltaTime);
             this.factors.DecayFactors((float)deltaTime, tuning.FactorDecayRate);
         }
         var aiParams = new AiParams

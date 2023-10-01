@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FactorBasedCrowdActorTuning" load_steps=2 format=3 uid="uid://bx2o2qprxcl3p"]
+
+[ext_resource type="Script" path="res://Audience/FactorBasedCrowdActorTuning.cs" id="1_mwup2"]
+
+[resource]
+script = ExtResource("1_mwup2")
+FactorDecayRate = 0.1
+RandomWalkJitter = 2.0
+PushToRageRatio = 15.0
+RagePunchChancePerSecond = 4.0
+RagePunchMinMagnitude = 1.0
+RagePunchMaxMagnitude = 30.0
+RagePunchDuration = 0.1
