@@ -18,7 +18,7 @@ public partial class Spawner : CollisionShape2D
 	{
 		Disabled = true;
 		
-		if (Shape is not RectangleShape2D)
+		if (Shape is not RectangleShape2D rectShape)
 		{
 			GD.PrintErr($"Using invalid shape for spawner {Name}");
 			throw new InvalidDataException($"Using invalid shape for spawner {Name}");
@@ -32,8 +32,6 @@ public partial class Spawner : CollisionShape2D
 			SampleType.Gradient => new SampleGradientPointDensity(),
 			_ => throw new ArgumentOutOfRangeException()
 		};
-
-		var rectShape = (RectangleShape2D)Shape;
 		
 		foreach (var nextPoint in pointSampler
 					 .SampleVector2Field(rng.RandiRange(1, int.MaxValue), rectShape.GetRect(), SpawnNum))

@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://ch5cmv64s2foe"]
+[gd_scene load_steps=13 format=3 uid="uid://ch5cmv64s2foe"]
 
 [ext_resource type="Script" path="res://Audience/CrowdActor.cs" id="1_3k8cn"]
 [ext_resource type="Resource" uid="uid://bm7cfjlu24ccy" path="res://Audience/AiPresets/factor_drunkard.tres" id="2_dfu6g"]
 [ext_resource type="Resource" uid="uid://kx2svc877k54" path="res://Audience/audience_person_physics.tres" id="2_hktw3"]
+[ext_resource type="Resource" uid="uid://djby25txx0ftv" path="res://Audience/AiPresets/factor_speedball.tres" id="3_1gw6j"]
 [ext_resource type="Texture2D" uid="uid://ch5fs85kohgb" path="res://Assets/idle_test.tres" id="3_qss0b"]
 [ext_resource type="Script" path="res://Audience/RandomAnimationStart.cs" id="3_u801b"]
 [ext_resource type="Script" path="res://Audience/Effects/ActorEffectsRenderer.cs" id="6_05sq1"]
@@ -46,7 +47,7 @@ script = ExtResource("1_3k8cn")
 moveForceMultiplier = 2000.0
 assumedPushForce = 0.25
 effectsRenderer = NodePath("Effects")
-crowdActorPresetOptions = Array[Resource]([ExtResource("2_dfu6g")])
+crowdActorPresetOptions = Array[Resource]([ExtResource("2_dfu6g"), ExtResource("3_1gw6j")])
 PersonMovement = ExtResource("2_hktw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
