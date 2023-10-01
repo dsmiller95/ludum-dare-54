@@ -6,8 +6,7 @@ namespace LudumDare54.Audience;
 
 public partial class CrowdActor : RigidBody2D, IHavePersonBody
 {
-    [Export]
-    private float calmness = 0.5f;
+    [Export] private CrowdActorType actorType;
     
     /// <summary>
     /// global move force identifier. should be set based on the physics system config.
@@ -19,13 +18,14 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export]
     private float assumedPushForce = 100f;
     
-    private readonly ICrowdActor crowdActorImpl = new CalmCrowdActor(0.5f);
+    private ICrowdActor crowdActorImpl;
     private PersonBody personBody;
     private PersonPhysics myPhysics;
 
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
+        crowdActorImpl = CrowdActorFactory.GetActor(actorType);
         personBody = new PersonBody(this);
         myPhysics = PersonMovement.GetConfiguredPhysics();
     }
@@ -38,7 +38,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     {
         personBody._PhysicsProcess();
         
-        crowdActorImpl.Update(delta);
+        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f);
         
         // calculate friction force manually, rather than instantiating a unique physics material per actor
         // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
