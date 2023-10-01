@@ -1,14 +1,13 @@
+using System.Linq;
 using DotnetLibrary;
 using DotnetLibrary.Audience;
 using Godot;
+using Godot.Collections;
 
 namespace LudumDare54.Audience;
 
 public partial class CrowdActor : RigidBody2D, IHavePersonBody
 {
-    [Export]
-    private float calmness = 0.5f;
-    
     /// <summary>
     /// global move force identifier. should be set based on the physics system config.
     /// individual crowd actor impls may have their own scaling for this force
@@ -18,14 +17,26 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     
     [Export]
     private float assumedPushForce = 100f;
+    [Export]
+    private Array<Resource> crowdActorPresetOptions;
     
-    private readonly ICrowdActor crowdActorImpl = new CalmCrowdActor(0.5f);
+    private ICrowdActor crowdActorImpl;
     private PersonBody personBody;
     private PersonPhysics myPhysics;
 
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
+        var options = crowdActorPresetOptions.Cast<ICrowdActorPreset>().Where(x => x != null).ToArray();
+        if (options.Length <= 0)
+        {
+            GD.PrintErr("no crowd actor presets provided");
+            return;
+        }
+
+        var rng = new RandomNumberGenerator();
+        rng.Randomize();
+        crowdActorImpl = rng.PickRandom(options).ConstructConfiguredActor();
         personBody = new PersonBody(this);
         myPhysics = PersonMovement.GetConfiguredPhysics();
     }
@@ -36,9 +47,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     }
     public override void _PhysicsProcess(double delta)
     {
-        personBody._PhysicsProcess();
         
-        crowdActorImpl.Update(delta);
+        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f);
         
         // calculate friction force manually, rather than instantiating a unique physics material per actor
         // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
@@ -53,6 +63,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
             this.Transform.X,
             crowdActorImpl.GetFirmness());
         integrationResult.ApplyTo(this);
+
+        personBody._PhysicsProcess();
     }
 
     public void OnBodyEntered(Node bodyGeneric)
@@ -65,13 +77,13 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         
         if (body is not IHavePersonBody otherPerson)
         {
-            GD.PrintErr("CrowdActor.OnBodyEntered: colliding body is not a Person Body");
             return;
         }
         
         var person = otherPerson.GetBody();
         var pushDirection = GlobalPosition - body.GlobalPosition;
-        var pushVector = pushDirection.Normalized() * person.GetAverageSpeed();
+
+        var pushVector = pushDirection.Normalized() * person.GetAverageSpeed() / PersonMovement.MaximumVelocity;
 
         var pushEvent = new PushEvent(pushVector);
         crowdActorImpl.ReceivePushEvent(pushEvent);
