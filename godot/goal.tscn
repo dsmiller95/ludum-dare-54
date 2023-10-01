@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://dc2u66hu32vaq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wu8o8"]
+size = Vector2(165, 161)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0vqrj"]
+
+[node name="Goal" type="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wu8o8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(167.418, 160)
+texture = SubResource("PlaceholderTexture2D_0vqrj")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -58.0
+offset_top = -40.0
+offset_right = 77.0
+offset_bottom = 37.0
+theme_override_font_sizes/font_size = 22
+text = "THIS IS THE GOAL"
+autowrap_mode = 2

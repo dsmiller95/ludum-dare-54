@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmiir4cojqrh0"]
+[gd_scene load_steps=6 format=3 uid="uid://cmiir4cojqrh0"]
 
+[ext_resource type="Script" path="res://Venues/DiveBar.cs" id="1_3ygg2"]
 [ext_resource type="PackedScene" uid="uid://ch5cmv64s2foe" path="res://Audience/Attendee.tscn" id="1_wquak"]
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="2_g32c0"]
+[ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="4_2od8b"]
+[ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://HUD.tscn" id="5_hc1wo"]
 
 [node name="DiveBar" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_3ygg2")
 
 [node name="Attendee" parent="." instance=ExtResource("1_wquak")]
 position = Vector2(734, 556)
@@ -62,3 +66,11 @@ position = Vector2(947, 337)
 
 [node name="Player" parent="." instance=ExtResource("2_g32c0")]
 position = Vector2(595, 591)
+
+[node name="Goal" parent="." instance=ExtResource("4_2od8b")]
+
+[node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_hc1wo")]
+Goal = NodePath("../Goal")
+player = NodePath("../Player")
+
+[connection signal="body_entered" from="Goal" to="." method="_on_goal_body_entered"]
