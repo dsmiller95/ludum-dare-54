@@ -161,6 +161,8 @@ shape = SubResource("RectangleShape2D_dih05")
 [node name="Spawner8" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3555.5)
 shape = SubResource("RectangleShape2D_y8m3c")
+SpawnNum = 75
+SampleType = 1
 
 [node name="Spawner9" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3932.25)
