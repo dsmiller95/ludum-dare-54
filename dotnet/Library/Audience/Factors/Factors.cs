@@ -1,9 +1,12 @@
+using System.Diagnostics;
 using Godot;
 
 namespace DotnetLibrary.Audience.Factors;
 
 public struct Factors
 {
+    public static readonly int TotalFactors = 5;
+    
     private float[] factors;
     private float[] normalizedFactors;
     private bool needsNormalize;
@@ -18,9 +21,11 @@ public struct Factors
             normalizedFactors[i] = factors[i];
         }
 
+        float distance = Mathf.Sqrt(sum);
+
         for (int i = 0; i < factors.Length; i++)
         {
-            normalizedFactors[i] /= sum;
+            normalizedFactors[i] /= distance;
         }
 
         needsNormalize = false;
@@ -50,6 +55,10 @@ public struct Factors
 
     public Factors(float defaultFactor)
     {
+        if (defaultFactor == 0)
+        {
+            defaultFactor = 0.0001f;
+        }
         this.factors = new float[5];
         this.normalizedFactors = new float[5];
         Array.Fill(factors, defaultFactor);
@@ -57,11 +66,36 @@ public struct Factors
     }
 }
 
+/// <summary>
+/// Because factors are normalized, the positive version should be the most interesting/ effect-based.
+/// I.E. "Rage" is the factor, because a value of 1 produces strong punches. a Rage value of 0 does almost nothing.
+/// 
+/// </summary>
+/// <remarks>
+/// Some factors may be bimodal, that's fine. but if one side is the exclusive "Action taken" value, use that name. 
+/// </remarks>
 public enum FactorType
 {
+    /// <summary>
+    /// 0..1
+    /// 1 means the actor is ready to punch
+    /// </summary>
     Rage = 0,
-    MotorControl = 1,
-    Stinky = 2,
+    /// <summary>
+    /// 0..1
+    /// 1 means the actor ambles around aimlessly
+    /// </summary>
+    Stupor = 1,
+    /// <summary>
+    /// -1..1
+    /// </summary>
+    StinkyToAttractive = 2,
+    /// <summary>
+    /// 0..1
+    /// </summary>
     Horny = 3,
-    Wallflower = 4
+    /// <summary>
+    /// -1..1
+    /// </summary>
+    IntrovertToExtrovert = 4
 }
