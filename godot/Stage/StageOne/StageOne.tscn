@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=17 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
+[ext_resource type="Script" path="res://Lighting/StageLight.cs" id="3_228ch"]
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="3_m2j0t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwjrq"]
@@ -13,7 +14,7 @@ size = Vector2(2150.5, 140)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vcobc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bh5ag"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_28ukq"]
 resource_local_to_scene = true
 size = Vector2(1935, 883)
 
@@ -26,25 +27,29 @@ size = Vector2(1916.5, 935)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0whf"]
 size = Vector2(907.75, 693.657)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cvfxp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l43i2"]
 resource_local_to_scene = true
 size = Vector2(1935, 783)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6xwq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8t24"]
 resource_local_to_scene = true
 size = Vector2(1935, 590)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxeac"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ol66"]
 resource_local_to_scene = true
 size = Vector2(1935, 402)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lionp"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m7fc7"]
 resource_local_to_scene = true
 size = Vector2(1935, 293)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_khpmj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyigu"]
 resource_local_to_scene = true
 size = Vector2(1935, 201)
+
+[sub_resource type="Curve" id="Curve_dgqs3"]
+_data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
 
 [node name="Game" type="Node"]
 
@@ -89,7 +94,7 @@ y_sort_enabled = true
 [node name="Spawner" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 y_sort_enabled = true
 position = Vector2(1189, 474.5)
-shape = SubResource("RectangleShape2D_bh5ag")
+shape = SubResource("RectangleShape2D_28ukq")
 
 [node name="Spawner2" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 y_sort_enabled = true
@@ -110,24 +115,33 @@ SpawnNum = 50
 [node name="Spawner5" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 y_sort_enabled = true
 position = Vector2(1179, -1982.5)
-shape = SubResource("RectangleShape2D_cvfxp")
+shape = SubResource("RectangleShape2D_l43i2")
 
 [node name="Spawner6" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 y_sort_enabled = true
 position = Vector2(1176, -2673)
-shape = SubResource("RectangleShape2D_v6xwq")
+shape = SubResource("RectangleShape2D_m8t24")
 
 [node name="Spawner7" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 y_sort_enabled = true
 position = Vector2(1174, -3171)
-shape = SubResource("RectangleShape2D_xxeac")
+shape = SubResource("RectangleShape2D_4ol66")
 
 [node name="Spawner8" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 y_sort_enabled = true
 position = Vector2(1174, -3511.5)
-shape = SubResource("RectangleShape2D_lionp")
+shape = SubResource("RectangleShape2D_m7fc7")
 
 [node name="Spawner9" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 y_sort_enabled = true
 position = Vector2(1174, -3751.5)
-shape = SubResource("RectangleShape2D_khpmj")
+shape = SubResource("RectangleShape2D_gyigu")
+
+[node name="Lighting" type="Node" parent="Stage"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Stage/Lighting"]
+color = Color(0.235294, 0.235294, 0.235294, 1)
+
+[node name="StageLight" type="DirectionalLight2D" parent="Stage/Lighting"]
+script = ExtResource("3_228ch")
+LightIntensity = SubResource("Curve_dgqs3")
