@@ -78,8 +78,6 @@ initial_velocity_max = 500.0
 scale_amount_max = 5.0
 color = Color(1, 0.741176, 0.333333, 1)
 
-[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
-
 [node name="SoundBump" type="Node" parent="." node_paths=PackedStringArray("body")]
 script = ExtResource("4_lwobx")
 body = NodePath("..")
@@ -88,3 +86,5 @@ event = ExtResource("5_omry8")
 [node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="SoundBump"]
 play_event = 1
 event = ExtResource("6_xkjc5")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

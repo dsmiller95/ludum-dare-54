@@ -5,6 +5,9 @@ using LudumDare54.Audience;
 
 public partial class Player : RigidBody2D, IHavePersonBody
 {
+	[Signal] public delegate void SoftCollisionEventHandler();
+	[Signal] public delegate void HealthDepletedEventHandler();
+
 	[Export] public float AccelerationForce { get; set; } = 400; // How fast to accelerate (pixels/sec^2).
 	[Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
 
@@ -104,11 +107,19 @@ public partial class Player : RigidBody2D, IHavePersonBody
 		{
 			Health.AdjustHealth(-1);
 			var impact = (otherBody.LinearVelocity - LinearVelocity).Length();
-			var spill = GetNode<CpuParticles2D>("SpillParticles");
-			spill.Direction = (otherBody.LinearVelocity - LinearVelocity).Normalized();
-			spill.InitialVelocityMin = impact;
-			spill.InitialVelocityMax = impact * 5;
-			spill.Emitting = true;
+			if (impact > 100)
+			{
+				EmitSignal("HealthDepleted");
+				var spill = GetNode<CpuParticles2D>("SpillParticles");
+				spill.Direction = (otherBody.LinearVelocity - LinearVelocity).Normalized();
+				spill.InitialVelocityMin = impact;
+				spill.InitialVelocityMax = impact * 5;
+				spill.Emitting = true;
+			}
+			else
+			{
+				EmitSignal("SoftCollision");
+			}
 		}
 	}
 }
