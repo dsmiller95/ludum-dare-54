@@ -17,6 +17,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     
     [Export]
     private float assumedPushForce = 100f;
+    [Export]
+    private Resource crowdActorPreset;
     
     private ICrowdActor crowdActorImpl;
     private PersonBody personBody;
@@ -25,7 +27,12 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
-        crowdActorImpl = CrowdActorFactory.GetActor(actorType);
+        if (crowdActorPreset is not ICrowdActorPreset preset)
+        {
+            GD.PrintErr("Resource is not a crowd actor preset");
+            return;
+        }
+        crowdActorImpl = preset.ConstructConfiguredActor();// CrowdActorFactory.GetActor(actorType);
         personBody = new PersonBody(this);
         myPhysics = PersonMovement.GetConfiguredPhysics();
     }
