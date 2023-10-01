@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="3_m2j0t"]
 [ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="4_s3k7p"]
-[ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://HUD.tscn" id="5_espk5"]
+[ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="5_espk5"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_psukv"]
 [ext_resource type="Script" path="res://Stage/PathRepellent.cs" id="6_sohrc"]
 
