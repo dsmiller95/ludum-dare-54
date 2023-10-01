@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=27 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
@@ -12,8 +12,10 @@
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="6_juosq"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
+[ext_resource type="Texture2D" uid="uid://bf0c1wof0qvm8" path="res://Assets/Stage.tres" id="9_x17ly"]
 [ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="11_tqkk2"]
 [ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
+[ext_resource type="PackedScene" uid="uid://cpqdu38mtpo4a" path="res://Lighting/LongLight.tscn" id="14_f6f0j"]
 
 [sub_resource type="Curve" id="Curve_dgqs3"]
 _data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
@@ -64,6 +66,11 @@ stop_event = 3
 event = ExtResource("12_u4y1s")
 position = Vector2(1156, -3753)
 
+[node name="Stage" type="Sprite2D" parent="Stage"]
+position = Vector2(1172, -3873)
+scale = Vector2(10, 10)
+texture = ExtResource("9_x17ly")
+
 [node name="Lighting" type="Node2D" parent="Stage"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="Stage/Lighting"]
@@ -71,9 +78,12 @@ color = Color(0.235294, 0.235294, 0.235294, 1)
 
 [node name="StageLight" type="DirectionalLight2D" parent="Stage/Lighting"]
 script = ExtResource("3_228ch")
+Bpm = 100.0
 LightIntensity = SubResource("Curve_dgqs3")
 
-[node name="Spotlight" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlights" type="Node2D" parent="Stage/Lighting"]
+
+[node name="Spotlight" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(2074, -555)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -81,20 +91,20 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight2" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight2" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight3" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight3" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(750, -3310)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight4" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight4" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1946, -2477)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -102,7 +112,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight5" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight5" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1397, -2847)
 scale = Vector2(5, 5)
 color = Color(0.207843, 0.294118, 0.631373, 1)
@@ -110,14 +120,14 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight6" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight6" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1711, -1302)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight7" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight7" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(948, -690)
 scale = Vector2(5, 5)
 color = Color(0.207843, 0.294118, 0.631373, 1)
@@ -125,7 +135,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight8" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight8" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(750, -2349)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -133,7 +143,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight9" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight9" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(579, -1601)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -141,21 +151,21 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight10" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight10" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1845, 251)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight11" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight11" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(558, -1152)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight12" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight12" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1305, -3609)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -163,7 +173,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight13" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight13" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(393, -2740)
 scale = Vector2(5, 5)
 color = Color(0.207843, 0.294118, 0.631373, 1)
@@ -171,14 +181,14 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight14" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight14" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1327, -2006)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight15" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight15" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1119, -1074)
 scale = Vector2(5, 5)
 color = Color(0.207843, 0.294118, 0.631373, 1)
@@ -186,7 +196,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight16" parent="Stage/Lighting" instance=ExtResource("5_05u3q")]
+[node name="Spotlight16" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(921, -2733)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -194,7 +204,25 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
+[node name="LongLight" parent="Stage/Lighting" instance=ExtResource("14_f6f0j")]
+z_index = 1
+z_as_relative = false
+position = Vector2(474, -4829)
+scale = Vector2(3, 10)
+energy = 6.0
+height = 750.0
+
+[node name="LongLight2" parent="Stage/Lighting" instance=ExtResource("14_f6f0j")]
+z_index = 1
+z_as_relative = false
+position = Vector2(1803, -4837)
+scale = Vector2(3, 10)
+energy = 6.0
+height = 750.0
+
 [node name="Floor" parent="Stage" instance=ExtResource("3_yk581")]
+position = Vector2(1181, -1646)
+scale = Vector2(32.734, 82.956)
 
 [node name="Paths" type="Node2D" parent="Stage"]
 
