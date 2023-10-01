@@ -2,12 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="1_tbc8d"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2gbs"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxrbf"]
 size = Vector2(290.5, 261)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2ynlj"]
-resource_local_to_scene = true
 size = Vector2(496, 56)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7cw87"]
@@ -21,7 +19,7 @@ y_sort_enabled = true
 
 [node name="Spawner" parent="Node2D/Spawners" instance=ExtResource("1_tbc8d")]
 position = Vector2(607, 316)
-shape = SubResource("RectangleShape2D_f2gbs")
+shape = SubResource("RectangleShape2D_wxrbf")
 SpawnNum = 20
 
 [node name="Walls" type="StaticBody2D" parent="Node2D"]

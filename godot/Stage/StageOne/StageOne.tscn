@@ -16,36 +16,39 @@ size = Vector2(2150.5, 140)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vcobc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lher8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_br2cx"]
 resource_local_to_scene = true
 size = Vector2(1935, 883)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3m58"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fbg0i"]
+resource_local_to_scene = true
 size = Vector2(1023, 678)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8h6d"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdhq5"]
+resource_local_to_scene = true
 size = Vector2(1916.5, 935)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0whf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wwgha"]
+resource_local_to_scene = true
 size = Vector2(907.75, 693.657)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3w82"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5vggi"]
 resource_local_to_scene = true
 size = Vector2(1935, 783)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83ucb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_plen0"]
 resource_local_to_scene = true
 size = Vector2(1935, 590)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxvgk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40e32"]
 resource_local_to_scene = true
 size = Vector2(1935, 402)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lb18"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y47ql"]
 resource_local_to_scene = true
 size = Vector2(1935, 293)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qxjd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sd4gj"]
 resource_local_to_scene = true
 size = Vector2(1935, 201)
 
@@ -95,43 +98,45 @@ y_sort_enabled = true
 
 [node name="Spawner" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1189, 474.5)
-shape = SubResource("RectangleShape2D_lher8")
+shape = SubResource("RectangleShape2D_br2cx")
 
 [node name="Spawner2" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(735.5, -310)
-shape = SubResource("RectangleShape2D_m3m58")
+shape = SubResource("RectangleShape2D_fbg0i")
 
 [node name="Spawner3" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1181.25, -1119.5)
-shape = SubResource("RectangleShape2D_k8h6d")
+shape = SubResource("RectangleShape2D_jdhq5")
 
 [node name="Spawner4" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1718, -312)
-shape = SubResource("RectangleShape2D_c0whf")
+shape = SubResource("RectangleShape2D_wwgha")
 SpawnNum = 50
 
 [node name="Spawner5" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1179, -1982.5)
-shape = SubResource("RectangleShape2D_h3w82")
+shape = SubResource("RectangleShape2D_5vggi")
 
 [node name="Spawner6" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1176, -2673)
-shape = SubResource("RectangleShape2D_6mrm0")
+shape = SubResource("RectangleShape2D_plen0")
 
 [node name="Spawner7" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3171)
-shape = SubResource("RectangleShape2D_ooi10")
+shape = SubResource("RectangleShape2D_40e32")
 
 [node name="Spawner8" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3511.5)
-shape = SubResource("RectangleShape2D_ab78a")
+shape = SubResource("RectangleShape2D_y47ql")
 
 [node name="Spawner9" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3751.5)
-shape = SubResource("RectangleShape2D_vnyuj")
+shape = SubResource("RectangleShape2D_sd4gj")
 
-[node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
-Goal = NodePath("../Goal")
-player = NodePath("../Player")
+[node name="HUD" parent="Stage" instance=ExtResource("5_espk5")]
+Goal = Object(Area2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(1241, 69),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":true,"monitoring":true,"monitorable":true,"priority":0,"gravity_space_override":0,"gravity_point":false,"gravity_point_unit_distance":0.0,"gravity_point_center":Vector2(0, 1),"gravity_direction":Vector2(0, 1),"gravity":980.0,"linear_damp_space_override":0,"linear_damp":0.1,"angular_damp_space_override":0,"angular_damp":1.0,"audio_bus_override":false,"audio_bus_name":&"Master","script":null)
+
+player = Object(RigidBody2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":true,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(1169, 885),"rotation":-1.5708,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":false,"mass":1.0,"inertia":0.0,"center_of_mass_mode":0,"center_of_mass":Vector2(0, 0),"physics_material_override":null,"gravity_scale":1.0,"custom_integrator":false,"continuous_cd":0,"max_contacts_reported":0,"contact_monitor":false,"sleeping":false,"can_sleep":true,"lock_rotation":false,"freeze":false,"freeze_mode":0,"linear_velocity":Vector2(0, 0),"linear_damp_mode":0,"linear_damp":0.0,"angular_velocity":0.0,"angular_damp_mode":0,"angular_damp":10.0,"constant_force":Vector2(0, 0),"constant_torque":0.0,"script":Resource("res://Player/Player.cs"),"AccelerationForce":5000.0,"PersonMovement":Resource("res://Player/default_person_physics.tres"))
+
 
 [connection signal="body_entered" from="Stage/Goal" to="Stage" method="_on_goal_body_entered"]
