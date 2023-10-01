@@ -105,7 +105,7 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	{
 		if (bodyGeneric is RigidBody2D otherBody)
 		{
-			Health.AdjustHealth(-1);
+			Health.AdjustHealth(-5);
 			var impact = (otherBody.LinearVelocity - LinearVelocity).Length();
 			if (impact > 100)
 			{
