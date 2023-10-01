@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=20 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="4_s3k7p"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://HUD.tscn" id="5_espk5"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_psukv"]
+[ext_resource type="Script" path="res://Stage/PathRepellent.cs" id="6_sohrc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwjrq"]
 size = Vector2(53, 5180)
@@ -41,6 +42,9 @@ size = Vector2(1935, 293)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dn7y"]
 size = Vector2(1935, 201)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfrbh"]
+size = Vector2(111, 4752.75)
 
 [node name="Game" type="Node"]
 
@@ -131,5 +135,20 @@ shape = SubResource("RectangleShape2D_2dn7y")
 [node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
 Goal = NodePath("../Goal")
 player = NodePath("../Player")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Stage"]
+modulate = Color(0.537255, 0.239216, 0.215686, 0.254902)
+position = Vector2(736.938, -1429.53)
+scale = Vector2(145.875, 4678.94)
+texture = SubResource("PlaceholderTexture2D_vcobc")
+
+[node name="Area2D" type="Area2D" parent="Stage" node_paths=PackedStringArray("RepellentShapeDefinition")]
+script = ExtResource("6_sohrc")
+RepellentForce = 2000.0
+RepellentShapeDefinition = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Area2D"]
+position = Vector2(741.5, -1460.63)
+shape = SubResource("RectangleShape2D_lfrbh")
 
 [connection signal="body_entered" from="Stage/Goal" to="Stage" method="_on_goal_body_entered"]

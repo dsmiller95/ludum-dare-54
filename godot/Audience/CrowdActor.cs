@@ -86,6 +86,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         
         if (body is not IHavePersonBody otherPerson)
         {
+            //GD.Print($"CrowdActor.OnBodyEntered: colliding body {body.Name} is not a person");
             return;
         }
         
