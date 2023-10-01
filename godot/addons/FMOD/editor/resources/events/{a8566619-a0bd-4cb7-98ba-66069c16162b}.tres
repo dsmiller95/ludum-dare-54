@@ -2,8 +2,8 @@
 
 [resource]
 is_3d = true
-min_distance = 5.0
-max_distance = 40.0
-path = "event:/BasicGuitarJam"
+min_distance = 500.0
+max_distance = 7000.0
+path = "event:/Song1"
 guid = "{a8566619-a0bd-4cb7-98ba-66069c16162b}"
-name = "BasicGuitarJam"
+name = "Song1"

@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://cy8lp8e4tmft2" path="res://Assets/Main_idle_test_2.png" id="2_nritk"]
 [ext_resource type="Script" path="res://Player/SoundCollisions.gd" id="4_lwobx"]
 [ext_resource type="EventAsset" uid="uid://0oefxy3mmo12" path="res://addons/FMOD/editor/resources/events/{650d1e18-6e3a-46f3-9c8e-aef1055e36af}.tres" id="5_omry8"]
-[ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="6_xkjc5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ihj4j"]
 friction = 1000.0
@@ -34,6 +33,14 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v67ay"]
 height = 40.0
+
+[sub_resource type="EventAsset" id="EventAsset_tdodl"]
+is_oneshot = true
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/BeerSplash"
+guid = "{ed3e647c-d93d-41ab-aaff-da080ab85bd9}"
+name = "BeerSplash"
 
 [node name="Player" type="RigidBody2D"]
 y_sort_enabled = true
@@ -83,10 +90,7 @@ color = Color(1, 0.741176, 0.333333, 1)
 [node name="SoundBump" type="Node" parent="." node_paths=PackedStringArray("body")]
 script = ExtResource("4_lwobx")
 body = NodePath("..")
-event = ExtResource("5_omry8")
-
-[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="SoundBump"]
-play_event = 1
-event = ExtResource("6_xkjc5")
+bumpEffect = ExtResource("5_omry8")
+spillEffect = SubResource("EventAsset_tdodl")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
