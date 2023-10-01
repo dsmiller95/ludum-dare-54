@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0nmbcqhnh7kc"]
+
+[ext_resource type="Script" path="res://MenuScenes/EndScreen.gd" id="1_6f6qd"]
+
+[node name="EndScreen" type="Node2D"]
+script = ExtResource("1_6f6qd")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 1166.0
+offset_bottom = 153.0
+theme_override_font_sizes/font_size = 46
+text = "GOOD JOB YOU DID IT HOLY HECK"
+
+[node name="Button" type="Button" parent="."]
+offset_left = 282.0
+offset_top = 127.0
+offset_right = 584.0
+offset_bottom = 287.0
+text = "BACK TO MAIN MENU"
+
+[node name="Button2" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]
