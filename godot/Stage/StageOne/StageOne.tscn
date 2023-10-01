@@ -16,7 +16,7 @@ size = Vector2(2150.5, 140)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vcobc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f07dr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2vmfj"]
 resource_local_to_scene = true
 size = Vector2(1935, 883)
 
@@ -29,23 +29,23 @@ size = Vector2(1916.5, 935)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0whf"]
 size = Vector2(907.75, 693.657)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkc3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xux1a"]
 resource_local_to_scene = true
 size = Vector2(1935, 783)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83ucb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsybx"]
 resource_local_to_scene = true
 size = Vector2(1935, 590)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxvgk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ao6u0"]
 resource_local_to_scene = true
 size = Vector2(1935, 402)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lb18"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0gt2s"]
 resource_local_to_scene = true
 size = Vector2(1935, 293)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qxjd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7vw0n"]
 resource_local_to_scene = true
 size = Vector2(1935, 201)
 
@@ -104,7 +104,7 @@ y_sort_enabled = true
 
 [node name="Spawner" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1189, 474.5)
-shape = SubResource("RectangleShape2D_f07dr")
+shape = SubResource("RectangleShape2D_2vmfj")
 
 [node name="Spawner2" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(735.5, -310)
@@ -121,23 +121,23 @@ SpawnNum = 50
 
 [node name="Spawner5" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1179, -1982.5)
-shape = SubResource("RectangleShape2D_qjkc3")
+shape = SubResource("RectangleShape2D_xux1a")
 
 [node name="Spawner6" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1176, -2673)
-shape = SubResource("RectangleShape2D_83ucb")
+shape = SubResource("RectangleShape2D_hsybx")
 
 [node name="Spawner7" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3171)
-shape = SubResource("RectangleShape2D_xxvgk")
+shape = SubResource("RectangleShape2D_ao6u0")
 
 [node name="Spawner8" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3511.5)
-shape = SubResource("RectangleShape2D_6lb18")
+shape = SubResource("RectangleShape2D_0gt2s")
 
 [node name="Spawner9" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3751.5)
-shape = SubResource("RectangleShape2D_0qxjd")
+shape = SubResource("RectangleShape2D_7vw0n")
 
 [node name="Lighting" type="Node" parent="Stage"]
 

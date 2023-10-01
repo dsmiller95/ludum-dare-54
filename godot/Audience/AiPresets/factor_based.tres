@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="FactorBasedCrowdActorConfig" load_steps=2 format=3 uid="uid://bm7cfjlu24ccy"]
+
+[ext_resource type="Script" path="res://Audience/FactorBasedCrowdActorConfig.cs" id="1_ib6ca"]
+
+[resource]
+script = ExtResource("1_ib6ca")
+RandomWalkJitter = 2.0
+PushToRageRatio = 400.0

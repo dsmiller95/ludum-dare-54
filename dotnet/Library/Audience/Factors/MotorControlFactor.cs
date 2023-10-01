@@ -27,7 +27,8 @@ public class MotorControlFactor : IFactorEffect
         var factorScale = parameters.SelfFactors.GetNormalized(FactorType.MotorControl);
         return new AiResult
         {
-            AdditionalLinearForce = new Vector2(waveX, waveY) * factorScale
+            AdditionalLinearForce = new Vector2(waveX, waveY) * factorScale,
+            Firmness = 1
         };
     }
 }

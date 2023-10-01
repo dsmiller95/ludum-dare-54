@@ -9,12 +9,14 @@ public partial class FactorBasedCrowdActorConfig : Resource, ICrowdActorPreset
 {
     [Export] public float RandomWalkJitter = 2f;
     [Export] public float PushToRageRatio = 400f;
+    [Export] public float FactorDecayRate = 0.1f;
     public ICrowdActor ConstructConfiguredActor()
     {
         var tuningParams = new FactorTuningParams
         {
             RandomWalkJitter = RandomWalkJitter,
-            PushToRageRatio = PushToRageRatio
+            PushToRageRatio = PushToRageRatio,
+            FactorDecayRate = FactorDecayRate
         };
         var rng = new RandomNumberGenerator();
         var effects = new IFactorEffect []

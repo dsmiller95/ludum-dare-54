@@ -20,11 +20,13 @@ public class FactorBasedCrowdActor : ICrowdActor
     
     public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
     {
+        this.factors.DecayFactors((float)deltaTime, tuning.FactorDecayRate);
         var aiParams = new AiParams
         {
             deltaTime = (float)deltaTime,
             currentTime = (float)currentSeconds,
-            Neighbors = neighbors // TODO: cache array
+            SelfFactors = this.factors,
+            Neighbors = neighbors? // TODO: cache array
                 .Select(x =>
                 {
                     if (x.actor is not FactorBasedCrowdActor facBased) return (AiNeighbor?)null;
@@ -33,7 +35,7 @@ public class FactorBasedCrowdActor : ICrowdActor
                         Position = x.relativePosition,
                         Factors = facBased.factors
                     };
-                }).ToArray()
+                }).ToArray() ?? Array.Empty<AiNeighbor?>(),
         };
         var allEffects = new AiResult[effects.Length];
         for (int i = 0; i < effects.Length; i++)

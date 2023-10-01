@@ -1,3 +1,5 @@
+using Godot;
+
 namespace DotnetLibrary.Audience.Factors;
 
 public struct Factors
@@ -6,9 +8,22 @@ public struct Factors
     private float[] normalizedFactors;
     private bool needsNormalize;
 
-    public void Normalize()
+    private void Normalize()
     {
-        throw new NotImplementedException();
+        float sum = 0;
+        
+        for (int i = 0; i < factors.Length; i++)
+        { // this can be tuned. doesn't need to be cartesian normalization, could be linear/average
+            sum += factors[i] * factors[i];
+            normalizedFactors[i] = factors[i];
+        }
+
+        for (int i = 0; i < factors.Length; i++)
+        {
+            normalizedFactors[i] /= sum;
+        }
+
+        needsNormalize = false;
     }
 
     public float GetNormalized(FactorType factor)
@@ -23,9 +38,13 @@ public struct Factors
         needsNormalize = true;
     }
 
-    public void DecayFactors(float deltaTime)
+    public void DecayFactors(float deltaTime, float decayConstant)
     {
-        throw new NotImplementedException();
+        var exponentialDecay = Mathf.Pow(Mathf.E, -decayConstant * deltaTime);
+        for (int i = 0; i < factors.Length; i++)
+        {
+            factors[i] *= exponentialDecay;
+        }
         needsNormalize = true;
     }
 
