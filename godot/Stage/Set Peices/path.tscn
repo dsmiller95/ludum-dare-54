@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://fj33jhwm7js1"]
+
+[ext_resource type="Script" path="res://Stage/PathRepellent.cs" id="1_jvs1o"]
+[ext_resource type="Texture2D" uid="uid://x6kyr8cr25nb" path="res://Assets/Path_shitty.png" id="2_6fqir"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lfrbh"]
+size = Vector2(8.376, 32.135)
+
+[node name="Path" type="Node2D"]
+position = Vector2(350, 373)
+scale = Vector2(8, 32)
+
+[node name="Path" type="Area2D" parent="." node_paths=PackedStringArray("RepellentShapeDefinition")]
+script = ExtResource("1_jvs1o")
+RepellentShapeDefinition = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Path"]
+position = Vector2(-1.375, 0)
+shape = SubResource("RectangleShape2D_lfrbh")
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_6fqir")
