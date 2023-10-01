@@ -1,8 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bcnvfslpm7ybr"]
+[gd_scene load_steps=12 format=3 uid="uid://bcnvfslpm7ybr"]
 
 [ext_resource type="Script" path="res://Player/Player.cs" id="1_liico"]
 [ext_resource type="Resource" uid="uid://cc4qk0buurl2q" path="res://Player/default_person_physics.tres" id="2_0l1pw"]
 [ext_resource type="Texture2D" uid="uid://cy8lp8e4tmft2" path="res://Assets/Main_idle_test_2.png" id="2_nritk"]
+[ext_resource type="Script" path="res://Player/SoundCollisions.gd" id="4_lwobx"]
+[ext_resource type="EventAsset" uid="uid://0oefxy3mmo12" path="res://addons/FMOD/editor/resources/events/{650d1e18-6e3a-46f3-9c8e-aef1055e36af}.tres" id="5_omry8"]
+[ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="6_xkjc5"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ihj4j"]
 friction = 1000.0
@@ -36,6 +39,8 @@ height = 40.0
 y_sort_enabled = true
 rotation = -1.5708
 physics_material_override = SubResource("PhysicsMaterial_ihj4j")
+max_contacts_reported = 1
+contact_monitor = true
 angular_damp = 10.0
 script = ExtResource("1_liico")
 AccelerationForce = 5000.0
@@ -57,3 +62,12 @@ shape = SubResource("CapsuleShape2D_v67ay")
 position_smoothing_enabled = true
 
 [node name="StudioListener2D" type="StudioListener2D" parent="."]
+
+[node name="SoundBump" type="Node" parent="." node_paths=PackedStringArray("body")]
+script = ExtResource("4_lwobx")
+body = NodePath("..")
+event = ExtResource("5_omry8")
+
+[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="SoundBump"]
+play_event = 1
+event = ExtResource("6_xkjc5")
