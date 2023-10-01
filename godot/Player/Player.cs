@@ -100,8 +100,15 @@ public partial class Player : RigidBody2D, IHavePersonBody
 
 	public void OnBodyEntered(Node bodyGeneric)
 	{
-		Health.AdjustHealth(-1); // TODO: Calculate vector of collision
-		var spill = GetNode<CpuParticles2D>("SpillParticles");
-		spill.Emitting = true;
+		if (bodyGeneric is RigidBody2D otherBody)
+		{
+			Health.AdjustHealth(-1);
+			var impact = (otherBody.LinearVelocity - LinearVelocity).Length();
+			var spill = GetNode<CpuParticles2D>("SpillParticles");
+			spill.Direction = (otherBody.LinearVelocity - LinearVelocity).Normalized();
+			spill.InitialVelocityMin = impact;
+			spill.InitialVelocityMax = impact * 5;
+			spill.Emitting = true;
+		}
 	}
 }
