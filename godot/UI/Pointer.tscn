@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cogbx1wxfdkjl"]
+
+[ext_resource type="Texture2D" uid="uid://cdbnwywjqkubf" path="res://UI/PointerSprite/arrow.png" id="1_mpo5x"]
+
+[node name="Pointer" type="Control"]
+layout_mode = 3
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="PointerSprite" type="Sprite2D" parent="."]
+position = Vector2(-51, -57)
+scale = Vector2(3.21429, 3.05556)
+texture = ExtResource("1_mpo5x")

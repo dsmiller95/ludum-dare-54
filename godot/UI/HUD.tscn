@@ -1,15 +1,12 @@
 [gd_scene load_steps=4 format=3 uid="uid://btq7q4jw0keww"]
 
 [ext_resource type="Script" path="res://UI/HUD.cs" id="1_uma73"]
-[ext_resource type="Texture2D" uid="uid://dljdw38argqkx" path="res://icon.svg" id="2_3u358"]
 [ext_resource type="PackedScene" uid="uid://cvsym1d4ya86r" path="res://UI/Health.tscn" id="2_nhi2d"]
+[ext_resource type="PackedScene" uid="uid://cogbx1wxfdkjl" path="res://UI/Pointer.tscn" id="3_3etk8"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_uma73")
 
 [node name="Health" parent="." instance=ExtResource("2_nhi2d")]
 
-[node name="Pointer" type="Sprite2D" parent="."]
-position = Vector2(1055.5, 542.5)
-scale = Vector2(0.289062, 0.835938)
-texture = ExtResource("2_3u358")
+[node name="Pointer" parent="." instance=ExtResource("3_3etk8")]
