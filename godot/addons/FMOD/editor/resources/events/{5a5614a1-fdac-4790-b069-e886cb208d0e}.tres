@@ -1,0 +1,8 @@
+[gd_resource type="EventAsset" format=3 uid="uid://cnmpaywf4pt24"]
+
+[resource]
+min_distance = 1.0
+max_distance = 20.0
+path = "event:/BasicCrowd"
+guid = "{5a5614a1-fdac-4790-b069-e886cb208d0e}"
+name = "BasicCrowd"
