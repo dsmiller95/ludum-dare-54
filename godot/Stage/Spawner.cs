@@ -3,9 +3,12 @@ using System.IO;
 using DotnetLibrary;
 using Godot;
 using LudumDare54;
+using LudumDare54.Audience;
 
 public partial class Spawner : CollisionShape2D
 {
+	[Export] private CrowdCorral CrowdCorral { get; set; }
+	
 	[Export] private PackedScene SceneToSpawn { get; set; }
 	
 	[Export] private int SpawnNum { get; set; } = 100;
@@ -37,11 +40,16 @@ public partial class Spawner : CollisionShape2D
 					 .SampleVector2Field(rng.RandiRange(1, int.MaxValue), rectShape.GetRect(), SpawnNum))
 		{
 			var instance = SceneToSpawn.Instantiate<Node2D>();
-			instance.Position = nextPoint;
+			instance.Position = nextPoint + GlobalPosition;
 
 			var rotation = rng.RandiRange(-1 * FacingSkew, FacingSkew);
 			instance.RotationDegrees += rotation;
-			AddChild(instance);
+			CrowdCorral.AddChild(instance);
+
+			if (instance is CrowdActor crowdActor)
+			{
+				crowdActor.CrowdCorral = CrowdCorral;
+			}
 		}
 	}
 }

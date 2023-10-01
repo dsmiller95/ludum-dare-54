@@ -8,10 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="4_s3k7p"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="5_05u3q"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="5_espk5"]
+[ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="6_juosq"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
 [ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="11_tqkk2"]
-[ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
+[ext_resource type="EventAsset" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwjrq"]
 size = Vector2(53, 5180)
@@ -126,47 +127,59 @@ position = Vector2(1169, 1049)
 scale = Vector2(2147, 206)
 texture = SubResource("PlaceholderTexture2D_vcobc")
 
+[node name="CrowdCorral" type="Node2D" parent="Stage"]
+script = ExtResource("6_juosq")
+
 [node name="Spawners" type="Area2D" parent="Stage"]
 y_sort_enabled = true
 
-[node name="Spawner" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1189, 474.5)
 shape = SubResource("RectangleShape2D_7wftx")
+CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner2" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner2" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(735.5, -310)
 shape = SubResource("RectangleShape2D_6swx1")
+CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner3" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner3" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1181.25, -1119.5)
 shape = SubResource("RectangleShape2D_ka12c")
+CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner4" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner4" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1718, -312)
 shape = SubResource("RectangleShape2D_fydgb")
+CrowdCorral = NodePath("../../CrowdCorral")
 SpawnNum = 50
 
-[node name="Spawner5" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner5" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1179, -1982.5)
 shape = SubResource("RectangleShape2D_4apn8")
+CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner6" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner6" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1176, -2673)
 shape = SubResource("RectangleShape2D_ndwpj")
+CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner7" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner7" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3171)
 shape = SubResource("RectangleShape2D_dih05")
+CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner8" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner8" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3555.5)
 shape = SubResource("RectangleShape2D_y8m3c")
+CrowdCorral = NodePath("../../CrowdCorral")
 SpawnNum = 75
 SampleType = 1
 
-[node name="Spawner9" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
+[node name="Spawner9" parent="Stage/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3932.25)
 shape = SubResource("RectangleShape2D_2dn7y")
+CrowdCorral = NodePath("../../CrowdCorral")
 
 [node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
 Goal = NodePath("../Goal area")
