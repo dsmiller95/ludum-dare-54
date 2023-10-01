@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgjj7ekxo45o"]
+
+[ext_resource type="Texture2D" uid="uid://b8l5qfru24t3y" path="res://Assets/barrier_side_and_backstage.png" id="1_nxob0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rldea"]
+radius = 4.0
+height = 64.0
+
+[node name="Barrier Vertical" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = ExtResource("1_nxob0")
+offset = Vector2(-4, 0)
+hframes = 2
+frame = 1
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -10)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 6.5)
+shape = SubResource("CapsuleShape2D_rldea")
