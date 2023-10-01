@@ -4,5 +4,10 @@
 
 [resource]
 script = ExtResource("1_ib6ca")
+FactorDecayRate = 0.1
 RandomWalkJitter = 2.0
 PushToRageRatio = 400.0
+RagePunchChancePerSecond = 1.0
+RagePunchMinMagnitude = 1.0
+RagePunchMaxMagnitude = 100.0
+RagePunchDuration = 0.1

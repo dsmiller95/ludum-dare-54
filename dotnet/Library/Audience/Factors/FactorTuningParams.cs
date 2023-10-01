@@ -17,4 +17,13 @@ public record FactorTuningParams
     /// low value will increase their memory.
     /// </summary>
     public float FactorDecayRate = 0.1f;
+
+    /// <summary>
+    /// average number of punches per second when at maximum rage factor.
+    /// </summary>
+    public float RagePunchChancePerSecond = 1f;
+
+    public float RagePunchMinMagnitude { get; set; }
+    public float RagePunchMaxMagnitude { get; set; }
+    public float RagePunchDuration { get; set; }
 }
