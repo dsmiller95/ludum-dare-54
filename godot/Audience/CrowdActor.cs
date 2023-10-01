@@ -47,8 +47,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     }
     public override void _PhysicsProcess(double delta)
     {
-        
-        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f);
+        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, null);
         
         // calculate friction force manually, rather than instantiating a unique physics material per actor
         // var frictionFactor = myPhysics.ActiveFrictionCoefficient;

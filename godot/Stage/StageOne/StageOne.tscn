@@ -7,46 +7,38 @@
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://HUD.tscn" id="5_espk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwjrq"]
-resource_local_to_scene = true
 size = Vector2(53, 5180)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5355i"]
-resource_local_to_scene = true
 size = Vector2(2150.5, 140)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vcobc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lher8"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
 size = Vector2(1935, 883)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3m58"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6swx1"]
 size = Vector2(1023, 678)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_k8h6d"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka12c"]
 size = Vector2(1916.5, 935)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0whf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fydgb"]
 size = Vector2(907.75, 693.657)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h3w82"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4apn8"]
 size = Vector2(1935, 783)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6mrm0"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ndwpj"]
 size = Vector2(1935, 590)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ooi10"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dih05"]
 size = Vector2(1935, 402)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ab78a"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y8m3c"]
 size = Vector2(1935, 293)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vnyuj"]
-resource_local_to_scene = true
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2dn7y"]
 size = Vector2(1935, 201)
 
 [node name="Game" type="Node"]
@@ -95,40 +87,40 @@ y_sort_enabled = true
 
 [node name="Spawner" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1189, 474.5)
-shape = SubResource("RectangleShape2D_lher8")
+shape = SubResource("RectangleShape2D_7wftx")
 
 [node name="Spawner2" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(735.5, -310)
-shape = SubResource("RectangleShape2D_m3m58")
+shape = SubResource("RectangleShape2D_6swx1")
 
 [node name="Spawner3" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1181.25, -1119.5)
-shape = SubResource("RectangleShape2D_k8h6d")
+shape = SubResource("RectangleShape2D_ka12c")
 
 [node name="Spawner4" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1718, -312)
-shape = SubResource("RectangleShape2D_c0whf")
+shape = SubResource("RectangleShape2D_fydgb")
 SpawnNum = 50
 
 [node name="Spawner5" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1179, -1982.5)
-shape = SubResource("RectangleShape2D_h3w82")
+shape = SubResource("RectangleShape2D_4apn8")
 
 [node name="Spawner6" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1176, -2673)
-shape = SubResource("RectangleShape2D_6mrm0")
+shape = SubResource("RectangleShape2D_ndwpj")
 
 [node name="Spawner7" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3171)
-shape = SubResource("RectangleShape2D_ooi10")
+shape = SubResource("RectangleShape2D_dih05")
 
 [node name="Spawner8" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3511.5)
-shape = SubResource("RectangleShape2D_ab78a")
+shape = SubResource("RectangleShape2D_y8m3c")
 
 [node name="Spawner9" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3751.5)
-shape = SubResource("RectangleShape2D_vnyuj")
+shape = SubResource("RectangleShape2D_2dn7y")
 
 [node name="HUD" parent="Stage" node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
 Goal = NodePath("../Goal")
