@@ -19,4 +19,6 @@ func _process(delta):
 func next_level():
 	current_level += 1
 	get_tree().change_scene_to_file(levels[current_level-1])
-
+	
+func restart_level():
+	get_tree().change_scene_to_file(levels[current_level-1])

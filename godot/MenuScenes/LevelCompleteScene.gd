@@ -7,7 +7,7 @@ func _ready():
 		get_tree().change_scene_to_file("res://MenuScenes/EndScreen.tscn")
 	else:
 		level = SceneHandler.current_level;
-		get_node("Label").set_text("CONGRATS WOOHOO YOU BEAT LEVEL " + str(level))
+		get_node("Label").set_text("You found your date! Level " + str(level) + " complete!")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
