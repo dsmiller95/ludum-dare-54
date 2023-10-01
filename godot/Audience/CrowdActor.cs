@@ -47,7 +47,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     }
     public override void _PhysicsProcess(double delta)
     {
-        personBody._PhysicsProcess();
         
         crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f);
         
@@ -64,6 +63,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
             this.Transform.X,
             crowdActorImpl.GetFirmness());
         integrationResult.ApplyTo(this);
+
+        personBody._PhysicsProcess();
     }
 
     public void OnBodyEntered(Node bodyGeneric)
@@ -76,13 +77,13 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         
         if (body is not IHavePersonBody otherPerson)
         {
-            GD.PrintErr("CrowdActor.OnBodyEntered: colliding body is not a Person Body");
             return;
         }
         
         var person = otherPerson.GetBody();
         var pushDirection = GlobalPosition - body.GlobalPosition;
-        var pushVector = pushDirection.Normalized() * person.GetAverageSpeed();
+
+        var pushVector = pushDirection.Normalized() * person.GetAverageSpeed() / PersonMovement.MaximumVelocity;
 
         var pushEvent = new PushEvent(pushVector);
         crowdActorImpl.ReceivePushEvent(pushEvent);
