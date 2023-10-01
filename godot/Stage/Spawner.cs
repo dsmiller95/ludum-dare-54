@@ -20,6 +20,11 @@ public partial class Spawner : CollisionShape2D
 	public override void _Ready()
 	{
 		Disabled = true;
+
+		if (CrowdCorral is null)
+		{
+			GD.PrintErr($"Spawner {Name} has no CrowdCorral in scene {GetTree().CurrentScene.Name}");
+		}
 		
 		if (Shape is not RectangleShape2D rectShape)
 		{
