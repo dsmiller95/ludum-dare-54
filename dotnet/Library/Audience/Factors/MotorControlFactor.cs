@@ -24,9 +24,9 @@ public class MotorControlFactor : IFactorEffect
         var waveX = (float)Mathf.Sin(currentSeconds * xSpeed);
         var waveY = (float)Mathf.Sin(currentSeconds * ySpeed);
 
-        var factorScale = parameters.SelfFactors.GetNormalized(FactorType.MotorControl);
-        var motorControl = factorScale;
-        var amblingAmount = 1-motorControl;
+        var factorScale = parameters.SelfFactors.GetNormalized(FactorType.Stupor);
+        var motorControl = 1-factorScale;
+        var amblingAmount = factorScale;
         return new AiResult
         {
             AdditionalLinearForce = new Vector2(waveX, waveY) * amblingAmount,

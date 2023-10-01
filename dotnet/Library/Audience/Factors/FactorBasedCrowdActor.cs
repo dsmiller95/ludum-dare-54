@@ -6,21 +6,33 @@ public class FactorBasedCrowdActor : ICrowdActor
 {
     private readonly IFactorEffect[] effects;
     private readonly FactorTuningParams tuning;
+    private readonly IProvideFactorOverride? overrideSource;
 
     private Factors factors;
 
     private AiResult lastAiResult;
     
-    public FactorBasedCrowdActor(IFactorEffect[] effects, FactorTuningParams tuning)
+    public FactorBasedCrowdActor(
+        IFactorEffect[] effects,
+        FactorTuningParams tuning,
+        IProvideFactorOverride? overrideSource = null)
     {
         this.effects = effects;
         this.tuning = tuning;
+        this.overrideSource = overrideSource;
         factors = new Factors(0.5f);
     }
     
     public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
     {
-        this.factors.DecayFactors((float)deltaTime, tuning.FactorDecayRate);
+        if (overrideSource != null)
+        {
+            this.factors = overrideSource.GetOverrideFactor();
+        }
+        else
+        {
+            this.factors.DecayFactors((float)deltaTime, tuning.FactorDecayRate);
+        }
         var aiParams = new AiParams
         {
             deltaTime = (float)deltaTime,
