@@ -4,7 +4,6 @@
 
 [resource]
 script = ExtResource("1_xp11d")
-AccelerationForce = 5000
 RotationalAcceleration = 40000
 MaximumVelocity = 400
-ActiveFrictionCoefficient = 10
+ActiveFrictionCoefficient = 7

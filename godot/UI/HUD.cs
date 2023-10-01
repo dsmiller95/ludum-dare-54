@@ -4,8 +4,8 @@ using System;
 public partial class HUD : CanvasLayer
 {
 	
-	[Export] public Area2D Goal;
-	[Export] public RigidBody2D player;
+	[Export] public Node2D Goal;
+	[Export] public Node2D player;
 	public Sprite2D sprite;
 	
 	// Called when the node enters the scene tree for the first time.
