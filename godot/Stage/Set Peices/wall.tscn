@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bm0pximd300b0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_viee1"]
+size = Vector2(1, 1)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vcobc"]
+
+[node name="Wall" type="Node2D"]
+position = Vector2(116, -1541.88)
+scale = Vector2(89.5, 5245.75)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_viee1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_vcobc")
