@@ -74,5 +74,3 @@ position = Vector2(595, 591)
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_hc1wo")]
 Goal = NodePath("../Goal")
 player = NodePath("../Player")
-
-[connection signal="body_entered" from="Goal" to="." method="_on_goal_body_entered"]
