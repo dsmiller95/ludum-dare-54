@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://ch5cmv64s2foe"]
+[gd_scene load_steps=12 format=3 uid="uid://ch5cmv64s2foe"]
 
 [ext_resource type="Script" path="res://Audience/CrowdActor.cs" id="1_3k8cn"]
 [ext_resource type="Resource" uid="uid://kx2svc877k54" path="res://Audience/audience_person_physics.tres" id="2_hktw3"]
 [ext_resource type="Texture2D" uid="uid://ch5fs85kohgb" path="res://Assets/idle_test.tres" id="3_qss0b"]
 [ext_resource type="Script" path="res://Audience/RandomAnimationStart.cs" id="3_u801b"]
 [ext_resource type="Resource" uid="uid://bm7cfjlu24ccy" path="res://Audience/AiPresets/factor_based.tres" id="4_k8t45"]
+[ext_resource type="Script" path="res://Audience/Effects/ActorEffectsRenderer.cs" id="6_05sq1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbsgs"]
 
@@ -33,7 +34,7 @@ animations = [{
 "speed": 4.0
 }]
 
-[node name="Attendee" type="RigidBody2D"]
+[node name="Attendee" type="RigidBody2D" node_paths=PackedStringArray("effectsRenderer")]
 y_sort_enabled = true
 position = Vector2(1, 0)
 rotation = -1.5708
@@ -44,6 +45,7 @@ angular_damp = 10.0
 script = ExtResource("1_3k8cn")
 moveForceMultiplier = 2000.0
 assumedPushForce = 0.25
+effectsRenderer = NodePath("Effects")
 crowdActorPresetOptions = Array[Resource]([ExtResource("4_k8t45")])
 PersonMovement = ExtResource("2_hktw3")
 
@@ -59,5 +61,9 @@ sprite_frames = SubResource("SpriteFrames_mwdxp")
 animation = &"new_animation"
 frame_progress = 0.659579
 script = ExtResource("3_u801b")
+
+[node name="Effects" type="Node2D" parent="." node_paths=PackedStringArray("bodySprite")]
+script = ExtResource("6_05sq1")
+bodySprite = NodePath("../AnimatedSprite2D")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

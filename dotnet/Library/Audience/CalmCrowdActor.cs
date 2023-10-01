@@ -46,4 +46,9 @@ public class CalmCrowdActor : ICrowdActor
     {
         return DecayingPushForceRecord * PushBackMultiplier * -1;
     }
+    
+    public CrowdActorEffect GetCrowdEffectLevels()
+    {
+        return CrowdActorEffect.Zero;
+    }
 }

@@ -48,4 +48,17 @@ public class RandomCrowdActor : ICrowdActor
     {
         return RandomMoveVector;
     }
+
+    public CrowdActorEffect GetCrowdEffectLevels()
+    {
+        return new CrowdActorEffect
+        {
+            DrunkEffect = 1
+        };
+    }
+
+    public float GetAlertStrength()
+    {
+        return 0;
+    }
 }

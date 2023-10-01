@@ -18,6 +18,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export]
     private float assumedPushForce = 100f;
     [Export]
+    private ActorEffectsRenderer effectsRenderer;
+    [Export]
     private Array<Resource> crowdActorPresetOptions;
     
     private ICrowdActor crowdActorImpl;
@@ -64,6 +66,9 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         integrationResult.ApplyTo(this);
 
         personBody._PhysicsProcess();
+        
+        var crowdEffectLevels = crowdActorImpl.GetCrowdEffectLevels();
+        effectsRenderer.RenderEffects(crowdEffectLevels);
     }
 
     public void OnBodyEntered(Node bodyGeneric)

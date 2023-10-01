@@ -20,12 +20,12 @@ public class FactorBasedCrowdActor : ICrowdActor
         this.effects = effects;
         this.tuning = tuning;
         this.overrideSource = overrideSource;
-        factors = new Factors(0.5f);
+        factors = overrideSource?.GetOverrideFactor() ?? new Factors(0.5f);
     }
     
     public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
     {
-        if (overrideSource != null)
+        if (overrideSource is { UseLiveOverride: true })
         {
             this.factors = overrideSource.GetOverrideFactor();
         }
@@ -66,8 +66,10 @@ public class FactorBasedCrowdActor : ICrowdActor
 
     public void ReceivePushEvent(PushEvent pushEvent)
     {
-        var rageEffect = pushEvent.PushForce.Length() * tuning.PushToRageRatio;
+        var rageEffect = pushEvent.PushForce.Length() / tuning.PushToRageRatio;
         factors.AddFactor(FactorType.Rage, rageEffect);
+        var newRageEffect = factors.GetNormalized(FactorType.Rage);
+        GD.Print("rage effect: " + rageEffect + " new rage: " + newRageEffect);
     }
 
     public float GetFirmness()
@@ -78,5 +80,14 @@ public class FactorBasedCrowdActor : ICrowdActor
     public Vector2 GetCurrentSelfMoveForce()
     {
         return lastAiResult.AdditionalLinearForce;
+    }
+
+    public CrowdActorEffect GetCrowdEffectLevels()
+    {
+        return new CrowdActorEffect
+        {
+            EnragedEffect = factors.GetNormalized(FactorType.Rage),
+            DrunkEffect = factors.GetNormalized(FactorType.Stupor)
+        };
     }
 }
