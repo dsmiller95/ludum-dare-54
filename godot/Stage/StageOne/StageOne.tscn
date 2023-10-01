@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=27 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
 [ext_resource type="Texture2D" uid="uid://btl17hyr6dstm" path="res://Venues/Background.png" id="1_tym0v"]
@@ -11,6 +11,7 @@
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
 [ext_resource type="Script" path="res://Stage/PathRepellent.cs" id="6_sohrc"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
+[ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwjrq"]
 size = Vector2(53, 5180)
@@ -55,11 +56,6 @@ _data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0,
 point_count = 3
 
 [node name="Game" type="Node"]
-
-[node name="StudioBankLoader" type="StudioBankLoader" parent="."]
-load_on = 1
-num_banks = 1
-bank_0 = ExtResource("6_odtpf")
 
 [node name="Stage" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -304,8 +300,13 @@ load_on = 1
 num_banks = 1
 bank_0 = ExtResource("6_odtpf")
 
-[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="Stage/Audio"]
+[node name="CrowdEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
 play_event = 1
 event = ExtResource("7_umxbt")
+
+[node name="GuitarEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+play_event = 1
+event = ExtResource("12_u4y1s")
+position = Vector2(1156, -3753)
 
 [connection signal="body_entered" from="Stage/Goal" to="Stage" method="_on_goal_body_entered"]

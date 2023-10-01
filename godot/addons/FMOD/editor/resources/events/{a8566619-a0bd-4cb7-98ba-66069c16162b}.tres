@@ -1,0 +1,9 @@
+[gd_resource type="EventAsset" format=3 uid="uid://bkawqwthm5qai"]
+
+[resource]
+is_3d = true
+min_distance = 5.0
+max_distance = 40.0
+path = "event:/BasicGuitarJam"
+guid = "{a8566619-a0bd-4cb7-98ba-66069c16162b}"
+name = "BasicGuitarJam"
