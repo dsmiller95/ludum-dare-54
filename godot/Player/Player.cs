@@ -7,6 +7,7 @@ public partial class Player : RigidBody2D, IHavePersonBody
 {
 	[Signal] public delegate void SoftCollisionEventHandler();
 	[Signal] public delegate void HealthDepletedEventHandler();
+	[Signal] public delegate void YouDiedEventHandler();
 
 	[Export] public float AccelerationForce { get; set; } = 400; // How fast to accelerate (pixels/sec^2).
 	[Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
@@ -119,6 +120,7 @@ public partial class Player : RigidBody2D, IHavePersonBody
 
 				if (Health.HealthValue <= 0)
 				{
+					EmitSignal("YouDied");
 					GetTree().ChangeSceneToFile("res://MenuScenes/GameOverScene.tscn");
 				}
 			}
