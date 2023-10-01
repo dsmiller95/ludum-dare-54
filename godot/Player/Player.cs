@@ -97,4 +97,11 @@ public partial class Player : RigidBody2D, IHavePersonBody
 
 		integrationResult.ApplyTo(state);
 	}
+
+	public void OnBodyEntered(Node bodyGeneric)
+	{
+		Health.AdjustHealth(-1); // TODO: Calculate vector of collision
+		var spill = GetNode<CpuParticles2D>("SpillParticles");
+		spill.Emitting = true;
+	}
 }
