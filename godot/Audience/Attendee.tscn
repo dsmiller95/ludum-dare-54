@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ch5cmv64s2foe"]
+[gd_scene load_steps=12 format=3 uid="uid://ch5cmv64s2foe"]
 
 [ext_resource type="Script" path="res://Audience/CrowdActor.cs" id="1_3k8cn"]
 [ext_resource type="Resource" uid="uid://kx2svc877k54" path="res://Audience/audience_person_physics.tres" id="2_hktw3"]
+[ext_resource type="Resource" uid="uid://ck8qmss6ept3x" path="res://Audience/AiPresets/calm.tres" id="2_sr5i1"]
+[ext_resource type="Resource" uid="uid://cvajtbo1xkith" path="res://Audience/AiPresets/drunk.tres" id="3_bc6i6"]
 [ext_resource type="Texture2D" uid="uid://ch5fs85kohgb" path="res://Assets/idle_test.tres" id="3_qss0b"]
 [ext_resource type="Script" path="res://Audience/RandomAnimationStart.cs" id="3_u801b"]
 
@@ -40,6 +42,9 @@ max_contacts_reported = 2
 contact_monitor = true
 angular_damp = 10.0
 script = ExtResource("1_3k8cn")
+moveForceMultiplier = 2000.0
+assumedPushForce = 0.25
+crowdActorPresetOptions = Array[Resource]([ExtResource("2_sr5i1"), ExtResource("3_bc6i6")])
 PersonMovement = ExtResource("2_hktw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
