@@ -1,24 +1,53 @@
-[gd_scene load_steps=3 format=3 uid="uid://dc2u66hu32vaq"]
+[gd_scene load_steps=8 format=3 uid="uid://dc2u66hu32vaq"]
+
+[ext_resource type="Script" path="res://Stage/PathRepellent.cs" id="1_8fue6"]
+[ext_resource type="Texture2D" uid="uid://b33pax04mlmrn" path="res://Assets/Goal_person_idle_V1.png" id="2_aalv5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wu8o8"]
-size = Vector2(165, 161)
+size = Vector2(50, 50)
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_0vqrj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e51qv"]
+size = Vector2(150, 200)
 
-[node name="Goal" type="Area2D"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_akqw0"]
+atlas = ExtResource("2_aalv5")
+region = Rect2(0, 0, 14, 21)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[sub_resource type="AtlasTexture" id="AtlasTexture_01tsx"]
+atlas = ExtResource("2_aalv5")
+region = Rect2(31, 0, 14, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mau4c"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akqw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_01tsx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Goal Parent" type="Node2D"]
+
+[node name="Goal" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2(0, 40)
 shape = SubResource("RectangleShape2D_wu8o8")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(167.418, 160)
-texture = SubResource("PlaceholderTexture2D_0vqrj")
+[node name="repellent" type="Area2D" parent="." node_paths=PackedStringArray("RepellentShapeDefinition")]
+script = ExtResource("1_8fue6")
+RepellentShapeDefinition = NodePath("CollisionShape2D")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -58.0
-offset_top = -40.0
-offset_right = 77.0
-offset_bottom = 37.0
-theme_override_font_sizes/font_size = 22
-text = "THIS IS THE GOAL"
-autowrap_mode = 2
+[node name="CollisionShape2D" type="CollisionShape2D" parent="repellent"]
+shape = SubResource("RectangleShape2D_e51qv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_mau4c")
+frame_progress = 0.816666
