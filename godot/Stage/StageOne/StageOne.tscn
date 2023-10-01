@@ -1,10 +1,12 @@
-[gd_scene load_steps=19 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=21 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Texture2D" uid="uid://btl17hyr6dstm" path="res://Venues/Background.png" id="1_tym0v"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
 [ext_resource type="Script" path="res://Lighting/StageLight.cs" id="3_228ch"]
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="3_m2j0t"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="5_05u3q"]
+[ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
+[ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mwjrq"]
 resource_local_to_scene = true
@@ -16,7 +18,7 @@ size = Vector2(2150.5, 140)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_vcobc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f07dr"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7ofxw"]
 resource_local_to_scene = true
 size = Vector2(1935, 883)
 
@@ -29,23 +31,23 @@ size = Vector2(1916.5, 935)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c0whf"]
 size = Vector2(907.75, 693.657)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qjkc3"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js0sq"]
 resource_local_to_scene = true
 size = Vector2(1935, 783)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_83ucb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qtwc4"]
 resource_local_to_scene = true
 size = Vector2(1935, 590)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xxvgk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnu3g"]
 resource_local_to_scene = true
 size = Vector2(1935, 402)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lb18"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_081kp"]
 resource_local_to_scene = true
 size = Vector2(1935, 293)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0qxjd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1m67c"]
 resource_local_to_scene = true
 size = Vector2(1935, 201)
 
@@ -104,7 +106,7 @@ y_sort_enabled = true
 
 [node name="Spawner" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1189, 474.5)
-shape = SubResource("RectangleShape2D_f07dr")
+shape = SubResource("RectangleShape2D_7ofxw")
 
 [node name="Spawner2" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(735.5, -310)
@@ -121,23 +123,23 @@ SpawnNum = 50
 
 [node name="Spawner5" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1179, -1982.5)
-shape = SubResource("RectangleShape2D_qjkc3")
+shape = SubResource("RectangleShape2D_js0sq")
 
 [node name="Spawner6" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1176, -2673)
-shape = SubResource("RectangleShape2D_83ucb")
+shape = SubResource("RectangleShape2D_qtwc4")
 
 [node name="Spawner7" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3171)
-shape = SubResource("RectangleShape2D_xxvgk")
+shape = SubResource("RectangleShape2D_mnu3g")
 
 [node name="Spawner8" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3511.5)
-shape = SubResource("RectangleShape2D_6lb18")
+shape = SubResource("RectangleShape2D_081kp")
 
 [node name="Spawner9" parent="Stage/Spawners" instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3751.5)
-shape = SubResource("RectangleShape2D_0qxjd")
+shape = SubResource("RectangleShape2D_1m67c")
 
 [node name="Lighting" type="Node" parent="Stage"]
 
@@ -268,3 +270,14 @@ color = Color(0.262745, 0.776471, 0.576471, 1)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
+
+[node name="Audio" type="Node" parent="Stage"]
+
+[node name="StudioBankLoader" type="StudioBankLoader" parent="Stage/Audio"]
+load_on = 1
+num_banks = 1
+bank_0 = ExtResource("6_odtpf")
+
+[node name="StudioEventEmitter2D" type="StudioEventEmitter2D" parent="Stage/Audio"]
+play_event = 1
+event = ExtResource("7_umxbt")
