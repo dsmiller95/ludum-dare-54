@@ -28,8 +28,6 @@ public record FactorTuningParams
     public float RagePunchDuration { get; set; }
     
     
-    public float GlobalAttractionOffset { get; set; }
-    public float MinAttractionForceMultiplier { get; set; }
-    public float MaxAttractionForceMultiplier { get; set; }
+    public float AttractionForceMultiplier { get; set; }
     public float MaximumAttractiveForce { get; set; }
 }

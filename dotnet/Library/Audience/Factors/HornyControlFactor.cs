@@ -19,10 +19,7 @@ public class HornyControlFactor : IFactorEffect
         }
 
         var hornyScale = parameters.SelfFactors.GetNormalized(FactorType.Horny);
-        var attractionMultiplier = Mathf.Lerp(
-            tuning.MinAttractionForceMultiplier,
-            tuning.MaxAttractionForceMultiplier,
-            hornyScale);
+        var attractionMultiplier = tuning.AttractionForceMultiplier * hornyScale;
 
         var totalAttractionForce = Vector2.Zero;
         var totalSamples = 0;
@@ -34,7 +31,7 @@ public class HornyControlFactor : IFactorEffect
             var neighborPosition = neighbor.Position;
             var neighborDistance = neighborPosition.Length();
             if(neighborDistance <= 0.001f) continue; // avoid divide by zero (or near zero)
-            var neighborAttraction = neighbor.Factors.GetNormalized(FactorType.StinkyToAttractive) + tuning.GlobalAttractionOffset;
+            var neighborAttraction = neighbor.Factors.GetNormalized(FactorType.StinkyToAttractive);
             totalAttractionForce += neighborPosition.Normalized() * (1f/neighborDistance) * neighborAttraction;
             totalSamples++;
         }

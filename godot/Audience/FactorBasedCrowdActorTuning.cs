@@ -17,9 +17,7 @@ public partial class FactorBasedCrowdActorTuning : Resource
     [Export] public float RagePunchDuration = 0.1f;
     
     [ExportGroup("Attraction")]
-    [Export] public float GlobalAttractionOffset = 0.1f;
-    [Export] public float MinAttractionForceMultiplier = 10f;
-    [Export] public float MaxAttractionForceMultiplier = 10f;
+    [Export] public float AttractionForceMultiplier = 10f;
     [Export] public float MaximumAttractiveForce = 10f;
 
     public FactorTuningParams FactorTuningParams()
@@ -35,9 +33,7 @@ public partial class FactorBasedCrowdActorTuning : Resource
             RagePunchMaxMagnitude = RagePunchMaxMagnitude,
             RagePunchDuration = RagePunchDuration,
             
-            GlobalAttractionOffset = GlobalAttractionOffset,
-            MinAttractionForceMultiplier = MinAttractionForceMultiplier,
-            MaxAttractionForceMultiplier = MaxAttractionForceMultiplier,
+            AttractionForceMultiplier = AttractionForceMultiplier,
             MaximumAttractiveForce = MaximumAttractiveForce,
         };
         return tuningParams;
