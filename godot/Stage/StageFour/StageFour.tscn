@@ -7,11 +7,11 @@
 [ext_resource type="Script" path="res://Level.gd" id="5_r52wg"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_f34wf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_uogd7"]
-[ext_resource type="EventAsset" path="res://addons/FMOD/editor/resources/events/{3e471034-94e6-4b28-97dd-d4dc94fffdd7}.tres" id="8_beahn"]
+[ext_resource type="EventAsset" uid="uid://cw5ycpijv3go4" path="res://addons/FMOD/editor/resources/events/{3e471034-94e6-4b28-97dd-d4dc94fffdd7}.tres" id="8_beahn"]
 [ext_resource type="Script" path="res://Lighting/StageLight.cs" id="9_snb55"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="10_jl5ao"]
-[ext_resource type="PackedScene" path="res://Stage/floor.tscn" id="11_iphmq"]
-[ext_resource type="TileSet" uid="uid://cvkkr6xqxd2i5" path="res://Tilesets/walls_and_barriers.tres" id="12_wpuym"]
+[ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="11_iphmq"]
+[ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="12_wpuym"]
 [ext_resource type="PackedScene" uid="uid://dfw2f7apa6tu2" path="res://Stage/Set Peices/PushZone.tscn" id="13_t4rxw"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="14_jhq21"]
 
@@ -250,7 +250,6 @@ MaxDistance = 1000.0
 MaxSpeed = 30.0
 
 [node name="Floor" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("11_iphmq")]
-visible = false
 z_index = -1500
 z_as_relative = false
 position = Vector2(1216, -1348)
