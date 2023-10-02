@@ -1,11 +1,10 @@
 extends Node
 
 var current_level
-var max_levels = 3
+var max_levels = 2
 var levels = [
-	"res://Venues/DiveBar.tscn",
-	"res://Venues/DiveBar.tscn",
-	"res://Stage/StageOne/StageOne.tscn"
+	"res://Stage/StageOne/StageOne.tscn",
+	"res://Stage/StageTwo/StageTwo.tscn"
 ]
 
 var health;
