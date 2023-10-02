@@ -1,0 +1,681 @@
+[gd_scene load_steps=22 format=3 uid="uid://bqapbx35ssggk"]
+
+[ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="1_gec3c"]
+[ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_errsd"]
+[ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="3_i76u0"]
+[ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="4_4tru5"]
+[ext_resource type="Script" path="res://Level.gd" id="5_r52wg"]
+[ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_f34wf"]
+[ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_uogd7"]
+[ext_resource type="EventAsset" path="res://addons/FMOD/editor/resources/events/{3e471034-94e6-4b28-97dd-d4dc94fffdd7}.tres" id="8_beahn"]
+[ext_resource type="Script" path="res://Lighting/StageLight.cs" id="9_snb55"]
+[ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="10_jl5ao"]
+[ext_resource type="PackedScene" path="res://Stage/floor.tscn" id="11_iphmq"]
+[ext_resource type="TileSet" uid="uid://cvkkr6xqxd2i5" path="res://Tilesets/walls_and_barriers.tres" id="12_wpuym"]
+[ext_resource type="PackedScene" uid="uid://dfw2f7apa6tu2" path="res://Stage/Set Peices/PushZone.tscn" id="13_t4rxw"]
+[ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="14_jhq21"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
+size = Vector2(1692.5, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_76qui"]
+size = Vector2(411.25, 207)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6tdb"]
+size = Vector2(311.002, 289)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f0obm"]
+size = Vector2(376.312, 520.377)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7r3qg"]
+size = Vector2(1927, 2232)
+
+[sub_resource type="Curve" id="Curve_dgqs3"]
+_data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2m3km"]
+size = Vector2(354.999, 495.001)
+
+[node name="Game" type="Node"]
+
+[node name="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Crowd" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
+y_sort_enabled = true
+
+[node name="CrowdCorral" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd"]
+y_sort_enabled = true
+script = ExtResource("1_gec3c")
+
+[node name="Spawners" type="Area2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd"]
+y_sort_enabled = true
+
+[node name="Spawner" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_errsd")]
+position = Vector2(1310, 613)
+shape = SubResource("RectangleShape2D_7wftx")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 30
+
+[node name="Spawner2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_errsd")]
+position = Vector2(439.375, -766.5)
+shape = SubResource("RectangleShape2D_76qui")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 50
+
+[node name="Spawner3" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_errsd")]
+position = Vector2(2014.5, -1446.5)
+shape = SubResource("RectangleShape2D_r6tdb")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 50
+
+[node name="Spawner5" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_errsd")]
+position = Vector2(2016, 87)
+shape = SubResource("RectangleShape2D_r6tdb")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 50
+
+[node name="Spawner4" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_errsd")]
+position = Vector2(416.844, -1272.19)
+shape = SubResource("RectangleShape2D_f0obm")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 150
+
+[node name="Spawner6" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_errsd")]
+position = Vector2(1203.5, -1295)
+shape = SubResource("RectangleShape2D_7r3qg")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 150
+
+[node name="Players" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
+y_sort_enabled = true
+
+[node name="Goal area" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("3_i76u0")]
+position = Vector2(1233, -2709)
+
+[node name="Player" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("4_4tru5")]
+position = Vector2(1176, 911)
+
+[node name="Stage" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
+y_sort_enabled = true
+script = ExtResource("5_r52wg")
+
+[node name="Audio" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
+
+[node name="StudioBankLoader" type="StudioBankLoader" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Audio"]
+load_on = 1
+num_banks = 1
+bank_0 = ExtResource("6_f34wf")
+
+[node name="CrowdEmitter" type="StudioEventEmitter2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Audio"]
+play_event = 1
+stop_event = 3
+event = ExtResource("7_uogd7")
+
+[node name="GuitarEmitter" type="StudioEventEmitter2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Audio"]
+play_event = 1
+stop_event = 3
+event = ExtResource("8_beahn")
+position = Vector2(1156, -3753)
+
+[node name="Lighting" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting"]
+color = Color(0.235294, 0.235294, 0.235294, 1)
+
+[node name="StageLight" type="DirectionalLight2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting"]
+script = ExtResource("9_snb55")
+LightIntensity = SubResource("Curve_dgqs3")
+
+[node name="Spotlight" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(2074, -555)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight3" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(750, -3310)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight4" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(1946, -2477)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight5" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(1397, -2847)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight6" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(1711, -1302)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight7" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(948, -690)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight8" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(750, -2349)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight9" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(579, -1601)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight10" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(1845, 251)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight11" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(558, -1152)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight12" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(1305, -3609)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight13" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(393, -2740)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight14" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(1327, -2006)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight15" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(1119, -1074)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight16" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_jl5ao")]
+position = Vector2(921, -2733)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Floor" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("11_iphmq")]
+visible = false
+z_index = -1500
+z_as_relative = false
+position = Vector2(1216, -1348)
+
+[node name="Paths" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
+
+[node name="Cars" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
+z_index = -1300
+
+[node name="CollisionTilemap" type="TileMap" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
+z_as_relative = false
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(5, 5)
+tile_set = ExtResource("12_wpuym")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-262142, 196609, 0, -327678, 196609, 0, -393214, 196609, 0, -458750, 196609, 0, -524286, 196609, 0, -589822, 196609, 0, -655358, 196609, 0, -720894, 196609, 0, -786430, 196609, 0, -851966, 196609, 0, -983038, 196609, 0, -1048574, 196609, 0, -1114110, 196609, 0, -1179646, 196609, 0, -1245182, 196609, 0, -1310718, 196609, 0, -1376254, 196609, 0, -1441790, 196609, 0, -1507326, 196609, 0, -1572862, 196609, 0, -1638398, 196609, 0, -1703934, 196609, 0, -1769470, 196609, 0, -1835006, 196609, 0, -1900542, 196609, 0, -1966078, 196609, 0, -2031614, 196609, 0, -2097150, 196609, 0, -2162686, 196609, 0, -2228222, 196609, 0, -2293758, 196609, 0, -2359294, 65537, 0, -2359293, 1, 0, -2359292, 1, 0, -2359291, 1, 0, -2359290, 1, 0, -2359289, 1, 0, -2359288, 1, 0, -2359287, 1, 0, -2359286, 1, 0, -2359285, 1, 0, -2359284, 1, 0, -2359283, 1, 0, -2359282, 1, 0, -2359281, 1, 0, -2359280, 1, 0, -2359279, 1, 0, -2359278, 1, 0, -2359277, 1, 0, -2359276, 1, 0, -2359275, 1, 0, -2359274, 1, 0, -2359273, 1, 0, -2359272, 1, 0, -2359271, 1, 0, -2359270, 1, 0, -2359269, 131073, 0, -2293733, 196609, 1, -2228197, 196609, 1, -2162661, 196609, 1, -2097125, 196609, 1, -2031589, 196609, 1, -1966053, 196609, 1, -1900517, 196609, 1, -1834981, 196609, 1, -1769445, 196609, 1, -1703909, 196609, 1, -1638373, 196609, 1, -1572837, 196609, 1, -1507301, 196609, 1, -1376229, 196609, 1, -1441765, 196609, 1, -1310693, 196609, 1, -1245157, 196609, 1, -1179621, 196609, 1, -1114085, 196609, 1, -1048549, 196609, 1, -983013, 196609, 1, -917477, 196609, 1, -851941, 196609, 1, -786405, 196609, 1, -720869, 196609, 1, -655333, 196609, 1, -589797, 196609, 1, -524261, 196609, 1, -458725, 196609, 1, -393189, 196609, 1, -327653, 196609, 1, -262117, 196609, 1, -196581, 196609, 1, -131045, 196609, 1, -65509, 196609, 1, 27, 196609, 1, 65563, 196609, 1, 131099, 196609, 1, 196635, 196609, 1, 262171, 196609, 1, 327707, 196609, 1, 393243, 196609, 1, 458779, 196609, 1, 524315, 196609, 1, 589851, 196609, 1, 655387, 196609, 1, 720923, 196609, 1, 786459, 131073, 1, 786458, 1, 1, 786457, 1, 1, 786456, 1, 1, 786455, 1, 1, 786454, 1, 1, 786453, 1, 1, 786452, 1, 1, 786451, 1, 1, 786450, 1, 1, 786449, 1, 1, 786448, 1, 1, 786447, 1, 1, 786446, 1, 1, 786445, 1, 1, 786441, 1, 1, 786442, 1, 1, 786444, 1, 1, 786443, 1, 1, 786440, 1, 1, 786439, 1, 1, 786438, 1, 1, 786437, 1, 1, 786436, 1, 1, 786435, 1, 1, 786434, 65537, 1, 720898, 65537, 0, 327682, 196609, 0, 262146, 196609, 0, 196610, 196609, 0, 131074, 196609, 0, 65538, 196609, 0, 2, 196609, 0, -65534, 196609, 0, -131070, 196609, 0, -196606, 196609, 0, 524293, 196609, 1, 589829, 196609, 1, 655365, 196609, 1, 720901, 131073, 1, 720900, 1, 1, 720899, 1, 1, 393221, 131073, 0, 458757, 196609, 1, 393220, 1, 0, 393219, 1, 0, 393218, 65537, 1, 327685, 393216, 2, 262150, 458752, 1, 196615, 458752, 1, 131080, 458752, 1, 65545, 458752, 1, 10, 458752, 1, -65525, 458752, 1, -131060, 524288, 0, -131054, 196608, 0, -65517, 262144, 1, 20, 262144, 1, 65557, 262144, 1, 131094, 262144, 1, 196631, 262144, 1, 262168, 262144, 1, 327705, 262144, 1, 393242, 327680, 2, -131059, 65536, 3, -131058, 65536, 3, -131056, 65536, 3, -131055, 65536, 3, -262130, 131072, 3, -262132, 0, 2, -262134, 131072, 2, -262136, 131072, 0, -262128, 131072, 2, -262126, 131072, 2, -262124, 131072, 2, -262122, 131072, 0, -393194, 131072, 2, -524266, 0, 1, -655338, 0, 3, -786410, 131072, 1, -917482, 131072, 1, -1048554, 0, 2, -1179626, 65536, 1, -1310698, 65536, 2, -1179628, 0, 1, -1048556, 131072, 1, -917484, 131072, 1, -786412, 0, 3, -524268, 131072, 2, -393196, 131072, 2, -393198, 131072, 2, -393200, 131072, 2, -393202, 65536, 1, -393204, 0, 1, -393206, 65536, 1, -393208, 65536, 1, -524280, 65536, 2, -786424, 65536, 1, -917496, 131072, 2, -1048568, 131072, 1, -1179640, 131072, 0, -1179638, 131072, 2, -1179636, 131072, 2, -1179634, 131072, 2, -1179632, 131072, 2, -1179630, 131072, 1, -1048558, 131072, 1, -1048560, 131072, 2, -1048562, 131072, 2, -1048564, 131072, 2, -1048566, 131072, 2, -917494, 131072, 2, -917492, 131072, 2, -917490, 131072, 2, -917488, 131072, 2, -917486, 131072, 1, -786414, 131072, 2, -786416, 131072, 2, -786418, 131072, 2, -786420, 131072, 2, -655350, 65536, 3, -655348, 65536, 3, -655346, 65536, 3, -655344, 65536, 3, -655342, 65536, 1, -524270, 65536, 3, -524272, 65536, 3, -524274, 0, 3, -524276, 131072, 3, -524278, 65536, 3, -393193, 65536, 3, -393192, 131072, 3, -393190, 0, 3, -196586, 131072, 1, -131050, 131072, 2, -1310700, 65536, 3, -1310702, 0, 1, -1310704, 0, 3, -1310706, 131072, 2, -1310708, 131072, 2, -1310710, 131072, 3, -1310712, 65536, 3, -1376234, 0, 1, -1114090, 131072, 1, -1048553, 65536, 3, -1048552, 65536, 3, -1048551, 65536, 3, -1048550, 65536, 3, -1376233, 65536, 3, -1376232, 65536, 3, -1376231, 65536, 3, -1376230, 65536, 3, -458730, 131072, 1, -524265, 65536, 3, -524264, 65536, 1, -458728, 131072, 1, -655337, 65536, 3, -655336, 65536, 3, -655335, 65536, 3, -655334, 65536, 1, -589798, 131072, 1, -524262, 131072, 1, -458726, 131072, 1, -983018, 131072, 1, -851946, 131072, 1, -720874, 131072, 1, -655340, 131072, 2, -786411, 65536, 3, -262131, 65536, 3, -327668, 131072, 1, -393203, 65536, 3, -327666, 131072, 1, -131061, 65536, 2, -131062, 65536, 3, -131063, 65536, 3, -131064, 0, 2, -327670, 131072, 1, -327672, 131072, 1, -589816, 131072, 1, -393211, 65536, 3, -393210, 65536, 3, -393209, 65536, 3, -524281, 65536, 3, -524282, 65536, 3, -524283, 65536, 3, -524284, 0, 3, -393212, 0, 1, -524277, 65536, 3, -524273, 65536, 3, -524271, 65536, 3, -524269, 65536, 3, -655343, 65536, 3, -655345, 65536, 3, -655347, 65536, 3, -655349, 65536, 3, -589806, 131072, 1, -1245166, 131072, 1, -1114094, 131072, 1, -983022, 131072, 1, -851950, 131072, 1, -851948, 131072, 1, -983020, 131072, 1, -1114092, 131072, 1, -1310701, 65536, 3, -1310699, 65536, 3, -1179627, 65536, 3, -983032, 131072, 1, -1114104, 131072, 1, -1310703, 65536, 3, -1310711, 65536, 3, -1310713, 65536, 3, -1310714, 65536, 3, -1310715, 65536, 3, -1310716, 65536, 3, -1310717, 65536, 3, -786425, 65536, 3, -786428, 65536, 3, -786429, 65536, 3, -655351, 65536, 3, -720888, 131072, 1, -786427, 65536, 3, -917502, 196609, 0, -786426, 65536, 3, -655352, 131072, 1)
+
+[node name="PushZones" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
+
+[node name="PushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1242, -127)
+
+[node name="PushZone2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1241, -285)
+
+[node name="PushZone48" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(759, -1168)
+
+[node name="PushZone49" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1406, -1324)
+
+[node name="PushZone50" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1412, -1010)
+
+[node name="PushZone22" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(924, -285)
+
+[node name="PushZone3" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1240, -377)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone3" index="1"]
+PushDirection = 3
+
+[node name="PushZone28" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(668, -1008)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone28" index="1"]
+PushDirection = 3
+
+[node name="PushZone29" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(831, -1008)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone29" index="1"]
+PushDirection = 3
+
+[node name="PushZone30" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1004, -1007)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone30" index="1"]
+PushDirection = 3
+
+[node name="PushZone31" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1159, -1010)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone31" index="1"]
+PushDirection = 3
+
+[node name="PushZone32" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1322, -1009)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone32" index="1"]
+PushDirection = 3
+
+[node name="PushZone33" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1318, -1324)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone33" index="1"]
+PushDirection = 3
+
+[node name="PushZone34" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1162, -1329)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone34" index="1"]
+PushDirection = 3
+
+[node name="PushZone35" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1002, -1330)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone35" index="1"]
+PushDirection = 3
+
+[node name="PushZone36" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(838, -1327)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone36" index="1"]
+PushDirection = 3
+
+[node name="PushZone51" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(756, -1328)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone51" index="1"]
+PushDirection = 3
+
+[node name="PushZone21" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(681, -201)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone21" index="1"]
+PushDirection = 3
+
+[node name="PushZone4" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1405, -374)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone4" index="1"]
+PushDirection = 3
+
+[node name="PushZone5" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1563, -374)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone5" index="1"]
+PushDirection = 3
+
+[node name="PushZone6" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1714, -371)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone6" index="1"]
+PushDirection = 3
+
+[node name="PushZone7" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1799, -371)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone7" index="1"]
+PushForce = 50000.0
+PushDirection = 3
+
+[node name="PushZone8" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(2041, -447)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone8" index="1"]
+PushDirection = 1
+
+[node name="PushZone9" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1804, -1490)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone9" index="1"]
+PushDirection = 2
+
+[node name="PushZone37" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1318, -1167)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone37" index="1"]
+PushDirection = 2
+
+[node name="PushZone38" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1160, -1167)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone38" index="1"]
+PushDirection = 2
+
+[node name="PushZone39" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1001, -1166)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone39" index="1"]
+PushDirection = 2
+
+[node name="PushZone40" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(842, -1167)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone40" index="1"]
+PushDirection = 2
+
+[node name="PushZone41" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(836, -1486)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone41" index="1"]
+PushDirection = 2
+
+[node name="PushZone42" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1001, -1489)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone42" index="1"]
+PushDirection = 2
+
+[node name="PushZone43" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1159, -1489)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone43" index="1"]
+PushDirection = 2
+
+[node name="PushZone44" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1315, -1489)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone44" index="1"]
+PushDirection = 2
+
+[node name="PushZone45" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(679, -1485)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone45" index="1"]
+PushDirection = 2
+
+[node name="PushZone46" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1400, -1489)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone46" index="1"]
+PushDirection = 2
+
+[node name="PushZone47" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1412, -1167)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone47" index="1"]
+PushDirection = 2
+
+[node name="PushZone23" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(923, -530)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone23" index="1"]
+PushForce = 50000.0
+PushDirection = 2
+
+[node name="PushZone24" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(845, -532)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone24" index="1"]
+PushForce = 50000.0
+PushDirection = 2
+
+[node name="PushZone25" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(659, -525)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone25" index="1"]
+PushDirection = 2
+
+[node name="PushZone10" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1639, -1490)
+rotation = -1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone10" index="1"]
+PushDirection = 2
+
+[node name="PushZone11" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1562, -1490)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone11" index="1"]
+PushDirection = 1
+
+[node name="PushZone12" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1568, -1331)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone12" index="1"]
+PushDirection = 1
+
+[node name="PushZone13" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1564, -1168)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone13" index="1"]
+PushDirection = 1
+
+[node name="PushZone52" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(410, -1282)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone52" index="1"]
+PushForce = 1000.0
+PushDirection = 1
+
+[node name="CollisionShape2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone52/UpPushZone" index="0"]
+position = Vector2(-7.50006, -10.4999)
+shape = SubResource("RectangleShape2D_2m3km")
+
+[node name="PushZone14" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1564, -1089)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone14" index="1"]
+PushDirection = 1
+
+[node name="PushZone15" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1560, -924)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone15" index="1"]
+PushDirection = 1
+
+[node name="PushZone26" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(280, -609)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone26" index="1"]
+PushDirection = 1
+
+[node name="PushZone27" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(283, -364)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone27" index="1"]
+PushDirection = 1
+
+[node name="PushZone16" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1560, -765)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone16" index="1"]
+PushDirection = 1
+
+[node name="PushZone17" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1561, -682)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone17" index="1"]
+PushDirection = 3
+
+[node name="PushZone18" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1637, -682)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone18" index="1"]
+PushDirection = 3
+
+[node name="PushZone19" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(1801, -685)
+rotation = 1.5708
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone19" index="1"]
+PushDirection = 3
+
+[node name="PushZone20" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_t4rxw")]
+position = Vector2(2038, -685)
+rotation = 3.14159
+
+[node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone20" index="1"]
+PushDirection = 1
+
+[node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("14_jhq21")]
+Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")
+player = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Player")
+
+[connection signal="body_entered" from="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area/Goal" to="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" method="_on_goal_body_entered"]
+
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone2"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone48"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone49"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone50"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone22"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone3"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone28"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone29"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone30"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone31"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone32"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone33"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone34"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone35"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone36"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone51"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone21"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone4"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone5"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone6"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone7"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone8"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone9"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone37"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone38"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone39"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone40"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone41"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone42"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone43"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone44"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone45"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone46"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone47"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone23"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone24"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone25"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone10"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone11"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone12"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone13"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone52"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone14"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone15"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone26"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone27"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone16"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone17"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone18"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone19"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone20"]
