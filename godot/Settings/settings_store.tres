@@ -4,5 +4,5 @@
 
 [resource]
 script = ExtResource("1_jg548")
-UseNeighborCalculation = true
-DisplayDebugFactors = 1
+UseNeighborCalculation = false
+DisplayDebugFactors = 2
