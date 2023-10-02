@@ -7,23 +7,23 @@
 [ext_resource type="Script" path="res://Level.gd" id="5_gkdpx"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_oa1mf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_2dgjk"]
-[ext_resource type="EventAsset" path="res://addons/FMOD/editor/resources/events/{3e471034-94e6-4b28-97dd-d4dc94fffdd7}.tres" id="8_c1wsg"]
+[ext_resource type="EventAsset" uid="uid://cw5ycpijv3go4" path="res://addons/FMOD/editor/resources/events/{3e471034-94e6-4b28-97dd-d4dc94fffdd7}.tres" id="8_c1wsg"]
 [ext_resource type="Script" path="res://Lighting/StageLight.cs" id="9_fdjry"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="10_ejtao"]
-[ext_resource type="PackedScene" path="res://Stage/floor.tscn" id="11_2rshv"]
+[ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="11_2rshv"]
 [ext_resource type="PackedScene" uid="uid://dfw2f7apa6tu2" path="res://Stage/Set Peices/PushZone.tscn" id="13_1nosl"]
 [ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="14_6lqvl"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="15_41oaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugut1"]
-size = Vector2(570.75, 815)
+size = Vector2(682.063, 1548.5)
 
 [sub_resource type="Curve" id="Curve_dgqs3"]
 _data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
 point_count = 3
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_s7nnu"]
-size = Vector2(834, 489)
+size = Vector2(1624, 670)
 
 [node name="Game" type="Node"]
 
@@ -41,20 +41,22 @@ script = ExtResource("1_kyxyr")
 y_sort_enabled = true
 
 [node name="Spawner" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_cotty")]
-position = Vector2(530.625, -367)
+position = Vector2(624, -747)
 shape = SubResource("RectangleShape2D_ugut1")
 CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 150
 
 [node name="Spawner2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_cotty")]
-position = Vector2(1882, -373)
+position = Vector2(1787, -754)
 shape = SubResource("RectangleShape2D_ugut1")
 CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 150
 
 [node name="Players" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
 y_sort_enabled = true
 
 [node name="Goal area" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("3_68dl7")]
-position = Vector2(1201, -1212)
+position = Vector2(1199, -1759)
 
 [node name="Player" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("4_vkpkn")]
 position = Vector2(1220, 325)
@@ -215,7 +217,6 @@ MaxDistance = 1000.0
 MaxSpeed = 30.0
 
 [node name="Floor" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("11_2rshv")]
-visible = false
 z_index = -1500
 z_as_relative = false
 position = Vector2(1219, -1465)
@@ -233,39 +234,41 @@ scale = Vector2(5, 5)
 tile_set = ExtResource("14_6lqvl")
 format = 2
 layer_0/y_sort_enabled = true
-layer_0/tile_data = PackedInt32Array(-851960, 458752, 0, -262142, 196609, 0, -327678, 196609, 0, -393214, 196609, 0, -458750, 196609, 0, -524286, 196609, 0, -589822, 196609, 0, -655358, 196609, 0, -720894, 196609, 0, -786430, 196609, 0, -851966, 196609, 0, -917502, 196609, 0, -983038, 196609, 0, -1048574, 196609, 0, -1114110, 196609, 0, -1179646, 196609, 0, -1245182, 196609, 0, -1310718, 196609, 0, -1376254, 196609, 0, -1441790, 196609, 0, -1507326, 196609, 0, -1572862, 196609, 0, -1638398, 196609, 0, -1703934, 196609, 0, -1769470, 196609, 0, -1835006, 196609, 0, -1900542, 196609, 0, -1966078, 196609, 0, -2031614, 196609, 0, -2097150, 196609, 0, -2162686, 196609, 0, -2228222, 196609, 0, -2293758, 196609, 0, -2359294, 65537, 0, -2359293, 1, 0, -2359292, 1, 0, -2359291, 1, 0, -2359290, 1, 0, -2359289, 1, 0, -2359288, 1, 0, -2359287, 1, 0, -2359286, 1, 0, -2359285, 1, 0, -2359284, 1, 0, -2359283, 1, 0, -2359282, 1, 0, -2359281, 1, 0, -2359280, 1, 0, -2359279, 1, 0, -2359278, 1, 0, -2359277, 1, 0, -2359276, 1, 0, -2359275, 1, 0, -2359274, 1, 0, -2359273, 1, 0, -2359272, 1, 0, -2359271, 1, 0, -2359270, 1, 0, -2359269, 131073, 0, -2293733, 196609, 1, -2228197, 196609, 1, -2162661, 196609, 1, -2097125, 196609, 1, -2031589, 196609, 1, -1966053, 196609, 1, -1900517, 196609, 1, -1834981, 196609, 1, -1769445, 196609, 1, -1703909, 196609, 1, -1638373, 196609, 1, -1572837, 196609, 1, -1507301, 196609, 1, -1376229, 196609, 1, -1441765, 196609, 1, -1310693, 196609, 1, -1245157, 196609, 1, -1179621, 196609, 1, -1114085, 196609, 1, -1048549, 196609, 1, -983013, 196609, 1, -917477, 196609, 1, -851941, 196609, 1, -786405, 196609, 1, -720869, 196609, 1, -655333, 196609, 1, -589797, 196609, 1, -524261, 196609, 1, -458725, 196609, 1, -393189, 196609, 1, -327653, 196609, 1, -262117, 196609, 1, -196581, 196609, 1, -131045, 196609, 1, -65509, 196609, 1, 27, 196609, 1, 65563, 196609, 1, 131099, 196609, 1, 196635, 196609, 1, 262171, 196609, 1, 327707, 196609, 1, 393243, 196609, 1, 458779, 196609, 1, 524315, 196609, 1, 589851, 196609, 1, 655387, 196609, 1, 720923, 196609, 1, 786459, 131073, 1, 786458, 1, 1, 786457, 1, 1, 786456, 1, 1, 786455, 1, 1, 786454, 1, 1, 786453, 1, 1, 786452, 1, 1, 786451, 1, 1, 786450, 1, 1, 786449, 1, 1, 786448, 1, 1, 786447, 1, 1, 786446, 1, 1, 786445, 1, 1, 786441, 1, 1, 786442, 1, 1, 786444, 1, 1, 786443, 1, 1, 786440, 1, 1, 786439, 1, 1, 786438, 1, 1, 786437, 1, 1, 786436, 1, 1, 786435, 1, 1, 786434, 65537, 1, 720898, 196609, 0, 655362, 196609, 0, 589826, 196609, 0, 524290, 196609, 0, 458754, 196609, 0, 393218, 196609, 0, 327682, 196609, 0, 262146, 196609, 0, 196610, 196609, 0, 131074, 196609, 0, 65538, 196609, 0, 2, 196609, 0, -65534, 196609, 0, -131070, 196609, 0, -196606, 196609, 0, 65539, 65536, 3, 65540, 65536, 3, 65541, 65536, 3, 65542, 65536, 3, 65543, 65536, 3, 65544, 65536, 3, 65545, 65536, 3, 65546, 65536, 3, 65547, 65536, 3, 65548, 65536, 3, 65549, 131072, 3, 65552, 0, 3, 65553, 65536, 3, 65554, 65536, 3, 65555, 65536, 3, 65556, 65536, 3, 65557, 65536, 3, 65558, 65536, 3, 65559, 65536, 3, 65560, 65536, 3, 65561, 65536, 3, 65562, 65536, 3, -720883, 131072, 3, -720880, 0, 3, -720879, 65536, 3, -720878, 65536, 3, -720877, 65536, 3, -720876, 65536, 3, -720875, 65536, 3, -720874, 65536, 3, -720873, 65536, 3, -720872, 65536, 3, -720871, 65536, 3, -720870, 65536, 3, -720884, 65536, 3, -720885, 65536, 3, -720886, 65536, 3, -720887, 65536, 3, -720888, 65536, 3, -720889, 65536, 3, -720890, 65536, 3, -720891, 65536, 3, -720892, 65536, 3, -720893, 65536, 3)
+layer_0/tile_data = PackedInt32Array(-851960, 458752, 0, -262142, 196609, 0, -327678, 196609, 0, -393214, 196609, 0, -458750, 196609, 0, -524286, 196609, 0, -589822, 196609, 0, -655358, 196609, 0, -720894, 196609, 0, -786430, 196609, 0, -851966, 196609, 0, -917502, 196609, 0, -983038, 196609, 0, -1048574, 196609, 0, -1114110, 196609, 0, -1179646, 196609, 0, -1245182, 196609, 0, -1310718, 196609, 0, -1376254, 196609, 0, -1441790, 196609, 0, -1507326, 196609, 0, -1572862, 196609, 0, -1638398, 196609, 0, -1703934, 196609, 0, -1769470, 196609, 0, -1835006, 196609, 0, -1900542, 196609, 0, -1966078, 196609, 0, -2031614, 196609, 0, -2097150, 196609, 0, -2162686, 196609, 0, -2228222, 196609, 0, -2293758, 196609, 0, -2359294, 65537, 0, -2359293, 1, 0, -2359292, 1, 0, -2359291, 1, 0, -2359290, 1, 0, -2359289, 1, 0, -2359288, 1, 0, -2359287, 1, 0, -2359286, 1, 0, -2359285, 1, 0, -2359284, 1, 0, -2359283, 1, 0, -2359282, 1, 0, -2359281, 1, 0, -2359280, 1, 0, -2359279, 1, 0, -2359278, 1, 0, -2359277, 1, 0, -2359276, 1, 0, -2359275, 1, 0, -2359274, 1, 0, -2359273, 1, 0, -2359272, 1, 0, -2359271, 1, 0, -2359270, 1, 0, -2359269, 131073, 0, -2293733, 196609, 1, -2228197, 196609, 1, -2162661, 196609, 1, -2097125, 196609, 1, -2031589, 196609, 1, -1966053, 196609, 1, -1900517, 196609, 1, -1834981, 196609, 1, -1769445, 196609, 1, -1703909, 196609, 1, -1638373, 196609, 1, -1572837, 196609, 1, -1507301, 196609, 1, -1376229, 196609, 1, -1441765, 196609, 1, -1310693, 196609, 1, -1245157, 196609, 1, -1179621, 196609, 1, -1114085, 196609, 1, -1048549, 196609, 1, -983013, 196609, 1, -917477, 196609, 1, -851941, 196609, 1, -786405, 196609, 1, -720869, 196609, 1, -655333, 196609, 1, -589797, 196609, 1, -524261, 196609, 1, -458725, 196609, 1, -393189, 196609, 1, -327653, 196609, 1, -262117, 196609, 1, -196581, 196609, 1, -131045, 196609, 1, -65509, 196609, 1, 27, 196609, 1, 65563, 196609, 1, 131099, 196609, 1, 196635, 196609, 1, 262171, 196609, 1, 327707, 196609, 1, 393243, 196609, 1, 458779, 196609, 1, 524315, 196609, 1, 589851, 196609, 1, 655387, 196609, 1, 720923, 196609, 1, 786459, 131073, 1, 786458, 1, 1, 786457, 1, 1, 786456, 1, 1, 786455, 1, 1, 786454, 1, 1, 786453, 1, 1, 786452, 1, 1, 786451, 1, 1, 786450, 1, 1, 786449, 1, 1, 786448, 1, 1, 786447, 1, 1, 786446, 1, 1, 786445, 1, 1, 786441, 1, 1, 786442, 1, 1, 786444, 1, 1, 786443, 1, 1, 786440, 1, 1, 786439, 1, 1, 786438, 1, 1, 786437, 1, 1, 786436, 1, 1, 786435, 1, 1, 786434, 65537, 1, 720898, 196609, 0, 655362, 196609, 0, 589826, 196609, 0, 524290, 196609, 0, 458754, 196609, 0, 393218, 196609, 0, 327682, 196609, 0, 262146, 196609, 0, 196610, 196609, 0, 131074, 196609, 0, 65538, 196609, 0, 2, 196609, 0, -65534, 196609, 0, -131070, 196609, 0, -196606, 196609, 0, 65539, 65536, 3, 65540, 65536, 3, 65541, 65536, 3, 65542, 65536, 3, 65543, 65536, 3, 65544, 65536, 3, 65545, 65536, 3, 65546, 65536, 3, 65547, 65536, 3, 65548, 65536, 3, 65549, 131072, 3, 65552, 0, 3, 65553, 65536, 3, 65554, 65536, 3, 65555, 65536, 3, 65556, 65536, 3, 65557, 65536, 3, 65558, 65536, 3, 65559, 65536, 3, 65560, 65536, 3, 65561, 65536, 3, 65562, 65536, 3, -1310716, 65536, 3, -1310715, 65536, 3, -1310714, 65536, 3, -1310713, 65536, 3, -1310712, 65536, 3, -1310711, 65536, 3, -1310710, 65536, 3, -1310709, 65536, 3, -1310708, 65536, 3, -1310717, 65536, 3, -1310707, 131072, 3, -1310704, 0, 3, -1310703, 65536, 3, -1310702, 65536, 3, -1310701, 65536, 3, -1310700, 65536, 3, -1310699, 65536, 3, -1310698, 65536, 3, -1310697, 65536, 3, -1310696, 65536, 3, -1310695, 65536, 3, -1310694, 65536, 3)
 
 [node name="PushZones" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
 
 [node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_1nosl")]
-position = Vector2(649, -733)
+position = Vector2(622, -769)
 rotation = 1.5708
 
 [node name="Sprite2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/UpPushZone" index="0"]
-position = Vector2(366, -216)
+position = Vector2(4.49939, -206.5)
 
 [node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/UpPushZone" index="1"]
+position = Vector2(4.99939, -207.143)
 PushForce = 2500.0
 PushDirection = 3
 
 [node name="CollisionShape2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/UpPushZone/UpPushZone" index="0"]
-position = Vector2(371, -195)
+position = Vector2(0, 49.1429)
 shape = SubResource("RectangleShape2D_s7nnu")
 
 [node name="UpPushZone2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones" instance=ExtResource("13_1nosl")]
-position = Vector2(1369, -736)
+position = Vector2(1416, -753)
 rotation = 1.5708
 
 [node name="Sprite2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/UpPushZone2" index="0"]
-position = Vector2(366, -216)
+position = Vector2(4.49933, -196.5)
 rotation = 3.14159
 
 [node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/UpPushZone2" index="1"]
+position = Vector2(4.99933, -197.143)
 PushForce = 2500.0
 PushDirection = 2
 
 [node name="CollisionShape2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/UpPushZone2/UpPushZone" index="0"]
-position = Vector2(371, -195)
+position = Vector2(-12.0001, 0.03125)
 shape = SubResource("RectangleShape2D_s7nnu")
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("15_41oaw")]
