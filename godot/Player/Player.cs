@@ -13,11 +13,13 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	[Export] public float SturdySmoothingMultiplier { get; set; } = 1; // higher is more responsive. lower is more sluggish
 	[Export] public float MinimumSturdySpeed { get; set; } = 0.2f;
 	[Export] public float MaximumDashSpeed { get; set; } = 2f;
+	[Export] public float SturdyImpactResistance { get; set; } = 1.3f;
+	[Export] public float DashImpactResistance { get; set; } = 0.9f;
 	[Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
 
 	private Vector2? lastTurnInput = null;
 	/// <summary>
-	/// -1..1 </br>
+	/// -1..1 
 	/// Positive values cause slower, more durable movement. negative values cause faster, more unsteady movement.
 	/// </summary>
 	private float currentSturdyFactor = 0f;
@@ -61,7 +63,11 @@ public partial class Player : RigidBody2D, IHavePersonBody
 		
 		var impactVector = otherBody.LinearVelocity - LinearVelocity;
 		var impact = impactVector.Length();
-		if (!(impact > 100))
+
+		float impactThreshold = 100;
+		impactThreshold *= GetSturdyImpactThreshold(currentSturdyFactor);
+		
+		if (!(impact > impactThreshold))
 		{
 			EmitSignal("SoftCollision");
 			return;
@@ -114,6 +120,16 @@ public partial class Player : RigidBody2D, IHavePersonBody
 		return Input.IsActionPressed("turn_side");
 	}
 
+	private float GetSturdyImpactThreshold(float sturdyFactor)
+	{
+		return sturdyFactor switch
+		{
+			< 0 => Mathf.Lerp(1, DashImpactResistance, -sturdyFactor),
+			> 0 => Mathf.Lerp(1, SturdyImpactResistance, sturdyFactor),
+			_ => 1
+		};
+	}
+	
 	private float GetSturdyMovementMultiplier(float sturdyFactor)
 	{
 		return sturdyFactor switch
