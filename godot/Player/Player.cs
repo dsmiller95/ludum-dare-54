@@ -10,9 +10,16 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	[Signal] public delegate void YouDiedEventHandler();
 
 	[Export] public float AccelerationForce { get; set; } = 400; // How fast to accelerate (pixels/sec^2).
+	[Export] public float SturdySmoothingMultiplier { get; set; } = 1; // higher is more responsive. lower is more sluggish
+	[Export] public float MinimumSturdySpeed { get; set; } = 0.2f;
+	[Export] public float MaximumDashSpeed { get; set; } = 2f;
 	[Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
 
 	private Vector2? lastTurnInput = null;
+	/// <summary>
+	/// -1..1 </br>
+	/// Positive values cause slower, more durable movement. negative values cause faster, more unsteady movement.
+	/// </summary>
 	private float currentSturdyFactor = 0f;
 
 	private PersonBody personBody;
@@ -31,10 +38,12 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	public override void _PhysicsProcess(double delta)
 	{
 		personBody._PhysicsProcess();
+		currentSturdyFactor = Mathf.Lerp(currentSturdyFactor, GetSturdyVsDash(), SturdySmoothingMultiplier * (float)delta);
+		
 		var myPhysics = PersonMovement.GetConfiguredPhysics();
 
 		var input = GetInputVectorNormalized();
-		var desiredLinearForce = input * AccelerationForce;
+		var desiredLinearForce = input * AccelerationForce * GetSturdyMovementMultiplier(currentSturdyFactor);
 		var desiredLookDirection = DesiredForwardDirection(input);
 
 		var integrationResult = myPhysics.ComputeIntegrationResult(
@@ -103,6 +112,32 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	private bool IsInputTurnedToSide()
 	{
 		return Input.IsActionPressed("turn_side");
+	}
+
+	private float GetSturdyMovementMultiplier(float sturdyFactor)
+	{
+		return sturdyFactor switch
+		{
+			< 0 => Mathf.Lerp(1, MaximumDashSpeed, -sturdyFactor),
+			> 0 => Mathf.Lerp(1, MinimumSturdySpeed, sturdyFactor),
+			_ => 1
+		};
+	}
+	
+	private float GetSturdyVsDash()
+	{
+		var sturdyFactor = 0;
+		if (Input.IsActionPressed("brace"))
+		{
+			sturdyFactor += 1;
+		}
+
+		if (Input.IsActionPressed("dash"))
+		{
+			sturdyFactor -= 1;
+		}
+
+		return sturdyFactor;
 	}
 
 	private Vector2? DesiredForwardDirection(Vector2 input)
