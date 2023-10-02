@@ -148,10 +148,9 @@ position = Vector2(0, 1)
 rotation = 1.5708
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_mwdxp")
-animation = &"hat"
+animation = &"hair-down"
 autoplay = "default"
 offset = Vector2(0, -9)
-script = ExtResource("3_u801b")
 
 [node name="Effects" type="Node2D" parent="." node_paths=PackedStringArray("bodySprite", "effectText")]
 script = ExtResource("6_05sq1")
@@ -162,10 +161,10 @@ effectText = NodePath("../RichTextLabel")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 158.0
-offset_top = -50.9994
-offset_right = 258.0
-offset_bottom = 22.0006
+offset_left = 179.0
+offset_top = -51.0
+offset_right = 279.0
+offset_bottom = 43.0
 grow_horizontal = 2
 rotation = 1.5708
 bbcode_enabled = true
@@ -174,5 +173,9 @@ Drunk: 21.22
 Horny: 2.11
 Attrac: 0.12[/code]"
 autowrap_mode = 0
+
+[node name="animation starter" type="Node" parent="." node_paths=PackedStringArray("AnimatingTarget")]
+script = ExtResource("3_u801b")
+AnimatingTarget = NodePath("../AnimatedSprite2D")
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]
