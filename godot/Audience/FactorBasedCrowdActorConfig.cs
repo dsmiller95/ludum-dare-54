@@ -11,12 +11,10 @@ public partial class FactorBasedCrowdActorConfig : Resource, ICrowdActorPreset
     [Export] public FactorOverrideSource OverrideSource;
     [Export] public FactorArchetype Archetype;
     
-    public FactorBasedCrowdActor ConstructConfiguredActor()
+    public FactorBasedCrowdActor ConstructConfiguredActor(RandomNumberGenerator rng)
     {
         var tuningParams = Tuning.FactorTuningParams();
         var accumulationParams = Archetype.GetAccumulation();
-        var rng = new RandomNumberGenerator();
-        rng.Randomize();
         var effects = new IFactorEffect []
         {
             new MotorControlFactor(tuningParams, rng),

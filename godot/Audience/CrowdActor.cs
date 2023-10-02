@@ -27,11 +27,10 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     private Array<Resource> crowdActorPresetOptions;
     
 
-    public FactorBasedCrowdActor CrowdActorImpl;
+    
+    public FactorBasedCrowdActor CrowdActorImpl; // controlled by the spawner
     private PersonBody personBody;
     private PersonPhysics myPhysics;
-
-    public CrowdCorral CrowdCorral;
 
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
@@ -46,7 +45,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
 
         var rng = new RandomNumberGenerator();
         rng.Randomize();
-        CrowdActorImpl = rng.PickRandom(options).ConstructConfiguredActor();
         personBody = new PersonBody(this);
         myPhysics = PersonMovement.GetConfiguredPhysics();
     }

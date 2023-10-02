@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=32 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
@@ -16,6 +16,10 @@
 [ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="11_tqkk2"]
 [ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
 [ext_resource type="PackedScene" uid="uid://cpqdu38mtpo4a" path="res://Lighting/LongLight.tscn" id="14_f6f0j"]
+[ext_resource type="Resource" uid="uid://btnx83vp6mfxh" path="res://Audience/AiPresets/factor_rolling_raver.tres" id="16_gmg0n"]
+[ext_resource type="Resource" uid="uid://bm7cfjlu24ccy" path="res://Audience/AiPresets/factor_drunkard.tres" id="17_1tcn1"]
+[ext_resource type="Resource" uid="uid://bt5dstfdpp24e" path="res://Audience/AiPresets/factor_toker.tres" id="18_3pb75"]
+[ext_resource type="Resource" uid="uid://di7kla0qry0ee" path="res://Audience/AiPresets/factor_wildcard_bitches.tres" id="19_mowpl"]
 
 [sub_resource type="Curve" id="Curve_dgqs3"]
 _data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
@@ -301,11 +305,14 @@ y_sort_enabled = true
 position = Vector2(1189, 474.5)
 shape = SubResource("RectangleShape2D_7wftx")
 CrowdCorral = NodePath("../../CrowdCorral")
+CrowdActorPresetOptions = Array[Resource]([ExtResource("16_gmg0n"), ExtResource("17_1tcn1"), ExtResource("18_3pb75")])
+SpawnNum = 50
 
 [node name="Spawner2" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(735.5, -310)
 shape = SubResource("RectangleShape2D_6swx1")
 CrowdCorral = NodePath("../../CrowdCorral")
+CrowdActorPresetOptions = Array[Resource]([ExtResource("16_gmg0n"), ExtResource("17_1tcn1"), ExtResource("19_mowpl"), ExtResource("18_3pb75")])
 
 [node name="Spawner3" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1181.25, -1119.5)
@@ -316,6 +323,7 @@ CrowdCorral = NodePath("../../CrowdCorral")
 position = Vector2(1718, -312)
 shape = SubResource("RectangleShape2D_fydgb")
 CrowdCorral = NodePath("../../CrowdCorral")
+CrowdActorPresetOptions = Array[Resource]([ExtResource("16_gmg0n"), ExtResource("17_1tcn1"), ExtResource("19_mowpl"), ExtResource("18_3pb75")])
 SpawnNum = 50
 
 [node name="Spawner5" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
@@ -337,13 +345,13 @@ CrowdCorral = NodePath("../../CrowdCorral")
 position = Vector2(1174, -3555.5)
 shape = SubResource("RectangleShape2D_y8m3c")
 CrowdCorral = NodePath("../../CrowdCorral")
-SpawnNum = 75
 SampleType = 1
 
 [node name="Spawner9" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3932.25)
 shape = SubResource("RectangleShape2D_2dn7y")
 CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 150
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
 Goal = NodePath("../Players/Goal area")

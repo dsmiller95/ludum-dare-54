@@ -1,7 +1,9 @@
 using System;
 using System.IO;
+using System.Linq;
 using DotnetLibrary;
 using Godot;
+using Godot.Collections;
 using LudumDare54;
 using LudumDare54.Audience;
 
@@ -10,6 +12,7 @@ public partial class Spawner : CollisionShape2D
 	[Export] private CrowdCorral CrowdCorral { get; set; }
 	
 	[Export] private PackedScene SceneToSpawn { get; set; }
+	[Export] private Array<Resource> CrowdActorPresetOptions { get; set; }
 	
 	[Export] private int SpawnNum { get; set; } = 100;
 	
@@ -34,6 +37,7 @@ public partial class Spawner : CollisionShape2D
 		
 		var rng = new RandomNumberGenerator();
 		rng.Randomize();
+		var options = CrowdActorPresetOptions.Cast<ICrowdActorPreset>().Where(x => x != null).ToArray();
 		
 		ISamplePoints pointSampler = SampleType switch {
 			SampleType.Halton => new SampleHaltonPoints(),
@@ -49,12 +53,13 @@ public partial class Spawner : CollisionShape2D
 
 			var rotation = rng.RandiRange(-1 * FacingSkew, FacingSkew);
 			instance.RotationDegrees += rotation;
-			CrowdCorral?.AddChild(instance);
 
 			if (instance is CrowdActor crowdActor)
 			{
-				crowdActor.CrowdCorral = CrowdCorral;
+				crowdActor.CrowdActorImpl = rng.PickRandom(options).ConstructConfiguredActor(rng);
 			}
+			
+			CrowdCorral?.AddChild(instance);
 		}
 		CrowdCorral?.UpdateInternalActorList();
 	}

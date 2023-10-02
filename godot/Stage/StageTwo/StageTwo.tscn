@@ -57,17 +57,19 @@ SpawnNum = 75
 position = Vector2(1190, -273)
 shape = SubResource("RectangleShape2D_6swx1")
 CrowdCorral = NodePath("../../CrowdCorral")
-SpawnNum = 75
+SpawnNum = 125
 
 [node name="Spawner3" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("12_07thv")]
 position = Vector2(1190.5, -1119.5)
 shape = SubResource("RectangleShape2D_ka12c")
 CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 200
 
 [node name="Spawner5" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("12_07thv")]
 position = Vector2(1179, -2183.5)
 shape = SubResource("RectangleShape2D_4apn8")
 CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 300
 
 [node name="Players" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
 y_sort_enabled = true
