@@ -23,8 +23,15 @@ public partial class CrowdCorral: Node2D
             crowdHash = null;
             return;
         }
-        // TODO performance : use a 2d array, specify exact size in crowd coral. reuse list contents frame to frame.
-        crowdHash = new();
+
+        foreach (var xMap in crowdHash.Values)
+        {
+            foreach (var yList in xMap.Values)
+            {
+                yList.Clear();
+            }
+        }
+        
         var children = GetChildren();
 
         foreach (var child in children)

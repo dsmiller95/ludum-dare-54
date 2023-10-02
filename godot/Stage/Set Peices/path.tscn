@@ -7,6 +7,7 @@
 size = Vector2(8.376, 32.135)
 
 [node name="Path" type="Node2D"]
+z_index = -1495
 position = Vector2(350, 373)
 scale = Vector2(8, 32)
 

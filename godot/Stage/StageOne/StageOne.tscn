@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
 [ext_resource type="Script" path="res://Lighting/StageLight.cs" id="3_228ch"]
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="3_m2j0t"]
-[ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="3_yk581"]
+[ext_resource type="PackedScene" path="res://Stage/floor.tscn" id="3_yk581"]
 [ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="4_s3k7p"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="5_05u3q"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="5_espk5"]
@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="6_juosq"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
-[ext_resource type="Texture2D" uid="uid://bf0c1wof0qvm8" path="res://Assets/Stage.tres" id="9_x17ly"]
+[ext_resource type="Texture2D" path="res://Assets/Stage.tres" id="9_x17ly"]
 [ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="11_tqkk2"]
 [ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
 [ext_resource type="PackedScene" uid="uid://cpqdu38mtpo4a" path="res://Lighting/LongLight.tscn" id="14_f6f0j"]
@@ -219,6 +219,7 @@ energy = 6.0
 height = 750.0
 
 [node name="Floor" parent="Stage" instance=ExtResource("3_yk581")]
+z_index = -1500
 position = Vector2(1181, -1646)
 scale = Vector2(32.734, 82.956)
 
@@ -253,6 +254,7 @@ rotation = 1.57079
 [node name="Walls" type="Node2D" parent="Stage"]
 
 [node name="Stage" type="StaticBody2D" parent="Stage/Walls"]
+z_index = -1495
 
 [node name="Stage" type="Sprite2D" parent="Stage/Walls/Stage"]
 position = Vector2(1172, -3873)
