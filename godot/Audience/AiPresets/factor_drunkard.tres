@@ -10,9 +10,9 @@ script = ExtResource("1_tqyak")
 GlobalMultiplier = 0.2
 RagePerSecond = 0.0
 StuporPerSecond = 6.0
-StinkyToAttractivePerSecond = -1.0
+StinkyToAttractivePerSecond = -2.0
 HornyPerSecond = 0.0
-IntrovertToExtrovertPerSecond = 1.0
+IntrovertToExtrovertPerSecond = 2.0
 
 [resource]
 script = ExtResource("4_nwjy1")

@@ -27,10 +27,10 @@ public struct FactorAccumulation
         var total = 0f;
         for (int i = 0; i < AccumulationsPerSecond.Length; i++)
         {
-            total += Mathf.Abs(AccumulationsPerSecond[i]);
+            total += AccumulationsPerSecond[i] * AccumulationsPerSecond[i];
         }
 
-        var distance = total;
+        var distance = Mathf.Sqrt(total);
         for (int i = 0; i < AccumulationsPerSecond.Length; i++)
         {
             AccumulationsPerSecond[i] = AccumulationsPerSecond[i] * postMultiply / distance;
