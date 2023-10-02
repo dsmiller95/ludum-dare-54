@@ -13,6 +13,7 @@ scale = Vector2(8, 32)
 
 [node name="Path" type="Area2D" parent="." node_paths=PackedStringArray("RepellentShapeDefinition")]
 script = ExtResource("1_jvs1o")
+RepellentForce = 3000.0
 RepellentShapeDefinition = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Path"]

@@ -41,6 +41,7 @@ shape = SubResource("RectangleShape2D_wu8o8")
 
 [node name="repellent" type="Area2D" parent="." node_paths=PackedStringArray("RepellentShapeDefinition")]
 script = ExtResource("1_8fue6")
+RepellentForce = 3000.0
 RepellentShapeDefinition = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="repellent"]
