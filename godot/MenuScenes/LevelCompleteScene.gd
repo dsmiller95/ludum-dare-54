@@ -9,13 +9,13 @@ func _ready():
 	else:
 		level = SceneHandler.current_level;
 		health = get_node("Sprite2D").health
-		get_node("Label").set_text("You found your date with " + str(health) + "% of your drink left! Level " + str(level) + " complete!")
+		var time = SceneHandler.get_time_to_complete()
+		get_node("Label").set_text("You found your date with " + str(health) + "% of your drink left in " + str(time) + " seconds! Level " + str(level) + " complete!")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-
 
 func _on_button_pressed():
 	SceneHandler.next_level()
