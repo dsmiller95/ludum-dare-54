@@ -77,18 +77,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         }
     }
 
-    public override void _PhysicsProcess(double delta)
-    {
-        // var neighborCrowdActors = NeighborCrowdActors();
-        //
-        // integrationResult =ManagedPhysicsProcess(delta, neighborCrowdActors);
-        //
-        
-        // integrationResult?.ApplyTo(this);
-        // integrationResult = null;
-        // personBody._PhysicsProcess();
-    }
-
     public void OwnedPhysicsProcess(double delta, Span<AiNeighbor?> neighbors)
     {
         ManagedPhysicsProcess(delta, neighbors);
@@ -131,10 +119,5 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
 
         var pushEvent = new PushEvent(pushVector);
         CrowdActorImpl.ReceivePushEvent(pushEvent);
-    }
-    
-    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
-    {
-        return;
     }
 }
