@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://edr30qk1qlqs"]
+
+[ext_resource type="Texture2D" uid="uid://cs0u45ti5jfca" path="res://Assets/walls_mosh_pint.png" id="1_jnmam"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rldea"]
+radius = 7.0
+height = 15.0
+
+[node name="Car" type="Node2D"]
+z_index = -1495
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, -7)
+scale = Vector2(2, 2)
+texture = ExtResource("1_jnmam")
+offset = Vector2(-4, 2.08165e-12)
+hframes = 4
+vframes = 2
+frame = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("CapsuleShape2D_rldea")

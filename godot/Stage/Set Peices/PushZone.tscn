@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfw2f7apa6tu2"]
+
+[ext_resource type="Texture2D" uid="uid://cdbnwywjqkubf" path="res://UI/PointerSprite/arrow.png" id="1_572co"]
+[ext_resource type="Script" path="res://Stage/PushZone.cs" id="1_mxh5k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e0hg0"]
+size = Vector2(82, 77.9375)
+
+[node name="UpPushZone" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-0.500002, 0.642856)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("1_572co")
+
+[node name="UpPushZone" type="Area2D" parent="."]
+script = ExtResource("1_mxh5k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UpPushZone"]
+position = Vector2(0, 0.03125)
+shape = SubResource("RectangleShape2D_e0hg0")
