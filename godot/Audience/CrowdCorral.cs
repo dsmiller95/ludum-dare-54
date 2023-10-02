@@ -17,8 +17,8 @@ public partial class CrowdCorral: Node2D
 
     public override void _PhysicsProcess(double delta)
     {
-        var shouldSkip = SettingsSingleton.Settings?.UseNeighborCalculation ?? false;
-        if (shouldSkip)
+        var shouldUseCalculation = SettingsSingleton.Settings?.UseNeighborCalculation ?? true;
+        if (!shouldUseCalculation)
         {
             crowdHash = null;
             return;
