@@ -23,7 +23,15 @@ public partial class CrowdCorral: Node2D
             crowdHash = null;
             return;
         }
-        crowdHash = new();
+
+        foreach (var xMap in crowdHash.Values)
+        {
+            foreach (var yList in xMap.Values)
+            {
+                yList.Clear();
+            }
+        }
+        
         var children = GetChildren();
 
         foreach (var child in children)
