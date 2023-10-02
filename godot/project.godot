@@ -14,6 +14,7 @@ config/name="Ludum Dare 54"
 run/main_scene="res://MenuScenes/StartScreen.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.png"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
