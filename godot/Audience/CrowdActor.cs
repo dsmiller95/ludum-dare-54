@@ -90,13 +90,13 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     }
 
     private List<NeighborCrowdActor> neighborCrowdActorCache = new List<NeighborCrowdActor>();
-    public void OwnedPhysicsProcess(double delta, Span<NeighborCrowdActor> neighbors)
+    public void OwnedPhysicsProcess(double delta, Span<AiNeighbor?> neighbors)
     {
         ManagedPhysicsProcess(delta, neighbors);
         personBody._PhysicsProcess();
     }
     
-    private void ManagedPhysicsProcess(double delta, Span<NeighborCrowdActor> neighbors)
+    private void ManagedPhysicsProcess(double delta, Span<AiNeighbor?> neighbors)
     {
         CrowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighbors);
         

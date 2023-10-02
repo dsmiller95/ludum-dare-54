@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using DotnetLibrary.Audience;
+using DotnetLibrary.Audience.Factors;
 using Godot;
 using Godot.Collections;
 using LudumDare54.Settings;
@@ -31,7 +32,7 @@ public partial class CrowdCorral: Node2D
             crowdHash = null;
         }
 
-        var workingNeighborList = new List<NeighborCrowdActor>();
+        var workingNeighborList = new List<AiNeighbor?>();
         
         foreach (var child in children)
         {
@@ -86,7 +87,7 @@ public partial class CrowdCorral: Node2D
         }
     }
 
-    private void GetNeighbors(CrowdActor crowdActor, List<NeighborCrowdActor> neighbors)
+    private void GetNeighbors(CrowdActor crowdActor, List<AiNeighbor?> neighbors)
     {
         if (crowdHash == null) return;
         var hashedPosition = crowdActor.GlobalPosition / _segmentSize;
@@ -110,10 +111,13 @@ public partial class CrowdCorral: Node2D
                 for (int i = 0; i < itemsInHash.Count; i++)
                 {
                     var neighbor = itemsInHash[i];
-                    neighbors.Add(new NeighborCrowdActor
+                    var relativePosition = neighbor.GlobalPosition - crowdActor.GlobalPosition;
+                    var actor = neighbor.CrowdActorImpl;
+                    if(actor is not FactorBasedCrowdActor factorBased) continue; //oopsie, goodbie liskov 🤭🤭🤭
+                    neighbors.Add(new AiNeighbor
                     {
-                        actor = neighbor.CrowdActorImpl,
-                        relativePosition = neighbor.GlobalPosition - crowdActor.GlobalPosition
+                        Position = relativePosition,
+                        Factors = factorBased.factors
                     });
                 }
             }

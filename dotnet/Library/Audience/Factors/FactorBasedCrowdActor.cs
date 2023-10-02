@@ -9,7 +9,7 @@ public class FactorBasedCrowdActor : ICrowdActor
     private readonly FactorAccumulation accumulation;
     private readonly IProvideFactorOverride? overrideSource;
 
-    private Factors factors;
+    public Factors factors;
     
     public float[] GetRawFactorsUnnormalized()
     {
@@ -30,24 +30,8 @@ public class FactorBasedCrowdActor : ICrowdActor
         this.overrideSource = overrideSource;
         factors = overrideSource?.GetOverrideFactor() ?? new Factors(0.5f);
     }
-
-    private AiNeighbor?[] MapToAiNeighbors(Span<NeighborCrowdActor> neighbors)
-    {
-        var array = new AiNeighbor?[neighbors.Length];
-        for (int i = 0; i < neighbors.Length; i++)
-        {
-            if (neighbors[i].actor is not FactorBasedCrowdActor facBased) continue;
-            array[i] = new AiNeighbor
-            {
-                Position = neighbors[i].relativePosition,
-                Factors = facBased.factors
-            };
-        }
-
-        return array;
-    }
     
-    public void Update(double deltaTime, double currentSeconds, Span<NeighborCrowdActor> neighbors)
+    public void Update(double deltaTime, double currentSeconds, Span<AiNeighbor?> neighbors)
     {
         if (overrideSource is { UseLiveOverride: true })
         {
@@ -65,7 +49,7 @@ public class FactorBasedCrowdActor : ICrowdActor
             deltaTime = (float)deltaTime,
             currentTime = (float)currentSeconds,
             SelfFactors = this.factors,
-            Neighbors = MapToAiNeighbors(neighbors),
+            Neighbors = neighbors,
         };
         var allEffects = new AiResult[effects.Length];
         for (int i = 0; i < effects.Length; i++)
