@@ -24,6 +24,8 @@ public partial class CrowdCorral: Node2D
             return;
         }
 
+        if (crowdHash == null) crowdHash = new();
+
         foreach (var xMap in crowdHash.Values)
         {
             foreach (var yList in xMap.Values)
