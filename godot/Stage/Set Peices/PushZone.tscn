@@ -9,6 +9,7 @@ size = Vector2(82, 77.9375)
 [node name="UpPushZone" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-0.500002, 0.642856)
 scale = Vector2(3.5, 3.5)
 texture = ExtResource("1_572co")

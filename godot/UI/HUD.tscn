@@ -8,5 +8,7 @@
 script = ExtResource("1_uma73")
 
 [node name="Health" parent="." instance=ExtResource("2_nhi2d")]
+texture_filter = 1
 
 [node name="Pointer" parent="." instance=ExtResource("3_3etk8")]
+texture_filter = 1
