@@ -6,5 +6,5 @@ namespace LudumDare54.Audience;
 
 public interface ICrowdActorPreset
 {
-    public FactorBasedCrowdActor ConstructConfiguredActor();
+    public FactorBasedCrowdActor ConstructConfiguredActor(RandomNumberGenerator rng);
 }

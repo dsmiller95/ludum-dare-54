@@ -1,8 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://ccf8s7wwj6at2"]
+[gd_scene load_steps=8 format=3 uid="uid://ccf8s7wwj6at2"]
 
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="1_ampmb"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="1_tbc8d"]
+[ext_resource type="Resource" uid="uid://btnx83vp6mfxh" path="res://Audience/AiPresets/factor_rolling_raver.tres" id="3_holr2"]
 [ext_resource type="PackedScene" uid="uid://bm0pximd300b0" path="res://Stage/Set Peices/wall.tscn" id="3_xnjwc"]
+[ext_resource type="Resource" uid="uid://bt5dstfdpp24e" path="res://Audience/AiPresets/factor_toker.tres" id="4_1cg3m"]
+[ext_resource type="Resource" uid="uid://djby25txx0ftv" path="res://Audience/AiPresets/factor_speedball.tres" id="4_gfx85"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxrbf"]
 size = Vector2(615, 645)
@@ -22,6 +25,7 @@ y_sort_enabled = true
 position = Vector2(593.5, 241.5)
 shape = SubResource("RectangleShape2D_wxrbf")
 CrowdCorral = NodePath("../../corall")
+CrowdActorPresetOptions = Array[Resource]([ExtResource("4_1cg3m"), ExtResource("3_holr2"), ExtResource("4_gfx85")])
 
 [node name="Wall" parent="Node2D" instance=ExtResource("3_xnjwc")]
 position = Vector2(225, -1438)

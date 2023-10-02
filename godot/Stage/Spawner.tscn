@@ -1,7 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://dagjn7kmu8eyo"]
+[gd_scene load_steps=9 format=3 uid="uid://dagjn7kmu8eyo"]
 
 [ext_resource type="Script" path="res://Stage/Spawner.cs" id="1_waivr"]
 [ext_resource type="PackedScene" uid="uid://ch5cmv64s2foe" path="res://Audience/Attendee.tscn" id="2_6r0ct"]
+[ext_resource type="Resource" uid="uid://btnx83vp6mfxh" path="res://Audience/AiPresets/factor_rolling_raver.tres" id="3_y07l4"]
+[ext_resource type="Resource" uid="uid://bm7cfjlu24ccy" path="res://Audience/AiPresets/factor_drunkard.tres" id="4_1f4lu"]
+[ext_resource type="Resource" uid="uid://djby25txx0ftv" path="res://Audience/AiPresets/factor_speedball.tres" id="5_winlb"]
+[ext_resource type="Resource" uid="uid://di7kla0qry0ee" path="res://Audience/AiPresets/factor_wildcard_bitches.tres" id="6_rutko"]
+[ext_resource type="Resource" uid="uid://bt5dstfdpp24e" path="res://Audience/AiPresets/factor_toker.tres" id="7_emjhh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_unypi"]
 resource_local_to_scene = true
@@ -14,3 +19,4 @@ shape = SubResource("RectangleShape2D_unypi")
 debug_color = Color(0.933333, 0.243137, 0.215686, 0.419608)
 script = ExtResource("1_waivr")
 SceneToSpawn = ExtResource("2_6r0ct")
+CrowdActorPresetOptions = Array[Resource]([ExtResource("3_y07l4"), ExtResource("4_1f4lu"), ExtResource("5_winlb"), ExtResource("6_rutko"), ExtResource("7_emjhh")])

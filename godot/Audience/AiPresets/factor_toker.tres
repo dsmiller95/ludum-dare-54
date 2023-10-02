@@ -9,11 +9,11 @@
 script = ExtResource("1_x8gll")
 RandomMultiplier = 0.05
 GlobalMultiplier = 0.2
-RagePerSecond = 0.0
+RagePerSecond = -1.0
 StuporPerSecond = 1.0
-StinkyToAttractivePerSecond = -3.0
+StinkyToAttractivePerSecond = -5.0
 HornyPerSecond = 2.0
-IntrovertToExtrovertPerSecond = -5.0
+IntrovertToExtrovertPerSecond = -3.0
 
 [resource]
 script = ExtResource("4_8pdt8")
