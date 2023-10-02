@@ -27,8 +27,8 @@ public class FactorBasedCrowdActor
         this.effects = effects;
         this.tuning = tuning;
         this.accumulation = accumulation;
-        this.overrideSource = overrideSource;
         factors = overrideSource?.GetOverrideFactor() ?? new Factors(0.5f);
+        this.overrideSource = overrideSource is { UseLiveOverride: true } ? overrideSource : null;
     }
     
     public void Update(double deltaTime, double currentSeconds, Span<AiNeighbor?> neighbors)
@@ -51,7 +51,7 @@ public class FactorBasedCrowdActor
             SelfFactors = this.factors,
             Neighbors = neighbors,
         };
-        var allEffects = new AiResult[effects.Length];
+        Span<AiResult> allEffects = stackalloc AiResult[effects.Length];
         for (int i = 0; i < effects.Length; i++)
         {
             allEffects[i] = effects[i].GetFactorEffect(aiParams);
