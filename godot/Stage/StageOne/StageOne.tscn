@@ -301,6 +301,7 @@ y_sort_enabled = true
 position = Vector2(1189, 474.5)
 shape = SubResource("RectangleShape2D_7wftx")
 CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 50
 
 [node name="Spawner2" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(735.5, -310)
@@ -337,13 +338,13 @@ CrowdCorral = NodePath("../../CrowdCorral")
 position = Vector2(1174, -3555.5)
 shape = SubResource("RectangleShape2D_y8m3c")
 CrowdCorral = NodePath("../../CrowdCorral")
-SpawnNum = 75
 SampleType = 1
 
 [node name="Spawner9" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3932.25)
 shape = SubResource("RectangleShape2D_2dn7y")
 CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 150
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
 Goal = NodePath("../Players/Goal area")
