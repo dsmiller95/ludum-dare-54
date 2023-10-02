@@ -1,0 +1,70 @@
+[gd_scene load_steps=11 format=3 uid="uid://bfhdhs02bmh7p"]
+
+[ext_resource type="Texture2D" uid="uid://c0gss0qknwuyt" path="res://Assets/Map_objects.png" id="1_x8xci"]
+[ext_resource type="Texture2D" uid="uid://se63anto53pq" path="res://Assets/Stage_NORMALS.png" id="2_6b7f0"]
+[ext_resource type="Texture2D" uid="uid://esqae6cs1dpf" path="res://Assets/performer_shadow_jump.png" id="3_syi1i"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yn0ry"]
+diffuse_texture = ExtResource("1_x8xci")
+normal_texture = ExtResource("2_6b7f0")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyawr"]
+size = Vector2(221.1, 71.7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stfsl"]
+atlas = ExtResource("3_syi1i")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ygyfq"]
+atlas = ExtResource("3_syi1i")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h21y4"]
+atlas = ExtResource("3_syi1i")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1irj1"]
+atlas = ExtResource("3_syi1i")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qebxp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stfsl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ygyfq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h21y4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1irj1")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Stage" type="StaticBody2D"]
+z_index = -1495
+position = Vector2(1113, -4136)
+
+[node name="Stage" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, 239)
+scale = Vector2(4, 4)
+texture = SubResource("CanvasTexture_yn0ry")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_fyawr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-12, -104)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_qebxp")
+autoplay = "default"
+frame_progress = 0.229822

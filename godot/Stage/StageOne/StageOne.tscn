@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=31 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
@@ -8,26 +8,22 @@
 [ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="4_s3k7p"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="5_05u3q"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="5_espk5"]
-[ext_resource type="PackedScene" uid="uid://bm0pximd300b0" path="res://Stage/Set Peices/wall.tscn" id="5_mhn7y"]
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="6_juosq"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
-[ext_resource type="Texture2D" uid="uid://bf0c1wof0qvm8" path="res://Assets/Stage.tres" id="9_x17ly"]
+[ext_resource type="PackedScene" uid="uid://bfhdhs02bmh7p" path="res://Stage/bandStage.tscn" id="10_npp6n"]
+[ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="11_5y03w"]
 [ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="11_tqkk2"]
 [ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
 [ext_resource type="PackedScene" uid="uid://cpqdu38mtpo4a" path="res://Lighting/LongLight.tscn" id="14_f6f0j"]
 [ext_resource type="Resource" uid="uid://btnx83vp6mfxh" path="res://Audience/AiPresets/factor_rolling_raver.tres" id="16_gmg0n"]
 [ext_resource type="Resource" uid="uid://bm7cfjlu24ccy" path="res://Audience/AiPresets/factor_drunkard.tres" id="17_1tcn1"]
-[ext_resource type="Resource" uid="uid://bt5dstfdpp24e" path="res://Audience/AiPresets/factor_toker.tres" id="18_3pb75"]
-[ext_resource type="Resource" uid="uid://di7kla0qry0ee" path="res://Audience/AiPresets/factor_wildcard_bitches.tres" id="19_mowpl"]
-[ext_resource type="PackedScene" uid="uid://s3dnd85emw40" path="res://MenuScenes/controls.tscn" id="21_rcau4"]
+[ext_resource type="Resource" uid="uid://c6rp1cxkcb7pi" path="res://Audience/AiPresets/factor_toker.tres" id="18_3pb75"]
+[ext_resource type="Resource" uid="uid://ceyhc5riqavsw" path="res://Audience/AiPresets/factor_wildcard_bitches.tres" id="19_mowpl"]
 
 [sub_resource type="Curve" id="Curve_dgqs3"]
 _data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
 point_count = 3
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyawr"]
-size = Vector2(221.1, 71.7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
 size = Vector2(1935, 883)
@@ -54,44 +50,47 @@ size = Vector2(1935, 402)
 size = Vector2(1935, 381)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2dn7y"]
-size = Vector2(1935, 359.5)
+size = Vector2(1935, 236.5)
 
 [node name="Game" type="Node"]
 
-[node name="Stage" type="Node2D" parent="."]
+[node name="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="Stage" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
 y_sort_enabled = true
 script = ExtResource("1_cyt7s")
 
-[node name="Audio" type="Node2D" parent="Stage"]
+[node name="Audio" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
 
-[node name="StudioBankLoader" type="StudioBankLoader" parent="Stage/Audio"]
+[node name="StudioBankLoader" type="StudioBankLoader" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Audio"]
 load_on = 1
 num_banks = 1
 bank_0 = ExtResource("6_odtpf")
 
-[node name="CrowdEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+[node name="CrowdEmitter" type="StudioEventEmitter2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Audio"]
 play_event = 1
 event = ExtResource("7_umxbt")
 
-[node name="SongEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+[node name="SongEmitter" type="StudioEventEmitter2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Audio"]
 play_event = 1
 stop_event = 3
 event = ExtResource("12_u4y1s")
-position = Vector2(1156, -3753)
+position = Vector2(1099, -4191)
 
-[node name="Lighting" type="Node2D" parent="Stage"]
+[node name="Lighting" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
 
-[node name="CanvasModulate" type="CanvasModulate" parent="Stage/Lighting"]
+[node name="CanvasModulate" type="CanvasModulate" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting"]
 color = Color(0.235294, 0.235294, 0.235294, 1)
 
-[node name="StageLight" type="DirectionalLight2D" parent="Stage/Lighting"]
+[node name="StageLight" type="DirectionalLight2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting"]
 script = ExtResource("3_228ch")
 Bpm = 100.0
 LightIntensity = SubResource("Curve_dgqs3")
 
-[node name="Spotlights" type="Node2D" parent="Stage/Lighting"]
+[node name="Spotlights" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting"]
 
-[node name="Spotlight" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(2074, -555)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -99,20 +98,20 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight2" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight3" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight3" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(750, -3310)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight4" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight4" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1946, -2477)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -120,7 +119,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight5" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight5" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1397, -2847)
 scale = Vector2(5, 5)
 color = Color(0.207843, 0.294118, 0.631373, 1)
@@ -128,14 +127,14 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight6" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight6" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1711, -1302)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight7" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight7" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(948, -690)
 scale = Vector2(5, 5)
 color = Color(0.207843, 0.294118, 0.631373, 1)
@@ -143,7 +142,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight8" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight8" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(750, -2349)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -151,7 +150,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight9" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight9" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(579, -1601)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -159,21 +158,21 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight10" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight10" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1845, 251)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight11" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight11" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(558, -1152)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight12" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight12" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1305, -3609)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -181,7 +180,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight13" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight13" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(393, -2740)
 scale = Vector2(5, 5)
 color = Color(0.207843, 0.294118, 0.631373, 1)
@@ -189,14 +188,14 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight14" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight14" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1327, -2006)
 scale = Vector2(5, 5)
 energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight15" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight15" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(1119, -1074)
 scale = Vector2(5, 5)
 color = Color(0.207843, 0.294118, 0.631373, 1)
@@ -204,7 +203,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="Spotlight16" parent="Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
+[node name="Spotlight16" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting/Spotlights" instance=ExtResource("5_05u3q")]
 position = Vector2(921, -2733)
 scale = Vector2(5, 5)
 color = Color(0.262745, 0.776471, 0.576471, 1)
@@ -212,7 +211,7 @@ energy = 7.0
 MaxDistance = 1000.0
 MaxSpeed = 30.0
 
-[node name="LongLight" parent="Stage/Lighting" instance=ExtResource("14_f6f0j")]
+[node name="LongLight" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("14_f6f0j")]
 z_index = 1
 z_as_relative = false
 position = Vector2(474, -4829)
@@ -220,7 +219,7 @@ scale = Vector2(3, 10)
 energy = 6.0
 height = 750.0
 
-[node name="LongLight2" parent="Stage/Lighting" instance=ExtResource("14_f6f0j")]
+[node name="LongLight2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("14_f6f0j")]
 z_index = 1
 z_as_relative = false
 position = Vector2(1803, -4837)
@@ -228,143 +227,126 @@ scale = Vector2(3, 10)
 energy = 6.0
 height = 750.0
 
-[node name="Floor" parent="Stage" instance=ExtResource("3_yk581")]
+[node name="Floor" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("3_yk581")]
 z_index = -1500
 position = Vector2(1181, -1646)
 scale = Vector2(32.734, 82.956)
 
-[node name="Paths" type="Node2D" parent="Stage"]
+[node name="Paths" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
 
-[node name="Path" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+[node name="Path" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Paths" instance=ExtResource("11_tqkk2")]
 position = Vector2(734, 448)
 
-[node name="Path2" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+[node name="Path2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Paths" instance=ExtResource("11_tqkk2")]
 position = Vector2(1003, -497)
 rotation = 0.523598
 
-[node name="Path3" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+[node name="Path3" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Paths" instance=ExtResource("11_tqkk2")]
 position = Vector2(1680, -1144)
 rotation = 1.0472
 
-[node name="Path4" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+[node name="Path4" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Paths" instance=ExtResource("11_tqkk2")]
 position = Vector2(2124, -1905)
 
-[node name="Path5" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+[node name="Path5" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Paths" instance=ExtResource("11_tqkk2")]
 position = Vector2(1882, -2837)
 rotation = -0.523598
 
-[node name="Path6" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+[node name="Path6" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Paths" instance=ExtResource("11_tqkk2")]
 position = Vector2(1736, -3271)
 rotation = 1.57079
 
-[node name="Path7" parent="Stage/Paths" instance=ExtResource("11_tqkk2")]
+[node name="Path7" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Paths" instance=ExtResource("11_tqkk2")]
 position = Vector2(708, -3270)
 rotation = 1.57079
 
-[node name="Walls" type="Node2D" parent="Stage"]
+[node name="Stage" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("10_npp6n")]
 
-[node name="Stage" type="StaticBody2D" parent="Stage/Walls"]
-z_index = -1495
+[node name="CollisionTilemap" type="TileMap" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
+z_as_relative = false
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(5, 5)
+tile_set = ExtResource("11_5y03w")
+format = 2
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(-851960, 458752, 0, -262142, 196609, 0, -327678, 196609, 0, -393214, 196609, 0, -458750, 196609, 0, -524286, 196609, 0, -589822, 196609, 0, -655358, 196609, 0, -720894, 196609, 0, -786430, 196609, 0, -851966, 196609, 0, -917502, 196609, 0, -983038, 196609, 0, -1048574, 196609, 0, -1114110, 196609, 0, -1179646, 196609, 0, -1245182, 196609, 0, -1310718, 196609, 0, -1376254, 196609, 0, -1441790, 196609, 0, -1638398, 196609, 0, -1703934, 196609, 0, -1769470, 196609, 0, -1835006, 196609, 0, -1900542, 196609, 0, -1966078, 196609, 0, -2031614, 196609, 0, -2097150, 196609, 0, -2162686, 196609, 0, -2228222, 196609, 0, -2293758, 196609, 0, -2359294, 196609, 0, -2359269, 196609, 1, -2293733, 196609, 1, -2228197, 196609, 1, -2162661, 196609, 1, -2097125, 196609, 1, -2031589, 196609, 1, -1966053, 196609, 1, -1900517, 196609, 1, -1834981, 196609, 1, -1769445, 196609, 1, -1703909, 196609, 1, -1638373, 196609, 1, -1572837, 196609, 1, -1507301, 196609, 1, -1376229, 196609, 1, -1441765, 196609, 1, -1310693, 196609, 1, -1245157, 196609, 1, -1179621, 196609, 1, -1114085, 196609, 1, -1048549, 196609, 1, -983013, 196609, 1, -917477, 196609, 1, -851941, 196609, 1, -786405, 196609, 1, -720869, 196609, 1, -655333, 196609, 1, -589797, 196609, 1, -524261, 196609, 1, -458725, 196609, 1, -393189, 196609, 1, -327653, 196609, 1, -262117, 196609, 1, -196581, 196609, 1, -131045, 196609, 1, -65509, 196609, 1, 27, 196609, 1, 65563, 196609, 1, 131099, 196609, 1, 196635, 196609, 1, 262171, 196609, 1, 327707, 196609, 1, 393243, 196609, 1, 458779, 196609, 1, 524315, 196609, 1, 589851, 196609, 1, 655387, 196609, 1, 720923, 196609, 1, 786459, 131073, 1, 786458, 1, 1, 786457, 1, 1, 786456, 1, 1, 786455, 1, 1, 786454, 1, 1, 786453, 1, 1, 786452, 1, 1, 786451, 1, 1, 786450, 1, 1, 786449, 1, 1, 786448, 1, 1, 786447, 1, 1, 786446, 1, 1, 786445, 1, 1, 786441, 1, 1, 786442, 1, 1, 786444, 1, 1, 786443, 1, 1, 786440, 1, 1, 786439, 1, 1, 786438, 1, 1, 786437, 1, 1, 786436, 1, 1, 786435, 1, 1, 786434, 65537, 1, 720898, 196609, 0, 655362, 196609, 0, 589826, 196609, 0, 524290, 196609, 0, 458754, 196609, 0, 393218, 196609, 0, 327682, 196609, 0, 262146, 196609, 0, 196610, 196609, 0, 131074, 196609, 0, 65538, 196609, 0, 2, 196609, 0, -65534, 196609, 0, -131070, 196609, 0, -196606, 196609, 0, -1507326, 196609, 0, -1572862, 196609, 0, -3538942, 65537, 0, -3538917, 131073, 0, -3473406, 196609, 0, -3407870, 196609, 0, -3342334, 196609, 0, -3276798, 196609, 0, -3211262, 196609, 0, -3145726, 196609, 0, -3080190, 196609, 0, -3014654, 196609, 0, -2949118, 196609, 0, -2883582, 196609, 0, -2818046, 196609, 0, -2752510, 196609, 0, -2686974, 196609, 0, -2621438, 196609, 0, -2555902, 196609, 0, -2490366, 196609, 0, -2424830, 196609, 0, -2490341, 196609, 1, -2424805, 196609, 1, -2752485, 196609, 1, -2686949, 196609, 1, -2621413, 196609, 1, -2555877, 196609, 1, -3014629, 196609, 1, -2949093, 196609, 1, -2883557, 196609, 1, -2818021, 196609, 1, -3276773, 196609, 1, -3211237, 196609, 1, -3145701, 196609, 1, -3080165, 196609, 1, -3473381, 196609, 1, -3407845, 196609, 1, -3342309, 196609, 1, -3538941, 1, 0, -3538940, 1, 0, -3538939, 1, 0, -3538938, 1, 0, -3538937, 1, 0, -3538936, 1, 0, -3538935, 1, 0, -3538934, 1, 0, -3538933, 1, 0, -3538932, 1, 0, -3538931, 1, 0, -3538930, 1, 0, -3538929, 1, 0, -3538928, 1, 0, -3538927, 1, 0, -3538926, 1, 0, -3538925, 1, 0, -3538924, 1, 0, -3538923, 1, 0, -3538922, 1, 0, -3538921, 1, 0, -3538920, 1, 0, -3538919, 1, 0, -3538918, 1, 0)
 
-[node name="Stage" type="Sprite2D" parent="Stage/Walls/Stage"]
-position = Vector2(1172, -3873)
-scale = Vector2(10, 10)
-texture = ExtResource("9_x17ly")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Walls/Stage"]
-position = Vector2(1165.5, -4476.5)
-scale = Vector2(10, 10)
-shape = SubResource("RectangleShape2D_fyawr")
-
-[node name="Wall" parent="Stage/Walls" instance=ExtResource("5_mhn7y")]
-
-[node name="Wall2" parent="Stage/Walls" instance=ExtResource("5_mhn7y")]
-position = Vector2(1178, 1067)
-rotation = 1.57079
-scale = Vector2(89.5, 2300)
-
-[node name="Wall3" parent="Stage/Walls" instance=ExtResource("5_mhn7y")]
-position = Vector2(2226, -1570)
-
-[node name="Players" type="Node2D" parent="."]
-
-[node name="Player" parent="Players" instance=ExtResource("3_m2j0t")]
-position = Vector2(1169, 885)
-
-[node name="Goal area" parent="Players" instance=ExtResource("4_s3k7p")]
-position = Vector2(557, -3973)
-
-[node name="Crowd" type="Node2D" parent="."]
-
-[node name="CrowdCorral" type="Node2D" parent="Crowd"]
-script = ExtResource("6_juosq")
-
-[node name="Spawners" type="Area2D" parent="Crowd"]
+[node name="Players" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
 y_sort_enabled = true
 
-[node name="Spawner" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+[node name="Player" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("3_m2j0t")]
+position = Vector2(974, 820)
+
+[node name="Goal area" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("4_s3k7p")]
+position = Vector2(936, -3820)
+
+[node name="Crowd" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
+y_sort_enabled = true
+
+[node name="CrowdCorral" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd"]
+y_sort_enabled = true
+script = ExtResource("6_juosq")
+
+[node name="Spawners" type="Area2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd"]
+y_sort_enabled = true
+
+[node name="Spawner" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1189, 474.5)
 shape = SubResource("RectangleShape2D_7wftx")
 CrowdCorral = NodePath("../../CrowdCorral")
 CrowdActorPresetOptions = Array[Resource]([ExtResource("16_gmg0n"), ExtResource("17_1tcn1"), ExtResource("18_3pb75")])
 SpawnNum = 50
 
-[node name="Spawner2" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+[node name="Spawner2" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(735.5, -310)
 shape = SubResource("RectangleShape2D_6swx1")
 CrowdCorral = NodePath("../../CrowdCorral")
 CrowdActorPresetOptions = Array[Resource]([ExtResource("16_gmg0n"), ExtResource("17_1tcn1"), ExtResource("19_mowpl"), ExtResource("18_3pb75")])
 
-[node name="Spawner3" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+[node name="Spawner3" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1181.25, -1119.5)
 shape = SubResource("RectangleShape2D_ka12c")
 CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner4" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+[node name="Spawner4" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1718, -312)
 shape = SubResource("RectangleShape2D_fydgb")
 CrowdCorral = NodePath("../../CrowdCorral")
 CrowdActorPresetOptions = Array[Resource]([ExtResource("16_gmg0n"), ExtResource("17_1tcn1"), ExtResource("19_mowpl"), ExtResource("18_3pb75")])
 SpawnNum = 50
 
-[node name="Spawner5" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+[node name="Spawner5" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1179, -1982.5)
 shape = SubResource("RectangleShape2D_4apn8")
 CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner6" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+[node name="Spawner6" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1176, -2673)
 shape = SubResource("RectangleShape2D_ndwpj")
 CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner7" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+[node name="Spawner7" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3171)
 shape = SubResource("RectangleShape2D_dih05")
 CrowdCorral = NodePath("../../CrowdCorral")
 
-[node name="Spawner8" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+[node name="Spawner8" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
 position = Vector2(1174, -3555.5)
 shape = SubResource("RectangleShape2D_y8m3c")
 CrowdCorral = NodePath("../../CrowdCorral")
 SampleType = 1
 
-[node name="Spawner9" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
-position = Vector2(1174, -3932.25)
+[node name="Spawner9" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_x4jc6")]
+position = Vector2(1174, -3870.75)
 shape = SubResource("RectangleShape2D_2dn7y")
 CrowdCorral = NodePath("../../CrowdCorral")
 SpawnNum = 150
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("5_espk5")]
-Goal = NodePath("../Players/Goal area")
-player = NodePath("../Players/Player")
+Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")
+player = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Player")
 
-[node name="controls" parent="HUD" instance=ExtResource("21_rcau4")]
-offset_left = 773.0
-offset_top = 553.0
-offset_right = 1057.0
-offset_bottom = 631.0
+[connection signal="body_entered" from="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area/Goal" to="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" method="_on_goal_body_entered"]
 
-[connection signal="body_entered" from="Players/Goal area/Goal" to="Stage" method="_on_goal_body_entered"]
-
-[editable path="Players/Goal area"]
-[editable path="HUD"]
+[editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area"]
