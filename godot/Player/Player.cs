@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using DotnetLibrary;
 using LudumDare54.Audience;
 
@@ -15,6 +16,9 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	[Export] public float MaximumDashSpeed { get; set; } = 2f;
 	[Export] public float SturdyImpactResistance { get; set; } = 1.3f;
 	[Export] public float DashImpactResistance { get; set; } = 0.9f;
+
+	[Export] public float MaximumHitsPerSecond { get; set; } = 5f;
+	
 	[Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
 
 	private Vector2? lastTurnInput = null;
@@ -25,6 +29,8 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	private float currentSturdyFactor = 0f;
 
 	private PersonBody personBody;
+
+	private Queue<float> pastSecondHitEvents = new Queue<float>();
 
 	public override void _Ready()
 	{
@@ -37,8 +43,17 @@ public partial class Player : RigidBody2D, IHavePersonBody
 		return personBody;
 	}
 
+	private static float CurrentTime()
+	{
+		return Time.GetTicksMsec() / 1000f;
+	}
 	public override void _PhysicsProcess(double delta)
 	{
+		while(pastSecondHitEvents.Count > 0 && pastSecondHitEvents.Peek() < CurrentTime() - 1f)
+		{
+			pastSecondHitEvents.Dequeue();
+		}
+		
 		personBody._PhysicsProcess();
 		currentSturdyFactor = Mathf.Lerp(currentSturdyFactor, GetSturdyVsDash(), SturdySmoothingMultiplier * (float)delta);
 		
@@ -72,6 +87,12 @@ public partial class Player : RigidBody2D, IHavePersonBody
 			EmitSignal("SoftCollision");
 			return;
 		}
+		
+		if(pastSecondHitEvents.Count >= MaximumHitsPerSecond)
+		{
+			return;
+		}
+		pastSecondHitEvents.Enqueue(CurrentTime());
 
 		Health.AdjustHealth(-5);
 		EmitSignal("HealthDepleted");
