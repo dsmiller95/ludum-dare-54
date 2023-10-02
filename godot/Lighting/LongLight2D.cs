@@ -18,6 +18,5 @@ public partial class LongLight2D : PointLight2D
 	{
 		var value = (Time.GetTicksMsec() % CycleTimeMs) / CycleTimeMs;
 		Skew = Mathf.DegToRad(LightPath.Sample(value));
-		Debug.Print(Skew.ToString());
 	}
 }
