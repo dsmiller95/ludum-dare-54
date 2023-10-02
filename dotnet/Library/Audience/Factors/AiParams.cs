@@ -2,13 +2,13 @@ using Godot;
 
 namespace DotnetLibrary.Audience.Factors;
 
-public struct AiParams
+public ref struct AiParams
 {
     public float deltaTime;
     public float currentTime;
     
     public Factors SelfFactors;
-    public AiNeighbor?[] Neighbors;
+    public Span<AiNeighbor?> Neighbors;
 }
 
 public struct AiNeighbor

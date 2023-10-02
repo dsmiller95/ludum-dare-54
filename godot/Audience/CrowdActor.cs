@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using DotnetLibrary;
 using DotnetLibrary.Audience;
 using DotnetLibrary.Audience.Factors;
@@ -25,7 +26,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export]
     private Array<Resource> crowdActorPresetOptions;
     
-    private ICrowdActor crowdActorImpl;
+
+    public FactorBasedCrowdActor CrowdActorImpl;
     private PersonBody personBody;
     private PersonPhysics myPhysics;
 
@@ -44,7 +46,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
 
         var rng = new RandomNumberGenerator();
         rng.Randomize();
-        crowdActorImpl = rng.PickRandom(options).ConstructConfiguredActor();
+        CrowdActorImpl = rng.PickRandom(options).ConstructConfiguredActor();
         personBody = new PersonBody(this);
         myPhysics = PersonMovement.GetConfiguredPhysics();
     }
@@ -54,53 +56,41 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         return personBody;
     }
 
-    public override void _PhysicsProcess(double delta)
+    public override void _Process(double delta)
+    {   
+        var crowdEffectLevels = CrowdActorImpl.GetCrowdEffectLevels();
+        effectsRenderer.RenderEffects(crowdEffectLevels);
+        if (CrowdActorImpl is FactorBasedCrowdActor factorBased)
+        {
+            effectsRenderer.RenderDebugRawFactors(factorBased.GetRawFactorsUnnormalized());
+        }
+    }
+
+    public void OwnedUpdateFactors(float delta)
     {
-        var neighborCrowdActors = NeighborCrowdActors();
-
-        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighborCrowdActors);
+        CrowdActorImpl.UpdateFactors(delta);
+    }
+    public void OwnedPhysicsProcess(float delta, float currentSeconds, Span<AiNeighbor?> neighbors)
+    {
+        ManagedPhysicsProcess(delta, currentSeconds, neighbors);
+        personBody._PhysicsProcess();
+    }
+    
+    private void ManagedPhysicsProcess(float delta, float currentSeconds,  Span<AiNeighbor?> neighbors)
+    {
+        CrowdActorImpl.Update(delta, currentSeconds, neighbors);
         
-        // calculate friction force manually, rather than instantiating a unique physics material per actor
-        // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
-        // var firmnessFrictionForce = this.LinearVelocity * -frictionFactor;
-
-        var selfMoveForce = crowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
+        var selfMoveForce = CrowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
         
         var integrationResult = myPhysics.ComputeIntegrationResult(
             selfMoveForce,
             Vector2.Up,
             this.LinearVelocity,
             this.Transform.X,
-            crowdActorImpl.GetFirmness());
+            CrowdActorImpl.GetFirmness());
         integrationResult.ApplyTo(this);
-
-        personBody._PhysicsProcess();
-        
-        var crowdEffectLevels = crowdActorImpl.GetCrowdEffectLevels();
-        effectsRenderer.RenderEffects(crowdEffectLevels);
-        if (crowdActorImpl is FactorBasedCrowdActor factorBased)
-        {
-            effectsRenderer.RenderDebugRawFactors(factorBased.GetRawFactorsUnnormalized());
-        }
     }
 
-    private NeighborCrowdActor[] NeighborCrowdActors()
-    {
-        var neighbors = CrowdCorral.GetNeighbors(this);
-        if (neighbors == null) return null;
-        var neighborCrowdActors = new List<NeighborCrowdActor>();
-
-        foreach (var neighbor in neighbors)
-        {
-            neighborCrowdActors.Add(new NeighborCrowdActor
-            {
-                actor = neighbor.crowdActorImpl,
-                relativePosition = neighbor.GlobalPosition - this.GlobalPosition
-            });
-        }
-
-        return neighborCrowdActors.ToArray();
-    }
 
     public void OnBodyEntered(Node bodyGeneric)
     {
@@ -122,11 +112,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         var pushVector = pushDirection.Normalized() * person.GetAverageSpeed() / PersonMovement.MaximumVelocity;
 
         var pushEvent = new PushEvent(pushVector);
-        crowdActorImpl.ReceivePushEvent(pushEvent);
-    }
-    
-    public override void _IntegrateForces(PhysicsDirectBodyState2D state)
-    {
-        return;
+        CrowdActorImpl.ReceivePushEvent(pushEvent);
     }
 }

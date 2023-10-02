@@ -38,6 +38,11 @@ public struct Factors
         needsNormalize = false;
     }
 
+    public void HintNormalizeNow()
+    {
+        if(needsNormalize) this.Normalize();
+    }
+    
     public float GetNormalized(FactorType factor)
     {
         if(needsNormalize) this.Normalize();

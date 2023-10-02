@@ -2,14 +2,14 @@ using Godot;
 
 namespace DotnetLibrary.Audience.Factors;
 
-public class FactorBasedCrowdActor : ICrowdActor
+public class FactorBasedCrowdActor
 {
     private readonly IFactorEffect[] effects;
     private readonly FactorTuningParams tuning;
     private readonly FactorAccumulation accumulation;
     private readonly IProvideFactorOverride? overrideSource;
 
-    private Factors factors;
+    public Factors factors;
     
     public float[] GetRawFactorsUnnormalized()
     {
@@ -27,11 +27,11 @@ public class FactorBasedCrowdActor : ICrowdActor
         this.effects = effects;
         this.tuning = tuning;
         this.accumulation = accumulation;
-        this.overrideSource = overrideSource;
         factors = overrideSource?.GetOverrideFactor() ?? new Factors(0.5f);
+        this.overrideSource = overrideSource is { UseLiveOverride: true } ? overrideSource : null;
     }
-    
-    public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
+
+    public void UpdateFactors(float deltaTime)
     {
         if (overrideSource is { UseLiveOverride: true })
         {
@@ -39,26 +39,23 @@ public class FactorBasedCrowdActor : ICrowdActor
         }
         else
         {
-            this.factors.AccumulateFactors(accumulation, (float)deltaTime);
-            this.factors.DecayFactors((float)deltaTime, tuning.FactorDecayRate);
+            this.factors.AccumulateFactors(accumulation, deltaTime);
+            this.factors.DecayFactors(deltaTime, tuning.FactorDecayRate);
         }
+
+        this.factors.HintNormalizeNow();
+    }
+    
+    public void Update(float deltaTime, float currentSeconds, Span<AiNeighbor?> neighbors)
+    {   
         var aiParams = new AiParams
         {
-            deltaTime = (float)deltaTime,
-            currentTime = (float)currentSeconds,
+            deltaTime = deltaTime,
+            currentTime = currentSeconds,
             SelfFactors = this.factors,
-            Neighbors = neighbors? // TODO performance : cache array
-                .Select(x =>
-                {
-                    if (x.actor is not FactorBasedCrowdActor facBased) return (AiNeighbor?)null;
-                    return new AiNeighbor
-                    {
-                        Position = x.relativePosition,
-                        Factors = facBased.factors
-                    };
-                }).ToArray() ?? Array.Empty<AiNeighbor?>(),
+            Neighbors = neighbors,
         };
-        var allEffects = new AiResult[effects.Length];
+        Span<AiResult> allEffects = stackalloc AiResult[effects.Length];
         for (int i = 0; i < effects.Length; i++)
         {
             allEffects[i] = effects[i].GetFactorEffect(aiParams);
