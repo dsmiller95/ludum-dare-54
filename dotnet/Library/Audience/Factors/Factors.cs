@@ -22,11 +22,11 @@ public struct Factors
         
         for (int i = 0; i < factors.Length; i++)
         { // this can be tuned. doesn't need to be cartesian normalization, could be linear/average
-            sum += factors[i] * factors[i];
+            sum += Mathf.Abs(factors[i]);// * factors[i];
             normalizedFactors[i] = factors[i];
         }
 
-        float distance = Mathf.Sqrt(sum);
+        float distance = sum;//Mathf.Sqrt(sum);
 
         for (int i = 0; i < factors.Length; i++)
         {

@@ -22,6 +22,7 @@ public partial class FactorBasedCrowdActorConfig : Resource, ICrowdActorPreset
             new MotorControlFactor(tuningParams, rng),
             new RageFactor(tuningParams, rng),
             new AttractorControlFactor(tuningParams.HornyTuning!, new HornyControlFactorAttractorStrategy()),
+            new AttractorControlFactor(tuningParams.ExtrovertTuning!, new ExtrovertControlFactorAttractorStrategy()),
         };
         return new FactorBasedCrowdActor(effects, tuningParams, accumulationParams, OverrideSource);
     }

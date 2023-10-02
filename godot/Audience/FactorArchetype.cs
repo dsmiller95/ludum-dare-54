@@ -17,11 +17,12 @@ public partial class FactorArchetype : Resource, IProvideFactorAccumulation
     public FactorAccumulation GetAccumulation()
     {
         var accumulation = new FactorAccumulation(0f);
-        accumulation.AccumulateFactor(FactorType.Rage, RagePerSecond * GlobalMultiplier);
-        accumulation.AccumulateFactor(FactorType.Stupor, StuporPerSecond * GlobalMultiplier);
-        accumulation.AccumulateFactor(FactorType.StinkyToAttractive, StinkyToAttractivePerSecond * GlobalMultiplier);
-        accumulation.AccumulateFactor(FactorType.Horny, HornyPerSecond * GlobalMultiplier);
-        accumulation.AccumulateFactor(FactorType.IntrovertToExtrovert, IntrovertToExtrovertPerSecond * GlobalMultiplier);
+        accumulation.AccumulateFactor(FactorType.Rage, RagePerSecond);
+        accumulation.AccumulateFactor(FactorType.Stupor, StuporPerSecond);
+        accumulation.AccumulateFactor(FactorType.StinkyToAttractive, StinkyToAttractivePerSecond);
+        accumulation.AccumulateFactor(FactorType.Horny, HornyPerSecond);
+        accumulation.AccumulateFactor(FactorType.IntrovertToExtrovert, IntrovertToExtrovertPerSecond);
+        accumulation.NormalizeAllAccumulates(GlobalMultiplier);
         return accumulation;
     }
 }
