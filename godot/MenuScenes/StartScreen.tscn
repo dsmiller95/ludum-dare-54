@@ -32,32 +32,43 @@ scale = Vector2(5, 5)
 MaxDistance = 500.0
 MaxSpeed = 30.0
 
-[node name="Label" type="Label" parent="."]
+[node name="Title" type="Label" parent="."]
+offset_top = 125.0
 offset_right = 1151.0
-offset_bottom = 122.0
+offset_bottom = 247.0
 theme_override_font_sizes/font_size = 72
-text = "GAME TITLE GOES HERE"
+text = "MOSH PINT"
 horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="."]
+offset_left = 1.0
+offset_top = 219.0
+offset_right = 1152.0
+offset_bottom = 296.545
+theme_override_font_sizes/font_size = 18
+text = "Carry your drink through the crowd without spilling to meet your date!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="StartButton" type="Button" parent="."]
 offset_left = 479.0
-offset_top = 171.0
+offset_top = 319.0
 offset_right = 708.0
-offset_bottom = 248.0
+offset_bottom = 396.0
 text = "Start Game"
 
 [node name="HowToButton" type="Button" parent="."]
 offset_left = 477.0
-offset_top = 282.0
+offset_top = 408.0
 offset_right = 707.0
-offset_bottom = 361.0
+offset_bottom = 487.0
 text = "How to Play"
 
 [node name="QuitButton" type="Button" parent="."]
 offset_left = 479.0
-offset_top = 395.0
+offset_top = 497.0
 offset_right = 708.0
-offset_bottom = 474.0
+offset_bottom = 576.0
 text = "Quit Game"
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
