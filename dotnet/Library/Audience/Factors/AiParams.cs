@@ -20,6 +20,7 @@ public struct AiNeighbor
 
     /// <summary>
     /// maybe this isn't the full factors, but an abbreviated version
+    /// TODO performance : copy -normalized- factors only. may be re-normalizing these many times otherwise.
     /// </summary>
     public Factors Factors;
 }

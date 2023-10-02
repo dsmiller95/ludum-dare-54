@@ -4,10 +4,14 @@
 
 [resource]
 script = ExtResource("1_mwup2")
-FactorDecayRate = 0.1
+FactorDecayRate = 0.2
 RandomWalkJitter = 2.0
-PushToRageRatio = 15.0
+PushToRageRatio = 10.0
 RagePunchChancePerSecond = 4.0
 RagePunchMinMagnitude = 1.0
 RagePunchMaxMagnitude = 30.0
 RagePunchDuration = 0.1
+HornyAttractionForceMultiplier = 400.0
+HornyMaximumAttractiveForce = 20.0
+ExtrovertAttractionForceMultiplier = 400.0
+ExtrovertMaximumAttractiveForce = 20.0

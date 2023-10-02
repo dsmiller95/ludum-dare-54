@@ -47,7 +47,7 @@ public class FactorBasedCrowdActor : ICrowdActor
             deltaTime = (float)deltaTime,
             currentTime = (float)currentSeconds,
             SelfFactors = this.factors,
-            Neighbors = neighbors? // TODO: cache array
+            Neighbors = neighbors? // TODO performance : cache array
                 .Select(x =>
                 {
                     if (x.actor is not FactorBasedCrowdActor facBased) return (AiNeighbor?)null;
