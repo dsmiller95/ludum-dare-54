@@ -46,7 +46,17 @@ public struct Factors
     public float GetNormalized(FactorType factor)
     {
         if(needsNormalize) this.Normalize();
-        return normalizedFactors[(int)factor];
+        var normalizedValue = normalizedFactors[(int)factor];
+        var clampMin = factor switch
+        {
+            FactorType.Rage => 0,
+            FactorType.Stupor => 0,
+            FactorType.StinkyToAttractive => -1,
+            FactorType.Horny => 0,
+            FactorType.IntrovertToExtrovert => -1,
+            _ => throw new ArgumentOutOfRangeException(nameof(factor), factor, null)
+        };
+        return Mathf.Clamp(normalizedValue, clampMin, 1);
     }
 
     public void AddFactor(FactorType factor, float amount)
