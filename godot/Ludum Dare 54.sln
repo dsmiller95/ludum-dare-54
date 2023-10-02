@@ -1,10 +1,10 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ludum Dare 54", "godot\Ludum Dare 54.csproj", "{3B1D4635-35BA-4623-B167-C4A8C3747F69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ludum Dare 54", "Ludum Dare 54.csproj", "{3B1D4635-35BA-4623-B167-C4A8C3747F69}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "dotnet\Library\Library.csproj", "{A3954F92-1315-4677-860F-D9EC17B1B75F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library", "..\dotnet\Library\Library.csproj", "{A3954F92-1315-4677-860F-D9EC17B1B75F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Test", "dotnet\Library.Test\Library.Test.csproj", "{8AFD6F55-F25A-49F6-AF20-2A24F670E028}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Library.Test", "..\dotnet\Library.Test\Library.Test.csproj", "{8AFD6F55-F25A-49F6-AF20-2A24F670E028}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
