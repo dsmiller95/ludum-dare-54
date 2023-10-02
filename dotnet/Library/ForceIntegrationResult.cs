@@ -17,6 +17,27 @@ public record struct ForceIntegrationResult
         }
         state.ApplyTorque(AppliedTorque);
     }
+
+    private bool IsValidNumber(float num)
+    {
+        return !float.IsNaN(num) && !float.IsInfinity(num);
+    }
+    
+    public bool ClampAndCheckValid(float maximumTorque, float maximumAcceleration)
+    {
+        if(!IsValidNumber(AppliedTorque) || 
+           !IsValidNumber(LinearAcceleration.X) || !IsValidNumber(LinearAcceleration.Y) ||
+           !IsValidNumber(LinearVelocityOverride?.X ?? 0) || !IsValidNumber(LinearVelocityOverride?.Y ?? 0))
+        {
+            return false;
+        }
+        var clampedT =Mathf.Clamp(AppliedTorque, -maximumTorque, maximumTorque);
+        var clampedAcc = LinearAcceleration.Clamped(maximumAcceleration);
+        AppliedTorque = clampedT;
+        LinearAcceleration = clampedAcc;
+        return true;
+    }
+    
     public void ApplyTo(RigidBody2D state)
     {
         state.ApplyCentralForce(LinearAcceleration);

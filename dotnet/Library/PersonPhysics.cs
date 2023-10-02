@@ -10,6 +10,9 @@ public record PersonPhysics
 	public float MaximumVelocity { get; init; } = 400; // the max velocity of movement. (pixels/sec).
 	public float ActiveFrictionCoefficient { get; init; } = 10; // Resistance to movement. force / velocity (kg/s)
 	
+	public int MaximumAcceleration { get; set; }
+	public int MaximumTorque { get; set; }
+	
 	public ForceIntegrationResult ComputeIntegrationResult(
 		Vector2 desiredLinearForce,
 		Vector2? turnTowardsTarget,
@@ -42,7 +45,15 @@ public record PersonPhysics
 			var turnForce = turnAngleDeltaRadians * RotationalAcceleration;
 			integrationResult.AppliedTorque = turnForce;
 		}
-		
+
+		if (!integrationResult.ClampAndCheckValid(MaximumTorque, MaximumAcceleration))
+		{
+			return new ForceIntegrationResult
+			{
+				LinearAcceleration = Vector2.Zero,
+				AppliedTorque = 0
+			};
+		}
 		return integrationResult;
 	}
 }

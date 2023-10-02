@@ -11,6 +11,9 @@ public partial class PersonPhysicsDefinition : Resource
     [Export] public int MaximumVelocity { get; set; } = 400; // the max velocity the player will move (pixels/sec).
     [Export] public int ActiveFrictionCoefficient { get; set; } = 10; // Resistance to movement. force / velocity (kg/s)
 
+    [Export] public int MaximumAcceleration { get; set; } = 10000;
+    [Export] public int MaximumTorque { get; set; } = 100000;
+    
 
     public PersonPhysics GetConfiguredPhysics()
     {
@@ -18,7 +21,9 @@ public partial class PersonPhysicsDefinition : Resource
         {
             RotationalAcceleration = RotationalAcceleration,
             MaximumVelocity = MaximumVelocity,
-            ActiveFrictionCoefficient = ActiveFrictionCoefficient
+            ActiveFrictionCoefficient = ActiveFrictionCoefficient,
+            MaximumAcceleration = MaximumAcceleration,
+            MaximumTorque = MaximumTorque,
         };
     }
 }
