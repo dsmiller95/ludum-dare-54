@@ -7,12 +7,16 @@ offset_right = 691.0
 offset_bottom = 427.0
 alignment = 1
 
-[node name="controls - left" type="Label" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 layout_mode = 2
-text = "WASD / Left Joystick -
-Space -
-Shift -"
-horizontal_alignment = 2
+size_flags_horizontal = 3
+bbcode_enabled = true
+text = "[right][font_size=17][font_size=12]Left Joystick / [/font_size]WASD -
+[font_size=12]Circle / Xbox B / Nintendo A / [/font_size]Space -
+[font_size=12]Square / Xbox X / Nintendo Y / [/font_size]Shift -[/font_size][/right]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="controls - right" type="Label" parent="."]
 layout_mode = 2
