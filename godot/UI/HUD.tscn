@@ -6,6 +6,7 @@
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_uma73")
+timePointerInvisible = 15.0
 
 [node name="Health" parent="." instance=ExtResource("2_nhi2d")]
 texture_filter = 1
