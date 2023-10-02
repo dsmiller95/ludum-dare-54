@@ -59,14 +59,13 @@ offset_top = 91.0
 offset_right = 828.0
 offset_bottom = 521.0
 text = "
-
-There's nothing worse than being at a concert with an empty beer! Luckily the bartender has got you covered. Now hurry up and go find your date!
+There's nothing worse than being at a concert with an empty beer! Luckily the bartender has got you covered. So grab that fresh drink and go find your date!
 
 But be careful! The crowd is getting wild and all those flailing arms are a serious threat to that brewski. And be sure not to just force your way through... you don't want the concert goers to get angry now, would you?
 
-WASD - Move
+WASD / Left Joystick - Move
 
-The redder an attendee is, the more aggressive they act.
+The redder an attendee is, the more aggressive they are.
 
 Good Luck!"
 horizontal_alignment = 1

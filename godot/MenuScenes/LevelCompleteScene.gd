@@ -1,13 +1,15 @@
 extends Node2D
 
-var level;
+var level
+var health
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if SceneHandler.current_level >= SceneHandler.max_levels:
 		get_tree().change_scene_to_file("res://MenuScenes/EndScreen.tscn")
 	else:
 		level = SceneHandler.current_level;
-		get_node("Label").set_text("You found your date! Level " + str(level) + " complete!")
+		health = get_node("Sprite2D").health
+		get_node("Label").set_text("You found your date with " + str(health) + "% of your drink left! Level " + str(level) + " complete!")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
