@@ -23,7 +23,7 @@ public class CalmCrowdActor : ICrowdActor
         this.frictionMultiplier = frictionMultiplier;
     }
 
-    public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
+    public void Update(double deltaTime, double currentSeconds, Span<NeighborCrowdActor> neighbors)
     {
         var exponentialDecay = (float)Mathf.Pow(Mathf.E, -PushExponentialDecayConstant * deltaTime);
         DecayingPushForceRecord *= exponentialDecay;

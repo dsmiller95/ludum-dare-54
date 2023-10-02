@@ -45,7 +45,7 @@ public interface ICrowdActor
     /// <summary>
     /// must be called before interacting with any other methods, with the correct delta time since this function was last called
     /// </summary>
-    public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors);
+    public void Update(double deltaTime, double currentSeconds, Span<NeighborCrowdActor> neighbors);
     public void ReceivePushEvent(PushEvent pushEvent);
     public float GetFirmness();
     public Vector2 GetCurrentSelfMoveForce();

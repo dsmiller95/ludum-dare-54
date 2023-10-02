@@ -25,7 +25,7 @@ public class RandomCrowdActor : ICrowdActor
         this.ySpeed = rng.Randf();
     }
 
-    public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
+    public void Update(double deltaTime, double currentSeconds, Span<NeighborCrowdActor> neighbors)
     {
         currentSeconds += timeOffset;
         currentSeconds *= randomnessSpeed;

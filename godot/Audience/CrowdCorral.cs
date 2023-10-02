@@ -1,12 +1,15 @@
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using DotnetLibrary.Audience;
 using Godot;
+using Godot.Collections;
 using LudumDare54.Settings;
 
 namespace LudumDare54.Audience;
 
 public partial class CrowdCorral: Node2D
 {
-    private Dictionary<int, Dictionary<int, List<CrowdActor>>> crowdHash;
+    private System.Collections.Generic.Dictionary<int, System.Collections.Generic.Dictionary<int, List<CrowdActor>>> crowdHash;
 
     private const int _segmentSize = 100;
 
@@ -17,13 +20,38 @@ public partial class CrowdCorral: Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+        var children = GetChildren();
         var shouldUseCalculation = SettingsSingleton.Settings?.UseNeighborCalculation ?? true;
-        if (!shouldUseCalculation)
+        if (shouldUseCalculation)
+        {
+            UpdateNeighborCache(children);
+        }
+        else 
         {
             crowdHash = null;
-            return;
         }
 
+        var workingNeighborList = new List<CrowdActor>();
+        
+        foreach (var child in children)
+        {
+            if (child is not CrowdActor crowdChild)
+            {
+                continue;
+            }
+            
+            if (shouldUseCalculation)
+            {
+                workingNeighborList.Clear();
+                GetNeighbors(crowdChild, workingNeighborList);
+            }
+            crowdChild.OwnedPhysicsProcess(delta, CollectionsMarshal.AsSpan(workingNeighborList));
+        }
+
+    }
+
+    private void UpdateNeighborCache(Array<Node> children)
+    {
         if (crowdHash == null) crowdHash = new();
 
         foreach (var xMap in crowdHash.Values)
@@ -33,8 +61,7 @@ public partial class CrowdCorral: Node2D
                 yList.Clear();
             }
         }
-        
-        var children = GetChildren();
+
 
         foreach (var child in children)
         {
@@ -54,16 +81,17 @@ public partial class CrowdCorral: Node2D
             {
                 crowdHash[(int)hashedPosition.X][(int)hashedPosition.Y] = new();
             }
-            
+
             crowdHash[(int)hashedPosition.X][(int)hashedPosition.Y].Add(crowdChild);
         }
     }
 
-    public List<CrowdActor> GetNeighbors(CrowdActor crowdActor)
+    public List<CrowdActor> GetNeighbors(CrowdActor crowdActor, List<CrowdActor> neighbors = null)
     {
         if (crowdHash == null) return null;
         var hashedPosition = crowdActor.GlobalPosition / _segmentSize;
-        var neighbors = new List<CrowdActor>();
+        neighbors ??= new List<CrowdActor>();
+        neighbors.Clear();
 
         for (var x = (int)hashedPosition.X - 1; x <= (int)hashedPosition.X + 1; x++)
         {

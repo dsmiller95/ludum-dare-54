@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using DotnetLibrary;
 using DotnetLibrary.Audience;
 using DotnetLibrary.Audience.Factors;
@@ -67,29 +68,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     public override void _Process(double delta)
     {
         sprite.ZIndex = GetZIndex();
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-        var neighborCrowdActors = NeighborCrowdActors();
-
-        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighborCrowdActors);
-        
-        // calculate friction force manually, rather than instantiating a unique physics material per actor
-        // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
-        // var firmnessFrictionForce = this.LinearVelocity * -frictionFactor;
-
-        var selfMoveForce = crowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
-        
-        var integrationResult = myPhysics.ComputeIntegrationResult(
-            selfMoveForce,
-            Vector2.Up,
-            this.LinearVelocity,
-            this.Transform.X,
-            crowdActorImpl.GetFirmness());
-        integrationResult.ApplyTo(this);
-
-        personBody._PhysicsProcess();
         
         var crowdEffectLevels = crowdActorImpl.GetCrowdEffectLevels();
         effectsRenderer.RenderEffects(crowdEffectLevels);
@@ -99,22 +77,54 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         }
     }
 
-    private NeighborCrowdActor[] NeighborCrowdActors()
+    public override void _PhysicsProcess(double delta)
     {
-        var neighbors = CrowdCorral.GetNeighbors(this);
-        if (neighbors == null) return null;
-        var neighborCrowdActors = new List<NeighborCrowdActor>();
+        // var neighborCrowdActors = NeighborCrowdActors();
+        //
+        // integrationResult =ManagedPhysicsProcess(delta, neighborCrowdActors);
+        //
+        
+        // integrationResult?.ApplyTo(this);
+        // integrationResult = null;
+        // personBody._PhysicsProcess();
+    }
+
+    private List<NeighborCrowdActor> neighborCrowdActorCache = new List<NeighborCrowdActor>();
+    public void OwnedPhysicsProcess(double delta, Span<CrowdActor> neighbors)
+    {
+        NeighborCrowdActors(neighbors, neighborCrowdActorCache); 
+        ManagedPhysicsProcess(delta, CollectionsMarshal.AsSpan(neighborCrowdActorCache));
+        personBody._PhysicsProcess();
+    }
+
+    private void NeighborCrowdActors(Span<CrowdActor> neighbors, List<NeighborCrowdActor> outputList)
+    {
+        outputList.Clear();
+        if (neighbors == null) return;
 
         foreach (var neighbor in neighbors)
         {
-            neighborCrowdActors.Add(new NeighborCrowdActor
+            outputList.Add(new NeighborCrowdActor
             {
                 actor = neighbor.crowdActorImpl,
                 relativePosition = neighbor.GlobalPosition - this.GlobalPosition
             });
         }
-
-        return neighborCrowdActors.ToArray();
+    }
+    
+    private void ManagedPhysicsProcess(double delta, Span<NeighborCrowdActor> neighbors)
+    {
+        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighbors);
+        
+        var selfMoveForce = crowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
+        
+        var integrationResult = myPhysics.ComputeIntegrationResult(
+            selfMoveForce,
+            Vector2.Up,
+            this.LinearVelocity,
+            this.Transform.X,
+            crowdActorImpl.GetFirmness());
+        integrationResult.ApplyTo(this);
     }
 
     public void OnBodyEntered(Node bodyGeneric)

@@ -30,8 +30,24 @@ public class FactorBasedCrowdActor : ICrowdActor
         this.overrideSource = overrideSource;
         factors = overrideSource?.GetOverrideFactor() ?? new Factors(0.5f);
     }
+
+    private AiNeighbor?[] MapToAiNeighbors(Span<NeighborCrowdActor> neighbors)
+    {
+        var array = new AiNeighbor?[neighbors.Length];
+        for (int i = 0; i < neighbors.Length; i++)
+        {
+            if (neighbors[i].actor is not FactorBasedCrowdActor facBased) continue;
+            array[i] = new AiNeighbor
+            {
+                Position = neighbors[i].relativePosition,
+                Factors = facBased.factors
+            };
+        }
+
+        return array;
+    }
     
-    public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
+    public void Update(double deltaTime, double currentSeconds, Span<NeighborCrowdActor> neighbors)
     {
         if (overrideSource is { UseLiveOverride: true })
         {
@@ -42,21 +58,14 @@ public class FactorBasedCrowdActor : ICrowdActor
             this.factors.AccumulateFactors(accumulation, (float)deltaTime);
             this.factors.DecayFactors((float)deltaTime, tuning.FactorDecayRate);
         }
+        
+        
         var aiParams = new AiParams
         {
             deltaTime = (float)deltaTime,
             currentTime = (float)currentSeconds,
             SelfFactors = this.factors,
-            Neighbors = neighbors? // TODO performance : cache array
-                .Select(x =>
-                {
-                    if (x.actor is not FactorBasedCrowdActor facBased) return (AiNeighbor?)null;
-                    return new AiNeighbor
-                    {
-                        Position = x.relativePosition,
-                        Factors = facBased.factors
-                    };
-                }).ToArray() ?? Array.Empty<AiNeighbor?>(),
+            Neighbors = MapToAiNeighbors(neighbors),
         };
         var allEffects = new AiResult[effects.Length];
         for (int i = 0; i < effects.Length; i++)
