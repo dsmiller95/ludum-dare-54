@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://j55o0w7wr30r"]
+[gd_scene load_steps=19 format=3 uid="uid://j55o0w7wr30r"]
 
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="1_kyxyr"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_cotty"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="11_2rshv"]
 [ext_resource type="PackedScene" uid="uid://dfw2f7apa6tu2" path="res://Stage/Set Peices/PushZone.tscn" id="13_1nosl"]
 [ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="14_6lqvl"]
+[ext_resource type="PackedScene" uid="uid://bfhdhs02bmh7p" path="res://Stage/Set Peices/bandStage.tscn" id="14_v1puq"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="15_41oaw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ugut1"]
@@ -270,6 +271,9 @@ PushDirection = 2
 [node name="CollisionShape2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/UpPushZone2/UpPushZone" index="0"]
 position = Vector2(-12.0001, 0.03125)
 shape = SubResource("RectangleShape2D_s7nnu")
+
+[node name="Stage" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("14_v1puq")]
+position = Vector2(1208, -2026)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("15_41oaw")]
 Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")

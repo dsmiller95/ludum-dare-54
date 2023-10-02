@@ -8,9 +8,6 @@
 diffuse_texture = ExtResource("1_x8xci")
 normal_texture = ExtResource("2_6b7f0")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyawr"]
-size = Vector2(221.1, 71.7)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_stfsl"]
 atlas = ExtResource("3_syi1i")
 region = Rect2(0, 0, 16, 32)
@@ -47,24 +44,29 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Stage" type="StaticBody2D"]
-z_index = -1495
-position = Vector2(1113, -4136)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyawr"]
+size = Vector2(221.1, 71.7)
+
+[node name="Stage" type="Node2D"]
 
 [node name="Stage" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(0, 239)
 scale = Vector2(4, 4)
 texture = SubResource("CanvasTexture_yn0ry")
+offset = Vector2(0, 59.945)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(4, 4)
-shape = SubResource("RectangleShape2D_fyawr")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Actor" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-12, -104)
+position = Vector2(-16, -122)
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_qebxp")
 autoplay = "default"
-frame_progress = 0.229822
+frame = 2
+frame_progress = 0.76757
+
+[node name="collision" type="StaticBody2D" parent="."]
+z_index = -1495
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_fyawr")

@@ -65,6 +65,7 @@ y_sort_enabled = true
 script = ExtResource("1_cyt7s")
 
 [node name="Audio" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
+position = Vector2(-1, 1)
 
 [node name="StudioBankLoader" type="StudioBankLoader" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Audio"]
 load_on = 1
@@ -264,6 +265,7 @@ position = Vector2(708, -3270)
 rotation = 1.57079
 
 [node name="Stage" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("10_npp6n")]
+position = Vector2(1188, -4141)
 
 [node name="CollisionTilemap" type="TileMap" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
 z_as_relative = false
