@@ -16,11 +16,8 @@ public partial class Player : RigidBody2D, IHavePersonBody
 
 	private PersonBody personBody;
 
-	private AnimatedSprite2D sprite;
-
 	public override void _Ready()
 	{
-		sprite = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
 		Health.HealthValue = 100;
 		personBody = new PersonBody(this);
 	}
@@ -32,8 +29,6 @@ public partial class Player : RigidBody2D, IHavePersonBody
 
 	public override void _PhysicsProcess(double delta)
 	{
-		sprite.ZIndex = (int)Position.Y/10;
-		GD.Print(sprite.ZIndex);
 		personBody._PhysicsProcess();
 	}
 

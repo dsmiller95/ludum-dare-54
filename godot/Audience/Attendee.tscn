@@ -5,7 +5,7 @@
 [ext_resource type="Resource" uid="uid://kx2svc877k54" path="res://Audience/audience_person_physics.tres" id="2_hktw3"]
 [ext_resource type="Resource" uid="uid://djby25txx0ftv" path="res://Audience/AiPresets/factor_speedball.tres" id="3_1gw6j"]
 [ext_resource type="Script" path="res://Audience/RandomAnimationStart.cs" id="3_u801b"]
-[ext_resource type="Texture2D" uid="uid://b3d6xidtijm2s" path="res://Assets/audience_sprites.tres" id="5_128up"]
+[ext_resource type="Texture2D" path="res://Assets/audience_sprites.tres" id="5_128up"]
 [ext_resource type="Script" path="res://Audience/Effects/ActorEffectsRenderer.cs" id="6_05sq1"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_kbsgs"]
@@ -139,13 +139,15 @@ PersonMovement = ExtResource("2_hktw3")
 shape = SubResource("CapsuleShape2D_v67ay")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
-position = Vector2(37, 1.00013)
+position = Vector2(0, 1)
 rotation = 1.5708
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_mwdxp")
 animation = &"hat"
 autoplay = "default"
+offset = Vector2(0, -9)
 script = ExtResource("3_u801b")
 
 [node name="Effects" type="Node2D" parent="." node_paths=PackedStringArray("bodySprite", "effectText")]
