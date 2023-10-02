@@ -121,6 +121,7 @@ color = Color(0.235294, 0.235294, 0.235294, 1)
 
 [node name="StageLight" type="DirectionalLight2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting"]
 script = ExtResource("9_1epxy")
+Bpm = 100.0
 LightIntensity = SubResource("Curve_dgqs3")
 
 [node name="Spotlight" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting" instance=ExtResource("10_j6r3m")]
