@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bqapbx35ssggk"]
+[gd_scene load_steps=24 format=3 uid="uid://bqapbx35ssggk"]
 
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="1_gec3c"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_errsd"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="11_iphmq"]
 [ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="12_wpuym"]
 [ext_resource type="PackedScene" uid="uid://dfw2f7apa6tu2" path="res://Stage/Set Peices/PushZone.tscn" id="13_t4rxw"]
+[ext_resource type="PackedScene" uid="uid://bfhdhs02bmh7p" path="res://Stage/Set Peices/bandStage.tscn" id="14_fw12h"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="14_jhq21"]
 [ext_resource type="PackedScene" uid="uid://oe0kh3wrproj" path="res://Settings/setting_tuner.tscn" id="15_qpx05"]
 
@@ -93,7 +94,7 @@ SpawnNum = 150
 y_sort_enabled = true
 
 [node name="Goal area" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("3_i76u0")]
-position = Vector2(1233, -2709)
+position = Vector2(1579, -2264)
 
 [node name="Player" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("4_4tru5")]
 position = Vector2(1176, 911)
@@ -118,7 +119,7 @@ event = ExtResource("7_uogd7")
 play_event = 1
 stop_event = 3
 event = ExtResource("8_beahn")
-position = Vector2(1156, -3753)
+position = Vector2(1156, -2724)
 
 [node name="Lighting" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
 
@@ -619,6 +620,9 @@ rotation = 3.14159
 
 [node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone20" index="1"]
 PushDirection = 1
+
+[node name="Stage" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("14_fw12h")]
+position = Vector2(1175, -2562)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("14_jhq21")]
 Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")

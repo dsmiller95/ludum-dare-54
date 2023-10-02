@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cyk5moaedxht0"]
+[gd_scene load_steps=6 format=3 uid="uid://qbft0nvyigd5"]
 
 [ext_resource type="Script" path="res://Stage/Set Peices/barrier_horizontal.cs" id="1_tm7kb"]
 [ext_resource type="Texture2D" uid="uid://blvhvx0acho76" path="res://Assets/Bar.png" id="2_kkbp8"]

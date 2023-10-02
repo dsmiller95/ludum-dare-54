@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://chkdjgq485618"]
+[gd_scene load_steps=23 format=3 uid="uid://chkdjgq485618"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_jeoxr"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="2_i7qdb"]
@@ -7,14 +7,15 @@
 [ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="6_43vxe"]
 [ext_resource type="EventAsset" uid="uid://cw5ycpijv3go4" path="res://addons/FMOD/editor/resources/events/{3e471034-94e6-4b28-97dd-d4dc94fffdd7}.tres" id="7_v6v1r"]
 [ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="9_66iq5"]
-[ext_resource type="PackedScene" uid="uid://dkxj4rn4byvae" path="res://Stage/Set Peices/car.tscn" id="9_pxsd0"]
+[ext_resource type="PackedScene" path="res://Stage/Set Peices/car.tscn" id="9_pxsd0"]
 [ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="10_31f83"]
-[ext_resource type="PackedScene" uid="uid://dceowknfrxknn" path="res://Stage/Set Peices/car_tint.tscn" id="10_34ufy"]
+[ext_resource type="PackedScene" path="res://Stage/Set Peices/car_tint.tscn" id="10_34ufy"]
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="11_bn27e"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="12_07thv"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="13_i5lvd"]
 [ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="13_t8hld"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="14_ddsik"]
+[ext_resource type="PackedScene" uid="uid://bfhdhs02bmh7p" path="res://Stage/Set Peices/bandStage.tscn" id="15_nvbp6"]
 [ext_resource type="PackedScene" uid="uid://oe0kh3wrproj" path="res://Settings/setting_tuner.tscn" id="16_bw7mt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
@@ -27,7 +28,7 @@ size = Vector2(1932, 836)
 size = Vector2(1935, 935)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4apn8"]
-size = Vector2(1935, 1185)
+size = Vector2(1935, 941)
 
 [sub_resource type="Curve" id="Curve_dgqs3"]
 _data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
@@ -67,7 +68,7 @@ CrowdCorral = NodePath("../../CrowdCorral")
 SpawnNum = 200
 
 [node name="Spawner5" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("12_07thv")]
-position = Vector2(1179, -2183.5)
+position = Vector2(1179, -2061.5)
 shape = SubResource("RectangleShape2D_4apn8")
 CrowdCorral = NodePath("../../CrowdCorral")
 SpawnNum = 300
@@ -79,7 +80,7 @@ y_sort_enabled = true
 position = Vector2(560, -2390)
 
 [node name="Player" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("9_66iq5")]
-position = Vector2(1153, 796)
+position = Vector2(1074, 836)
 
 [node name="Stage" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter"]
 y_sort_enabled = true
@@ -314,6 +315,9 @@ tile_set = ExtResource("13_t8hld")
 format = 2
 layer_0/y_sort_enabled = true
 layer_0/tile_data = PackedInt32Array(-458749, 65536, 3, -458748, 65536, 3, -458747, 65536, 3, -458746, 65536, 3, -458743, 0, 2, -458742, 65536, 3, -458741, 65536, 3, -458740, 65536, 3, -458739, 65536, 3, -458738, 65536, 2, -851958, 0, 3, -851957, 65536, 3, -851956, 65536, 3, -851955, 65536, 3, -851954, 65536, 3, -851953, 65536, 3, -851952, 65536, 3, -851951, 65536, 3, -851950, 65536, 3, -851949, 65536, 3, -851948, 65536, 3, -851947, 65536, 3, -851946, 131072, 3, -458734, 65536, 3, -458733, 65536, 3, -458732, 65536, 3, -458731, 65536, 3, -458730, 65536, 3, -458729, 65536, 3, -458728, 65536, 3, -458727, 65536, 3, -458726, 65536, 3, -1179627, 0, 2, -1179626, 65536, 3, -1179625, 65536, 3, -1179624, 65536, 2, -1638376, 0, 1, -1638375, 65536, 3, -1638374, 65536, 3, -524279, 131072, 1, -589815, 131072, 0, -524274, 131072, 1, -589810, 131072, 0, -524271, 131072, 1, -589807, 131072, 0, -1048558, 131072, 2, -1114094, 131072, 1, -1179630, 131072, 1, -1245166, 131072, 1, -1310702, 131072, 1, -1376238, 131072, 1, -1441774, 131072, 1, -1507310, 131072, 1, -1572846, 131072, 1, -1638382, 131072, 0, -1245163, 131072, 1, -1310699, 131072, 1, -1376235, 131072, 1, -1441771, 131072, 1, -1507307, 131072, 1, -1572843, 131072, 0, -1245160, 131072, 1, -1310696, 131072, 1, -1376232, 131072, 1, -1441768, 131072, 1, -1507304, 131072, 1, -1245169, 131072, 2, -1310705, 131072, 1, -1376241, 131072, 1, -1441777, 131072, 1, -1507313, 131072, 1, -1572849, 131072, 1, -1638385, 131072, 0, -1245172, 131072, 2, -1310708, 131072, 1, -1376244, 131072, 1, -1441780, 131072, 1, -1507316, 131072, 1, -1572852, 131072, 1, -1638388, 131072, 0, -1245175, 131072, 2, -1310711, 131072, 1, -1376247, 131072, 1, -1441783, 131072, 1, -1507319, 131072, 1, -1572855, 131072, 1, -1638391, 131072, 0, -1245178, 131072, 2, -1310714, 131072, 1, -1376250, 131072, 1, -1441786, 131072, 1, -1507322, 131072, 1, -1572858, 131072, 1, -1638394, 131072, 0, -524281, 131072, 1, -589817, 131072, 1, -655353, 131072, 0, -458745, 65536, 2, -458735, 0, 2, -1572840, 131072, 1, -786425, 393216, 1, -720889, 393216, 2, -851960, 458752, 0, -786424, 458752, 1, -851959, 524288, 0, -262142, 196609, 0, -327678, 196609, 0, -393214, 196609, 0, -458750, 196609, 0, -524286, 196609, 0, -589822, 196609, 0, -655358, 196609, 0, -720894, 196609, 0, -786430, 196609, 0, -851966, 196609, 0, -917502, 196609, 0, -983038, 196609, 0, -1048574, 196609, 0, -1114110, 196609, 0, -1179646, 196609, 0, -1245182, 196609, 0, -1310718, 196609, 0, -1376254, 196609, 0, -1441790, 196609, 0, -1507326, 196609, 0, -1572862, 196609, 0, -1638398, 196609, 0, -1703934, 196609, 0, -1769470, 196609, 0, -1835006, 196609, 0, -1900542, 196609, 0, -1966078, 196609, 0, -2031614, 196609, 0, -2097150, 196609, 0, -2162686, 196609, 0, -2228222, 196609, 0, -2293758, 196609, 0, -2359294, 65537, 0, -2359293, 1, 0, -2359292, 1, 0, -2359291, 1, 0, -2359290, 1, 0, -2359289, 1, 0, -2359288, 1, 0, -2359287, 1, 0, -2359286, 1, 0, -2359285, 1, 0, -2359284, 1, 0, -2359283, 1, 0, -2359282, 1, 0, -2359281, 1, 0, -2359280, 1, 0, -2359279, 1, 0, -2359278, 1, 0, -2359277, 1, 0, -2359276, 1, 0, -2359275, 1, 0, -2359274, 1, 0, -2359273, 1, 0, -2359272, 1, 0, -2359271, 1, 0, -2359270, 1, 0, -2359269, 131073, 0, -2293733, 196609, 1, -2228197, 196609, 1, -2162661, 196609, 1, -2097125, 196609, 1, -2031589, 196609, 1, -1966053, 196609, 1, -1900517, 196609, 1, -1834981, 196609, 1, -1769445, 196609, 1, -1703909, 196609, 1, -1638373, 196609, 1, -1572837, 196609, 1, -1507301, 196609, 1, -1376229, 196609, 1, -1441765, 196609, 1, -1310693, 196609, 1, -1245157, 196609, 1, -1179621, 196609, 1, -1114085, 196609, 1, -1048549, 196609, 1, -983013, 196609, 1, -917477, 196609, 1, -851941, 196609, 1, -786405, 196609, 1, -720869, 196609, 1, -655333, 196609, 1, -589797, 196609, 1, -524261, 196609, 1, -458725, 196609, 1, -393189, 196609, 1, -327653, 196609, 1, -262117, 196609, 1, -196581, 196609, 1, -131045, 196609, 1, -65509, 196609, 1, 27, 196609, 1, 65563, 196609, 1, 131099, 196609, 1, 196635, 196609, 1, 262171, 196609, 1, 327707, 196609, 1, 393243, 196609, 1, 458779, 196609, 1, 524315, 196609, 1, 589851, 196609, 1, 655387, 196609, 1, 720923, 196609, 1, 786459, 131073, 1, 786458, 1, 1, 786457, 1, 1, 786456, 1, 1, 786455, 1, 1, 786454, 1, 1, 786453, 1, 1, 786452, 1, 1, 786451, 1, 1, 786450, 1, 1, 786449, 1, 1, 786448, 1, 1, 786447, 1, 1, 786446, 1, 1, 786445, 1, 1, 786441, 1, 1, 786442, 1, 1, 786444, 1, 1, 786443, 1, 1, 786440, 1, 1, 786439, 1, 1, 786438, 1, 1, 786437, 1, 1, 786436, 1, 1, 786435, 1, 1, 786434, 65537, 1, 720898, 196609, 0, 655362, 196609, 0, 589826, 196609, 0, 524290, 196609, 0, 458754, 196609, 0, 393218, 196609, 0, 327682, 196609, 0, 262146, 196609, 0, 196610, 196609, 0, 131074, 196609, 0, 65538, 196609, 0, 2, 196609, 0, -65534, 196609, 0, -131070, 196609, 0, -196606, 196609, 0)
+
+[node name="Stage" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("15_nvbp6")]
+position = Vector2(1150, -2673)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("13_i5lvd")]
 Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")

@@ -24,3 +24,6 @@ godot/addons/FMOD/tests/fmod_test_project/.user
 godot/addons/FMOD/tests/fmod_test_project/.unsaved
 
 !godot/addons/FMOD/native/lib/**/*
+
+
+.idea

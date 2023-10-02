@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bf02m4bdxlinm"]
+[gd_scene load_steps=22 format=3 uid="uid://bf02m4bdxlinm"]
 
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="1_utcoq"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_la1lo"]
@@ -7,12 +7,13 @@
 [ext_resource type="Script" path="res://Level.gd" id="5_wdsxm"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_wf35s"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_od70g"]
-[ext_resource type="EventAsset" uid="uid://cw5ycpijv3go4" path="res://addons/FMOD/editor/resources/events/{3e471034-94e6-4b28-97dd-d4dc94fffdd7}.tres" id="8_mcwh1"]
+[ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="8_dc78r"]
 [ext_resource type="Script" path="res://Lighting/StageLight.cs" id="9_1epxy"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="10_j6r3m"]
 [ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="11_nss2b"]
 [ext_resource type="PackedScene" uid="uid://dfw2f7apa6tu2" path="res://Stage/Set Peices/PushZone.tscn" id="13_jpmv1"]
 [ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="14_72xm3"]
+[ext_resource type="PackedScene" uid="uid://bfhdhs02bmh7p" path="res://Stage/Set Peices/bandStage.tscn" id="14_i2mn0"]
 [ext_resource type="PackedScene" uid="uid://oe0kh3wrproj" path="res://Settings/setting_tuner.tscn" id="15_5ywbj"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="15_hyug6"]
 
@@ -20,7 +21,7 @@
 size = Vector2(1692.5, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbrmd"]
-size = Vector2(1904, 1915)
+size = Vector2(1904, 1841)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehh6q"]
 size = Vector2(701, 481.25)
@@ -60,7 +61,7 @@ CrowdCorral = NodePath("../../CrowdCorral")
 SpawnNum = 30
 
 [node name="Spawner3" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("2_la1lo")]
-position = Vector2(1201, -1613.5)
+position = Vector2(1201, -1576.5)
 shape = SubResource("RectangleShape2D_gbrmd")
 CrowdCorral = NodePath("../../CrowdCorral")
 SpawnNum = 300
@@ -86,7 +87,7 @@ CrowdCorral = NodePath("../../CrowdCorral")
 y_sort_enabled = true
 
 [node name="Goal area" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("3_wg7pq")]
-position = Vector2(1233, -2709)
+position = Vector2(1482, -2342)
 
 [node name="Player" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("4_7d3wr")]
 position = Vector2(1148, 964)
@@ -110,8 +111,8 @@ event = ExtResource("7_od70g")
 [node name="GuitarEmitter" type="StudioEventEmitter2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Audio"]
 play_event = 1
 stop_event = 3
-event = ExtResource("8_mcwh1")
-position = Vector2(1156, -3753)
+event = ExtResource("8_dc78r")
+position = Vector2(1207, -2902)
 
 [node name="Lighting" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
 
@@ -298,6 +299,9 @@ rotation = 1.5708
 
 [node name="UpPushZone" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/PushZone4" index="1"]
 PushDirection = 3
+
+[node name="Stage" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("14_i2mn0")]
+position = Vector2(1188, -2662)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("15_hyug6")]
 Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")

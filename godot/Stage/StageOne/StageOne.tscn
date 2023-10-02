@@ -11,17 +11,17 @@
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="6_juosq"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
-[ext_resource type="PackedScene" uid="uid://bfhdhs02bmh7p" path="res://Stage/bandStage.tscn" id="10_npp6n"]
+[ext_resource type="PackedScene" uid="uid://bfhdhs02bmh7p" path="res://Stage/Set Peices/bandStage.tscn" id="10_npp6n"]
 [ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="11_5y03w"]
 [ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="11_tqkk2"]
-[ext_resource type="PackedScene" uid="uid://cyk5moaedxht0" path="res://Stage/Set Peices/bar_full_set.tscn" id="12_0eq1k"]
+[ext_resource type="PackedScene" uid="uid://qbft0nvyigd5" path="res://Stage/Set Peices/bar_full_set.tscn" id="12_0eq1k"]
 [ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
 [ext_resource type="PackedScene" uid="uid://cpqdu38mtpo4a" path="res://Lighting/LongLight.tscn" id="14_f6f0j"]
 [ext_resource type="Resource" uid="uid://btnx83vp6mfxh" path="res://Audience/AiPresets/factor_rolling_raver.tres" id="16_gmg0n"]
 [ext_resource type="Resource" uid="uid://bm7cfjlu24ccy" path="res://Audience/AiPresets/factor_drunkard.tres" id="17_1tcn1"]
-[ext_resource type="Resource" uid="uid://bt5dstfdpp24e" path="res://Audience/AiPresets/factor_toker.tres" id="18_3pb75"]
-[ext_resource type="Resource" uid="uid://di7kla0qry0ee" path="res://Audience/AiPresets/factor_wildcard_bitches.tres" id="19_mowpl"]
-[ext_resource type="PackedScene" uid="uid://s3dnd85emw40" path="res://MenuScenes/controls.tscn" id="21_rcau4"]
+[ext_resource type="Resource" uid="uid://c6rp1cxkcb7pi" path="res://Audience/AiPresets/factor_toker.tres" id="18_3pb75"]
+[ext_resource type="Resource" uid="uid://ceyhc5riqavsw" path="res://Audience/AiPresets/factor_wildcard_bitches.tres" id="19_mowpl"]
+[ext_resource type="PackedScene" path="res://MenuScenes/controls.tscn" id="21_rcau4"]
 [ext_resource type="PackedScene" uid="uid://oe0kh3wrproj" path="res://Settings/setting_tuner.tscn" id="23_4n3p6"]
 
 [sub_resource type="Curve" id="Curve_dgqs3"]
@@ -305,7 +305,7 @@ scale = Vector2(-1, 1)
 y_sort_enabled = true
 
 [node name="Player" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("3_m2j0t")]
-position = Vector2(974, 820)
+position = Vector2(442, 558)
 
 [node name="Goal area" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players" instance=ExtResource("4_s3k7p")]
 position = Vector2(936, -3820)
