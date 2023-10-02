@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="FactorBasedCrowdActorConfig" load_steps=6 format=3 uid="uid://djby25txx0ftv"]
 
 [ext_resource type="Script" path="res://Audience/FactorArchetype.cs" id="1_p2bs1"]
-[ext_resource type="Resource" uid="uid://dwn3taa2kaoar" path="res://Audience/AiPresets/factor_default_override.tres" id="2_tapup"]
-[ext_resource type="Resource" uid="uid://bx2o2qprxcl3p" path="res://Audience/AiPresets/factor_tuning.tres" id="3_c5hfm"]
+[ext_resource type="Resource" path="res://Audience/AiPresets/factor_default_override.tres" id="2_tapup"]
+[ext_resource type="Resource" path="res://Audience/AiPresets/factor_tuning.tres" id="3_c5hfm"]
 [ext_resource type="Script" path="res://Audience/FactorBasedCrowdActorConfig.cs" id="4_ymg6t"]
 
 [sub_resource type="Resource" id="Resource_8xipw"]

@@ -54,13 +54,14 @@ AccelerationForce = 3000.0
 PersonMovement = ExtResource("2_0l1pw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 texture_filter = 1
-position = Vector2(41, 0.000148296)
 rotation = 1.5708
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_s32vo")
 autoplay = "default"
 frame_progress = 0.0462815
+offset = Vector2(0, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_v67ay")

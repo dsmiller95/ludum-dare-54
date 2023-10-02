@@ -27,8 +27,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     private Array<Resource> crowdActorPresetOptions;
     
 
-    private AnimatedSprite2D sprite;
-
     public FactorBasedCrowdActor CrowdActorImpl;
     private PersonBody personBody;
     private PersonPhysics myPhysics;
@@ -38,7 +36,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
-        sprite = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
         ProcessPriority = 11;
         var options = crowdActorPresetOptions.Cast<ICrowdActorPreset>().Where(x => x != null).ToArray();
         if (options.Length <= 0)
@@ -59,16 +56,8 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         return personBody;
     }
 
-    private int GetZIndex()
-    {
-        long index = (int)Position.Y/10;
-        index = Math.Clamp(index, Godot.RenderingServer.CanvasItemZMin + 10, Godot.RenderingServer.CanvasItemZMax - 10);
-        return (int)index;
-    }
     public override void _Process(double delta)
-    {
-        sprite.ZIndex = GetZIndex();
-        
+    {   
         var crowdEffectLevels = CrowdActorImpl.GetCrowdEffectLevels();
         effectsRenderer.RenderEffects(crowdEffectLevels);
         if (CrowdActorImpl is FactorBasedCrowdActor factorBased)
