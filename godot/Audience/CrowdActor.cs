@@ -29,7 +29,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
 
     private AnimatedSprite2D sprite;
 
-    private ICrowdActor crowdActorImpl;
+    public ICrowdActor CrowdActorImpl;
     private PersonBody personBody;
     private PersonPhysics myPhysics;
 
@@ -49,7 +49,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
 
         var rng = new RandomNumberGenerator();
         rng.Randomize();
-        crowdActorImpl = rng.PickRandom(options).ConstructConfiguredActor();
+        CrowdActorImpl = rng.PickRandom(options).ConstructConfiguredActor();
         personBody = new PersonBody(this);
         myPhysics = PersonMovement.GetConfiguredPhysics();
     }
@@ -69,9 +69,9 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     {
         sprite.ZIndex = GetZIndex();
         
-        var crowdEffectLevels = crowdActorImpl.GetCrowdEffectLevels();
+        var crowdEffectLevels = CrowdActorImpl.GetCrowdEffectLevels();
         effectsRenderer.RenderEffects(crowdEffectLevels);
-        if (crowdActorImpl is FactorBasedCrowdActor factorBased)
+        if (CrowdActorImpl is FactorBasedCrowdActor factorBased)
         {
             effectsRenderer.RenderDebugRawFactors(factorBased.GetRawFactorsUnnormalized());
         }
@@ -90,40 +90,24 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     }
 
     private List<NeighborCrowdActor> neighborCrowdActorCache = new List<NeighborCrowdActor>();
-    public void OwnedPhysicsProcess(double delta, Span<CrowdActor> neighbors)
+    public void OwnedPhysicsProcess(double delta, Span<NeighborCrowdActor> neighbors)
     {
-        NeighborCrowdActors(neighbors, neighborCrowdActorCache); 
-        ManagedPhysicsProcess(delta, CollectionsMarshal.AsSpan(neighborCrowdActorCache));
+        ManagedPhysicsProcess(delta, neighbors);
         personBody._PhysicsProcess();
-    }
-
-    private void NeighborCrowdActors(Span<CrowdActor> neighbors, List<NeighborCrowdActor> outputList)
-    {
-        outputList.Clear();
-        if (neighbors == null) return;
-
-        foreach (var neighbor in neighbors)
-        {
-            outputList.Add(new NeighborCrowdActor
-            {
-                actor = neighbor.crowdActorImpl,
-                relativePosition = neighbor.GlobalPosition - this.GlobalPosition
-            });
-        }
     }
     
     private void ManagedPhysicsProcess(double delta, Span<NeighborCrowdActor> neighbors)
     {
-        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighbors);
+        CrowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighbors);
         
-        var selfMoveForce = crowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
+        var selfMoveForce = CrowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
         
         var integrationResult = myPhysics.ComputeIntegrationResult(
             selfMoveForce,
             Vector2.Up,
             this.LinearVelocity,
             this.Transform.X,
-            crowdActorImpl.GetFirmness());
+            CrowdActorImpl.GetFirmness());
         integrationResult.ApplyTo(this);
     }
 
@@ -147,7 +131,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         var pushVector = pushDirection.Normalized() * person.GetAverageSpeed() / PersonMovement.MaximumVelocity;
 
         var pushEvent = new PushEvent(pushVector);
-        crowdActorImpl.ReceivePushEvent(pushEvent);
+        CrowdActorImpl.ReceivePushEvent(pushEvent);
     }
     
     public override void _IntegrateForces(PhysicsDirectBodyState2D state)

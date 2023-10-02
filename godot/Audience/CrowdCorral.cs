@@ -31,7 +31,7 @@ public partial class CrowdCorral: Node2D
             crowdHash = null;
         }
 
-        var workingNeighborList = new List<CrowdActor>();
+        var workingNeighborList = new List<NeighborCrowdActor>();
         
         foreach (var child in children)
         {
@@ -86,11 +86,10 @@ public partial class CrowdCorral: Node2D
         }
     }
 
-    public List<CrowdActor> GetNeighbors(CrowdActor crowdActor, List<CrowdActor> neighbors = null)
+    private void GetNeighbors(CrowdActor crowdActor, List<NeighborCrowdActor> neighbors)
     {
-        if (crowdHash == null) return null;
+        if (crowdHash == null) return;
         var hashedPosition = crowdActor.GlobalPosition / _segmentSize;
-        neighbors ??= new List<CrowdActor>();
         neighbors.Clear();
 
         for (var x = (int)hashedPosition.X - 1; x <= (int)hashedPosition.X + 1; x++)
@@ -106,11 +105,18 @@ public partial class CrowdCorral: Node2D
                 {
                     continue;
                 }
-                
-                neighbors.AddRange(crowdHash[x][y]);
+
+                var itemsInHash = crowdHash[x][y];
+                for (int i = 0; i < itemsInHash.Count; i++)
+                {
+                    var neighbor = itemsInHash[i];
+                    neighbors.Add(new NeighborCrowdActor
+                    {
+                        actor = neighbor.CrowdActorImpl,
+                        relativePosition = neighbor.GlobalPosition - crowdActor.GlobalPosition
+                    });
+                }
             }
         }
-
-        return neighbors;
     }
 }
