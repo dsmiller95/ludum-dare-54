@@ -16,6 +16,15 @@ public struct FactorAccumulation
         this.AccumulationsPerSecond = new float[5];
         Array.Fill(AccumulationsPerSecond, defaultAccumulation);
     }
+
+    public void AddAll(FactorAccumulation other)
+    {
+        for (int i = 0; i < AccumulationsPerSecond.Length; i++)
+        {
+            AccumulationsPerSecond[i] += other.AccumulationsPerSecond[i];
+        }
+    }
+    
     public void AccumulateFactor(FactorType factor, float amount, TimeSpan? per = null)
     {
         per ??= TimeSpan.FromSeconds(1);

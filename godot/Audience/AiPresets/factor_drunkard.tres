@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_so8ly"]
 script = ExtResource("1_tqyak")
+RandomMultiplier = 0.05
 GlobalMultiplier = 0.2
 RagePerSecond = 0.0
 StuporPerSecond = 6.0
