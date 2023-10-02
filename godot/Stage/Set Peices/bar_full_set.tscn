@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cyk5moaedxht0"]
+
+[ext_resource type="Script" path="res://Stage/Set Peices/barrier_horizontal.cs" id="1_tm7kb"]
+[ext_resource type="Texture2D" uid="uid://blvhvx0acho76" path="res://Assets/Bar.png" id="2_kkbp8"]
+[ext_resource type="Texture2D" uid="uid://cqa4qcqfrbrsq" path="res://Assets/Bar_Normals.png" id="3_ybx32"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_6nfwc"]
+diffuse_texture = ExtResource("2_kkbp8")
+normal_texture = ExtResource("3_ybx32")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ies58"]
+size = Vector2(12.6248, 46.75)
+
+[node name="Bar" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_tm7kb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(5, 5)
+texture = SubResource("CanvasTexture_6nfwc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -10)
+scale = Vector2(2, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4.5, -3)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ies58")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-4.5, 31)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ies58")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(12.5, 14)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_ies58")
