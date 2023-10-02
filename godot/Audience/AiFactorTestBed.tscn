@@ -1,65 +1,38 @@
 [gd_scene load_steps=5 format=3 uid="uid://ccf8s7wwj6at2"]
 
+[ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="1_ampmb"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="1_tbc8d"]
+[ext_resource type="PackedScene" uid="uid://bm0pximd300b0" path="res://Stage/Set Peices/wall.tscn" id="3_xnjwc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxrbf"]
-size = Vector2(290.5, 261)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ynlj"]
-size = Vector2(496, 56)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_7cw87"]
+size = Vector2(615, 645)
 
 [node name="AiFactorTestBed" type="Node"]
 
 [node name="Node2D" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="corall" type="Node2D" parent="Node2D"]
+script = ExtResource("1_ampmb")
 
 [node name="Spawners" type="Area2D" parent="Node2D"]
 y_sort_enabled = true
 
-[node name="Spawner" parent="Node2D/Spawners" instance=ExtResource("1_tbc8d")]
-position = Vector2(607, 316)
+[node name="Spawner" parent="Node2D/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("1_tbc8d")]
+position = Vector2(593.5, 241.5)
 shape = SubResource("RectangleShape2D_wxrbf")
-SpawnNum = 20
+CrowdCorral = NodePath("../../corall")
 
-[node name="Walls" type="StaticBody2D" parent="Node2D"]
+[node name="Wall" parent="Node2D" instance=ExtResource("3_xnjwc")]
+position = Vector2(225, -1438)
 
-[node name="CollisionShape2D3" type="CollisionShape2D" parent="Node2D/Walls"]
-position = Vector2(602, 493)
-shape = SubResource("RectangleShape2D_2ynlj")
+[node name="Wall2" parent="Node2D" instance=ExtResource("3_xnjwc")]
+position = Vector2(971, -1178)
 
-[node name="CollisionShape2D6" type="CollisionShape2D" parent="Node2D/Walls"]
-position = Vector2(602, 151)
-shape = SubResource("RectangleShape2D_2ynlj")
-
-[node name="CollisionShape2D4" type="CollisionShape2D" parent="Node2D/Walls"]
-position = Vector2(784, 292)
+[node name="Wall3" parent="Node2D" instance=ExtResource("3_xnjwc")]
+position = Vector2(635, -184)
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_2ynlj")
 
-[node name="CollisionShape2D5" type="CollisionShape2D" parent="Node2D/Walls"]
-position = Vector2(429, 296)
+[node name="Wall4" parent="Node2D" instance=ExtResource("3_xnjwc")]
+position = Vector2(587, 649)
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_2ynlj")
-
-[node name="Sprite2D" type="Sprite2D" parent="Node2D/Walls"]
-position = Vector2(597.563, 494.5)
-scale = Vector2(490.875, 52.9993)
-texture = SubResource("PlaceholderTexture2D_7cw87")
-
-[node name="Sprite2D2" type="Sprite2D" parent="Node2D/Walls"]
-position = Vector2(605, 66)
-scale = Vector2(490.875, 52.9993)
-texture = SubResource("PlaceholderTexture2D_7cw87")
-
-[node name="Sprite2D3" type="Sprite2D" parent="Node2D/Walls"]
-position = Vector2(784, 291)
-rotation = 1.5708
-scale = Vector2(490.875, 52.9993)
-texture = SubResource("PlaceholderTexture2D_7cw87")
-
-[node name="Sprite2D4" type="Sprite2D" parent="Node2D/Walls"]
-position = Vector2(431, 295)
-rotation = 1.5708
-scale = Vector2(490.875, 52.9993)
-texture = SubResource("PlaceholderTexture2D_7cw87")

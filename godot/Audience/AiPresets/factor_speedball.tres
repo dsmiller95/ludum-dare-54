@@ -7,11 +7,12 @@
 
 [sub_resource type="Resource" id="Resource_8xipw"]
 script = ExtResource("1_p2bs1")
-RagePerSecond = 0.02
-StuporPerSecond = 0.07
-StinkyToAttractivePerSecond = 0.0
+GlobalMultiplier = 0.2
+RagePerSecond = 2.0
+StuporPerSecond = 1.0
+StinkyToAttractivePerSecond = -1.0
 HornyPerSecond = 0.0
-IntrovertToExtrovertPerSecond = 0.0
+IntrovertToExtrovertPerSecond = 3.0
 
 [resource]
 script = ExtResource("4_ymg6t")

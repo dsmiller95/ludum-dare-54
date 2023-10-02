@@ -50,6 +50,8 @@ public partial class ActorEffectsRenderer : Node2D
         textBuilder.Append("[code]");
         textBuilder.AppendFormat("Rage:   {0:0.00}\n", rawFactors[(int)FactorType.Rage]);
         textBuilder.AppendFormat("Stupor: {0:0.00}\n", rawFactors[(int)FactorType.Stupor]);
+        textBuilder.AppendFormat("Horny:  {0:0.00}\n", rawFactors[(int)FactorType.Horny]);
+        textBuilder.AppendFormat("Attrac: {0:0.00}\n", rawFactors[(int)FactorType.StinkyToAttractive]);
         textBuilder.Append("[/code]");
         effectText.Text = textBuilder.ToString();
     }

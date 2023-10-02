@@ -7,6 +7,7 @@ namespace LudumDare54.Audience;
 [GlobalClass]
 public partial class FactorArchetype : Resource, IProvideFactorAccumulation
 {
+    [Export] public float GlobalMultiplier = 1f;
     [Export] public float RagePerSecond = 0f;
     [Export] public float StuporPerSecond = 0f;
     [Export] public float StinkyToAttractivePerSecond = 0f;
@@ -21,6 +22,7 @@ public partial class FactorArchetype : Resource, IProvideFactorAccumulation
         accumulation.AccumulateFactor(FactorType.StinkyToAttractive, StinkyToAttractivePerSecond);
         accumulation.AccumulateFactor(FactorType.Horny, HornyPerSecond);
         accumulation.AccumulateFactor(FactorType.IntrovertToExtrovert, IntrovertToExtrovertPerSecond);
+        accumulation.NormalizeAllAccumulates(GlobalMultiplier);
         return accumulation;
     }
 }

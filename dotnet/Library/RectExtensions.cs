@@ -12,4 +12,14 @@ public static class RectExtensions
             Mathf.Clamp(vector.Y, rect.Position.Y, rect.Position.Y + rect.Size.Y)
         );
     }
+    
+    public static Vector2 Clamped(this Vector2 vector, float maxLength)
+    {
+        var length = vector.Length();
+        if (length > maxLength)
+        {
+            return vector.Normalized() * maxLength;
+        }
+        return vector;
+    }
 }
