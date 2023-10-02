@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_8xipw"]
 script = ExtResource("1_p2bs1")
+RandomMultiplier = 0.05
 GlobalMultiplier = 0.2
 RagePerSecond = 2.0
 StuporPerSecond = 1.0
