@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Audience/CrowdActor.cs" id="1_3k8cn"]
 [ext_resource type="Resource" uid="uid://bm7cfjlu24ccy" path="res://Audience/AiPresets/factor_drunkard.tres" id="2_dfu6g"]
 [ext_resource type="Resource" uid="uid://kx2svc877k54" path="res://Audience/audience_person_physics.tres" id="2_hktw3"]
-[ext_resource type="Resource" uid="uid://djby25txx0ftv" path="res://Audience/AiPresets/factor_speedball.tres" id="3_1gw6j"]
 [ext_resource type="Script" path="res://Audience/RandomAnimationStart.cs" id="3_u801b"]
+[ext_resource type="Resource" uid="uid://btnx83vp6mfxh" path="res://Audience/AiPresets/factor_rolling_raver.tres" id="4_8r5te"]
 [ext_resource type="Texture2D" uid="uid://b3d6xidtijm2s" path="res://Assets/audience_sprites.tres" id="5_128up"]
 [ext_resource type="Script" path="res://Audience/Effects/ActorEffectsRenderer.cs" id="6_05sq1"]
 
@@ -132,7 +132,7 @@ script = ExtResource("1_3k8cn")
 moveForceMultiplier = 2000.0
 assumedPushForce = 0.25
 effectsRenderer = NodePath("Effects")
-crowdActorPresetOptions = Array[Resource]([ExtResource("2_dfu6g"), ExtResource("3_1gw6j")])
+crowdActorPresetOptions = Array[Resource]([ExtResource("4_8r5te"), ExtResource("2_dfu6g")])
 PersonMovement = ExtResource("2_hktw3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -157,16 +157,17 @@ effectText = NodePath("../RichTextLabel")
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 158.0
-offset_top = -50.9994
-offset_right = 258.0
-offset_bottom = 22.0006
+offset_left = 178.0
+offset_top = -51.0
+offset_right = 278.0
+offset_bottom = 42.0
 grow_horizontal = 2
 rotation = 1.5708
 bbcode_enabled = true
 text = "[code]Rage:  24.22
 Drunk: 21.22
-Alert: 2.11[/code]"
+Horny: 2.11
+Attrac: 0.12[/code]"
 autowrap_mode = 0
 
 [connection signal="body_entered" from="." to="." method="OnBodyEntered"]

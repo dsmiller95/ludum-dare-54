@@ -5,11 +5,11 @@
 [ext_resource type="Resource" uid="uid://bx2o2qprxcl3p" path="res://Audience/AiPresets/factor_tuning.tres" id="3_hljdd"]
 [ext_resource type="Script" path="res://Audience/FactorBasedCrowdActorConfig.cs" id="4_nwjy1"]
 
-[sub_resource type="Resource" id="Resource_vdg8d"]
+[sub_resource type="Resource" id="Resource_so8ly"]
 script = ExtResource("1_tqyak")
 RagePerSecond = 0.0
-StuporPerSecond = 0.1
-StinkyToAttractivePerSecond = 0.0
+StuporPerSecond = 0.08
+StinkyToAttractivePerSecond = -0.01
 HornyPerSecond = 0.0
 IntrovertToExtrovertPerSecond = 0.0
 
@@ -17,4 +17,4 @@ IntrovertToExtrovertPerSecond = 0.0
 script = ExtResource("4_nwjy1")
 Tuning = ExtResource("3_hljdd")
 OverrideSource = ExtResource("2_um0ll")
-Archetype = SubResource("Resource_vdg8d")
+Archetype = SubResource("Resource_so8ly")

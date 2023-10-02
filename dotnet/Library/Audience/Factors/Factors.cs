@@ -106,6 +106,8 @@ public enum FactorType
     StinkyToAttractive = 2,
     /// <summary>
     /// 0..1
+    /// how affected an actor is by the stinky matrix. 0 means they are not affected at all.
+    /// 1 means they are strongly attracted to attractive, and repelled from stinky.
     /// </summary>
     Horny = 3,
     /// <summary>

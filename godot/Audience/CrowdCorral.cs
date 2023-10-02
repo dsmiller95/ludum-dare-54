@@ -16,6 +16,7 @@ public partial class CrowdCorral: Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+        // TODO performance : use a 2d array, specify exact size in crowd coral. reuse list contents frame to frame.
         crowdHash = new();
         var children = GetChildren();
 

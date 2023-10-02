@@ -62,7 +62,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
             neighborCrowdActors.Add(new NeighborCrowdActor
             {
                 actor = neighbor.crowdActorImpl,
-                relativePosition = neighbor.GlobalPosition
+                relativePosition = neighbor.GlobalPosition - this.GlobalPosition
             });
         }
         

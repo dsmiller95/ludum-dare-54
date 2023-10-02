@@ -6,7 +6,7 @@
 script = ExtResource("1_rrtke")
 UseLiveOverride = false
 Rage = 0.0
-Stupor = 1.0
-StinkyToAttractive = 0.0
-Horny = 0.0
+Stupor = 0.1
+StinkyToAttractive = 0.02
+Horny = 0.02
 IntrovertToExtrovert = 0.0

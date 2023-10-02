@@ -16,10 +16,12 @@ public partial class FactorBasedCrowdActorConfig : Resource, ICrowdActorPreset
         var tuningParams = Tuning.FactorTuningParams();
         var accumulationParams = Archetype.GetAccumulation();
         var rng = new RandomNumberGenerator();
+        rng.Randomize();
         var effects = new IFactorEffect []
         {
             new MotorControlFactor(tuningParams, rng),
-            new RageFactor(tuningParams, rng)
+            new RageFactor(tuningParams, rng),
+            new HornyControlFactor(tuningParams)
         };
         return new FactorBasedCrowdActor(effects, tuningParams, accumulationParams, OverrideSource);
     }
