@@ -2,8 +2,10 @@ using Godot;
 
 namespace LudumDare54.Audience;
 
-public partial class RandomAnimationStart : AnimatedSprite2D
+public partial class RandomAnimationStart : Node
 {
+    [Export]
+    public AnimatedSprite2D AnimatingTarget;
 
     private ulong startTime = 0;
     public override void _Ready()
@@ -15,7 +17,8 @@ public partial class RandomAnimationStart : AnimatedSprite2D
     {
         if (startTime <= Time.GetTicksMsec())
         {
-            this.Play();
+            AnimatingTarget.Play();
+            QueueFree();
         }
     }
 }
