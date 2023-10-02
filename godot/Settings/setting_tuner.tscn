@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://oe0kh3wrproj"]
+
+[ext_resource type="Script" path="res://Settings/PerformanceSettingAutoTuner.cs" id="1_qea5u"]
+
+[node name="SettingTuner" type="Node"]
+script = ExtResource("1_qea5u")

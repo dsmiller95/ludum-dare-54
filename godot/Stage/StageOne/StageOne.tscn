@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=34 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
@@ -19,8 +19,10 @@
 [ext_resource type="PackedScene" uid="uid://cpqdu38mtpo4a" path="res://Lighting/LongLight.tscn" id="14_f6f0j"]
 [ext_resource type="Resource" uid="uid://btnx83vp6mfxh" path="res://Audience/AiPresets/factor_rolling_raver.tres" id="16_gmg0n"]
 [ext_resource type="Resource" uid="uid://bm7cfjlu24ccy" path="res://Audience/AiPresets/factor_drunkard.tres" id="17_1tcn1"]
-[ext_resource type="Resource" uid="uid://c6rp1cxkcb7pi" path="res://Audience/AiPresets/factor_toker.tres" id="18_3pb75"]
-[ext_resource type="Resource" uid="uid://ceyhc5riqavsw" path="res://Audience/AiPresets/factor_wildcard_bitches.tres" id="19_mowpl"]
+[ext_resource type="Resource" uid="uid://bt5dstfdpp24e" path="res://Audience/AiPresets/factor_toker.tres" id="18_3pb75"]
+[ext_resource type="Resource" uid="uid://di7kla0qry0ee" path="res://Audience/AiPresets/factor_wildcard_bitches.tres" id="19_mowpl"]
+[ext_resource type="PackedScene" uid="uid://s3dnd85emw40" path="res://MenuScenes/controls.tscn" id="21_rcau4"]
+[ext_resource type="PackedScene" uid="uid://oe0kh3wrproj" path="res://Settings/setting_tuner.tscn" id="23_4n3p6"]
 
 [sub_resource type="Curve" id="Curve_dgqs3"]
 _data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
@@ -374,7 +376,13 @@ SpawnNum = 150
 Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")
 player = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Player")
 
-[connection signal="body_entered" from="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area/Goal" to="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" method="_on_goal_body_entered"]
+[node name="controls" parent="HUD" instance=ExtResource("21_rcau4")]
+offset_left = 773.0
+offset_top = 553.0
+offset_right = 1057.0
+offset_bottom = 631.0
+
+[node name="SettingTuner" parent="." instance=ExtResource("23_4n3p6")]
 
 [connection signal="body_entered" from="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area/Goal" to="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" method="_on_goal_body_entered"]
 

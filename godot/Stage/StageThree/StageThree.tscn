@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bf02m4bdxlinm"]
+[gd_scene load_steps=21 format=3 uid="uid://bf02m4bdxlinm"]
 
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="1_utcoq"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_la1lo"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="11_nss2b"]
 [ext_resource type="PackedScene" uid="uid://dfw2f7apa6tu2" path="res://Stage/Set Peices/PushZone.tscn" id="13_jpmv1"]
 [ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="14_72xm3"]
+[ext_resource type="PackedScene" uid="uid://oe0kh3wrproj" path="res://Settings/setting_tuner.tscn" id="15_5ywbj"]
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="15_hyug6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
@@ -301,6 +302,8 @@ PushDirection = 3
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("15_hyug6")]
 Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")
 player = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Player")
+
+[node name="SettingTuner" parent="." instance=ExtResource("15_5ywbj")]
 
 [connection signal="body_entered" from="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area/Goal" to="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" method="_on_goal_body_entered"]
 

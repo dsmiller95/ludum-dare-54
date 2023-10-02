@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://chkdjgq485618"]
+[gd_scene load_steps=22 format=3 uid="uid://chkdjgq485618"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_jeoxr"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="2_i7qdb"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="13_i5lvd"]
 [ext_resource type="TileSet" uid="uid://dwyk00t7c3ajw" path="res://Tilesets/walls_and_barriers.tres" id="13_t8hld"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="14_ddsik"]
+[ext_resource type="PackedScene" uid="uid://oe0kh3wrproj" path="res://Settings/setting_tuner.tscn" id="16_bw7mt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
 size = Vector2(1935, 815)
@@ -317,6 +318,8 @@ layer_0/tile_data = PackedInt32Array(-458749, 65536, 3, -458748, 65536, 3, -4587
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("13_i5lvd")]
 Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")
 player = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Player")
+
+[node name="SettingTuner" parent="." instance=ExtResource("16_bw7mt")]
 
 [connection signal="body_entered" from="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area/Goal" to="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" method="_on_goal_body_entered"]
 
