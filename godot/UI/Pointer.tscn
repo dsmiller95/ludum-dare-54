@@ -13,6 +13,7 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="PointerSprite" type="Sprite2D" parent="."]
+texture_filter = 1
 position = Vector2(-51, -57)
-scale = Vector2(3.21429, 3.05556)
+scale = Vector2(5.259, 5)
 texture = ExtResource("1_mpo5x")
