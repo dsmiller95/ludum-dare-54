@@ -26,8 +26,10 @@ public record FactorTuningParams
     public float RagePunchMinMagnitude { get; set; }
     public float RagePunchMaxMagnitude { get; set; }
     public float RagePunchDuration { get; set; }
-    
-    
-    public float AttractionForceMultiplier { get; set; }
-    public float MaximumAttractiveForce { get; set; }
+
+
+
+    public AttractorControlFactorTuning? HornyTuning { get; set; } = null;
+    public AttractorControlFactorTuning? ExtrovertTuning { get; set; } = null;
+
 }
