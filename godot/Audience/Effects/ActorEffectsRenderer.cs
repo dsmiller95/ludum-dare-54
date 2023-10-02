@@ -2,6 +2,7 @@ using System.Text;
 using DotnetLibrary.Audience;
 using DotnetLibrary.Audience.Factors;
 using Godot;
+using LudumDare54.Settings;
 
 namespace LudumDare54.Audience;
 
@@ -11,7 +12,19 @@ public partial class ActorEffectsRenderer : Node2D
 
     [Export] private DebugViewOption debugOption;
     [Export] private RichTextLabel effectText;
-    
+
+    public override void _Ready()
+    {
+        SettingsSingleton.InitOrWaitForReady(opts =>
+        {
+            debugOption = opts.DisplayDebugFactors;
+            if (opts.DisplayDebugFactors == DebugViewOption.None)
+            {
+                effectText.Hide();
+            }
+        });
+    }
+
     public void RenderEffects(CrowdActorEffect effects)
     {
         bodySprite.SelfModulate = Colors.White

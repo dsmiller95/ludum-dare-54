@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="SettingsResource" load_steps=2 format=3 uid="uid://h6or87y35yqe"]
+
+[ext_resource type="Script" path="res://Settings/SettingsResource.cs" id="1_jg548"]
+
+[resource]
+script = ExtResource("1_jg548")
+UseNeighborCalculation = false
+DisplayDebugFactors = 2
