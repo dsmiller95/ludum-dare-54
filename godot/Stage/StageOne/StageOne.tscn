@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="6_juosq"]
 [ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="6_odtpf"]
 [ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="7_umxbt"]
-[ext_resource type="Texture2D" path="res://Assets/Stage.tres" id="9_x17ly"]
+[ext_resource type="Texture2D" uid="uid://bf0c1wof0qvm8" path="res://Assets/Stage.tres" id="9_x17ly"]
 [ext_resource type="PackedScene" uid="uid://fj33jhwm7js1" path="res://Stage/Set Peices/path.tscn" id="11_tqkk2"]
 [ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="12_u4y1s"]
 [ext_resource type="PackedScene" uid="uid://cpqdu38mtpo4a" path="res://Lighting/LongLight.tscn" id="14_f6f0j"]
