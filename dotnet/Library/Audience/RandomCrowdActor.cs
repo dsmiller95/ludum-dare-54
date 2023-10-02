@@ -3,7 +3,7 @@ using Godot;
 
 namespace DotnetLibrary.Audience;
 
-public class RandomCrowdActor : ICrowdActor
+public class RandomCrowdActor
 {
     private readonly float randomnessSpeed;
     private Vector2 RandomMoveVector { get; set; }
@@ -26,7 +26,7 @@ public class RandomCrowdActor : ICrowdActor
         this.ySpeed = rng.Randf();
     }
 
-    public void Update(double deltaTime, double currentSeconds, Span<AiNeighbor?> neighbors)
+    public void Update(double deltaTime, double currentSeconds)
     {
         currentSeconds += timeOffset;
         currentSeconds *= randomnessSpeed;

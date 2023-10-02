@@ -29,7 +29,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
 
     private AnimatedSprite2D sprite;
 
-    public ICrowdActor CrowdActorImpl;
+    public FactorBasedCrowdActor CrowdActorImpl;
     private PersonBody personBody;
     private PersonPhysics myPhysics;
 
@@ -89,7 +89,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         // personBody._PhysicsProcess();
     }
 
-    private List<NeighborCrowdActor> neighborCrowdActorCache = new List<NeighborCrowdActor>();
     public void OwnedPhysicsProcess(double delta, Span<AiNeighbor?> neighbors)
     {
         ManagedPhysicsProcess(delta, neighbors);

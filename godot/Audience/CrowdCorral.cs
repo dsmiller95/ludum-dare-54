@@ -14,14 +14,30 @@ public partial class CrowdCorral: Node2D
 
     private const int _segmentSize = 100;
 
+    private List<CrowdActor> AllActors = new();
+    
     public override void _Ready()
     {
         ProcessPriority = 10;
     }
 
+    public void UpdateInternalActorList()
+    {
+        AllActors.Clear();
+        var children = GetChildren();
+        foreach (var child in children)
+        {
+            if (child is not CrowdActor crowdChild)
+            {
+                continue;
+            }
+            AllActors.Add(crowdChild);
+        }
+    }
+
     public override void _PhysicsProcess(double delta)
     {
-        var children = GetChildren();
+        var children = AllActors;
         var shouldUseCalculation = SettingsSingleton.Settings?.UseNeighborCalculation ?? true;
         if (shouldUseCalculation)
         {
@@ -34,24 +50,27 @@ public partial class CrowdCorral: Node2D
 
         var workingNeighborList = new List<AiNeighbor?>();
         
+        
+        
         foreach (var child in children)
         {
-            if (child is not CrowdActor crowdChild)
+            if (child is null)
             {
+                GD.PrintErr("null child in crowd corral internal tracker");
                 continue;
             }
             
             if (shouldUseCalculation)
             {
                 workingNeighborList.Clear();
-                GetNeighbors(crowdChild, workingNeighborList);
+                GetNeighbors(child, workingNeighborList);
             }
-            crowdChild.OwnedPhysicsProcess(delta, CollectionsMarshal.AsSpan(workingNeighborList));
+            child.OwnedPhysicsProcess(delta, CollectionsMarshal.AsSpan(workingNeighborList));
         }
 
     }
 
-    private void UpdateNeighborCache(Array<Node> children)
+    private void UpdateNeighborCache(List<CrowdActor> children)
     {
         if (crowdHash == null) crowdHash = new();
 
@@ -66,12 +85,13 @@ public partial class CrowdCorral: Node2D
 
         foreach (var child in children)
         {
-            if (child is not CrowdActor crowdChild)
+            if (child is null)
             {
+                GD.PrintErr("null child in crowd corral internal tracker");
                 continue;
             }
 
-            var hashedPosition = crowdChild.GlobalPosition / _segmentSize;
+            var hashedPosition = child.GlobalPosition / _segmentSize;
 
             if (!crowdHash.ContainsKey((int)hashedPosition.X))
             {
@@ -83,7 +103,7 @@ public partial class CrowdCorral: Node2D
                 crowdHash[(int)hashedPosition.X][(int)hashedPosition.Y] = new();
             }
 
-            crowdHash[(int)hashedPosition.X][(int)hashedPosition.Y].Add(crowdChild);
+            crowdHash[(int)hashedPosition.X][(int)hashedPosition.Y].Add(child);
         }
     }
 
@@ -113,11 +133,11 @@ public partial class CrowdCorral: Node2D
                     var neighbor = itemsInHash[i];
                     var relativePosition = neighbor.GlobalPosition - crowdActor.GlobalPosition;
                     var actor = neighbor.CrowdActorImpl;
-                    if(actor is not FactorBasedCrowdActor factorBased) continue; //oopsie, goodbie liskov 🤭🤭🤭
+                    if(actor is null) continue;
                     neighbors.Add(new AiNeighbor
                     {
                         Position = relativePosition,
-                        Factors = factorBased.factors
+                        Factors = actor.factors
                     });
                 }
             }

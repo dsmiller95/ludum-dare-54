@@ -2,7 +2,7 @@ using Godot;
 
 namespace DotnetLibrary.Audience.Factors;
 
-public class FactorBasedCrowdActor : ICrowdActor
+public class FactorBasedCrowdActor
 {
     private readonly IFactorEffect[] effects;
     private readonly FactorTuningParams tuning;

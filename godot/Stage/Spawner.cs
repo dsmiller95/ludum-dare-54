@@ -49,12 +49,13 @@ public partial class Spawner : CollisionShape2D
 
 			var rotation = rng.RandiRange(-1 * FacingSkew, FacingSkew);
 			instance.RotationDegrees += rotation;
-			CrowdCorral.AddChild(instance);
+			CrowdCorral?.AddChild(instance);
 
 			if (instance is CrowdActor crowdActor)
 			{
 				crowdActor.CrowdCorral = CrowdCorral;
 			}
 		}
+		CrowdCorral?.UpdateInternalActorList();
 	}
 }
