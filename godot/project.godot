@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Ludum Dare 54"
+config/name="Mosh Pint"
 run/main_scene="res://MenuScenes/StartScreen.tscn"
 config/features=PackedStringArray("4.1", "C#", "Forward Plus")
 config/icon="res://icon.png"
