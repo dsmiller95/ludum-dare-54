@@ -54,17 +54,6 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         return personBody;
     }
 
-    private int GetZIndex()
-    {
-        long index = (int)Position.Y/10;
-        index = Math.Clamp(index, Godot.RenderingServer.CanvasItemZMin + 10, Godot.RenderingServer.CanvasItemZMax - 10);
-        return (int)index;
-    }
-    public override void _Process(double delta)
-    {
-        sprite.ZIndex = GetZIndex();
-    }
-
     public override void _PhysicsProcess(double delta)
     {
         var neighborCrowdActors = NeighborCrowdActors();
