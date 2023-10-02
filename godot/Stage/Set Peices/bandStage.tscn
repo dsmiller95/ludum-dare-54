@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bfhdhs02bmh7p"]
+[gd_scene load_steps=12 format=3 uid="uid://bfhdhs02bmh7p"]
 
 [ext_resource type="Texture2D" uid="uid://c0gss0qknwuyt" path="res://Assets/Map_objects.png" id="1_x8xci"]
 [ext_resource type="Texture2D" uid="uid://se63anto53pq" path="res://Assets/Stage_NORMALS.png" id="2_6b7f0"]
 [ext_resource type="Texture2D" uid="uid://esqae6cs1dpf" path="res://Assets/performer_shadow_jump.png" id="3_syi1i"]
+[ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="4_gcu1w"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_yn0ry"]
 diffuse_texture = ExtResource("1_x8xci")
@@ -48,6 +49,7 @@ animations = [{
 size = Vector2(221.1, 71.7)
 
 [node name="Stage" type="Node2D"]
+z_index = -1495
 
 [node name="Stage" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -65,8 +67,27 @@ frame = 2
 frame_progress = 0.76757
 
 [node name="collision" type="StaticBody2D" parent="."]
-z_index = -1495
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="collision"]
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_fyawr")
+
+[node name="lights" type="Node2D" parent="."]
+z_index = 1495
+
+[node name="Spotlight7" parent="lights" instance=ExtResource("4_gcu1w")]
+position = Vector2(-250, -11)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 3.0
+height = 100.0
+MinDistance = 50.0
+MaxSpeed = 30.0
+
+[node name="Spotlight3" parent="lights" instance=ExtResource("4_gcu1w")]
+position = Vector2(254, -7.99999)
+scale = Vector2(5, 5)
+energy = 3.0
+height = 100.0
+MinDistance = 50.0
+MaxSpeed = 30.0

@@ -87,6 +87,9 @@ stop_event = 3
 event = ExtResource("8_c1wsg")
 position = Vector2(1156, -3753)
 
+[node name="Stage" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("14_v1puq")]
+position = Vector2(1208, -2026)
+
 [node name="Lighting" type="Node2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage"]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/Lighting"]
@@ -271,9 +274,6 @@ PushDirection = 2
 [node name="CollisionShape2D" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage/PushZones/UpPushZone2/UpPushZone" index="0"]
 position = Vector2(-12.0001, 0.03125)
 shape = SubResource("RectangleShape2D_s7nnu")
-
-[node name="Stage" parent="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" instance=ExtResource("14_v1puq")]
-position = Vector2(1208, -2026)
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("15_41oaw")]
 Goal = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area")
