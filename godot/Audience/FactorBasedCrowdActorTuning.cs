@@ -15,6 +15,14 @@ public partial class FactorBasedCrowdActorTuning : Resource
     [Export] public float RagePunchMinMagnitude = 1f;
     [Export] public float RagePunchMaxMagnitude = 100f;
     [Export] public float RagePunchDuration = 0.1f;
+    
+    [ExportGroup("HornyAttraction")]
+    [Export] public float HornyAttractionForceMultiplier = 400f;
+    [Export] public float HornyMaximumAttractiveForce = 20f;
+
+    [ExportGroup("ExtrovertAttraction")]
+    [Export] public float ExtrovertAttractionForceMultiplier = 400f;
+    [Export] public float ExtrovertMaximumAttractiveForce = 20f;
 
     public FactorTuningParams FactorTuningParams()
     {
@@ -22,11 +30,23 @@ public partial class FactorBasedCrowdActorTuning : Resource
         {
             RandomWalkJitter = RandomWalkJitter,
             FactorDecayRate = FactorDecayRate,
+
             PushToRageRatio = PushToRageRatio,
             RagePunchChancePerSecond = RagePunchChancePerSecond,
             RagePunchMinMagnitude = RagePunchMinMagnitude,
             RagePunchMaxMagnitude = RagePunchMaxMagnitude,
-            RagePunchDuration = RagePunchDuration
+            RagePunchDuration = RagePunchDuration,
+
+            HornyTuning = new AttractorControlFactorTuning
+            {
+                AttractionForceMultiplier = HornyAttractionForceMultiplier,
+                MaximumAttractiveForce = HornyMaximumAttractiveForce,
+            },
+            ExtrovertTuning = new AttractorControlFactorTuning()
+            {
+                AttractionForceMultiplier = ExtrovertAttractionForceMultiplier,
+                MaximumAttractiveForce = ExtrovertMaximumAttractiveForce,
+            }
         };
         return tuningParams;
     }

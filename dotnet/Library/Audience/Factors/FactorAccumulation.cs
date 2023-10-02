@@ -1,3 +1,5 @@
+using Godot;
+
 namespace DotnetLibrary.Audience.Factors;
 
 public interface IProvideFactorAccumulation
@@ -18,6 +20,21 @@ public struct FactorAccumulation
     {
         per ??= TimeSpan.FromSeconds(1);
         AccumulationsPerSecond[(int)factor] = amount / (float)per.Value.TotalSeconds;
+    }
+    
+    public void NormalizeAllAccumulates(float postMultiply)
+    {
+        var total = 0f;
+        for (int i = 0; i < AccumulationsPerSecond.Length; i++)
+        {
+            total += AccumulationsPerSecond[i] * AccumulationsPerSecond[i];
+        }
+
+        var distance = Mathf.Sqrt(total);
+        for (int i = 0; i < AccumulationsPerSecond.Length; i++)
+        {
+            AccumulationsPerSecond[i] = AccumulationsPerSecond[i] * postMultiply / distance;
+        }
     }
     
 }

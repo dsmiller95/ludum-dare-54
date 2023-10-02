@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="FactorBasedCrowdActorConfig" load_steps=6 format=3 uid="uid://btnx83vp6mfxh"]
+
+[ext_resource type="Script" path="res://Audience/FactorArchetype.cs" id="1_03n7d"]
+[ext_resource type="Resource" uid="uid://dwn3taa2kaoar" path="res://Audience/AiPresets/factor_default_override.tres" id="2_66gnd"]
+[ext_resource type="Resource" uid="uid://bx2o2qprxcl3p" path="res://Audience/AiPresets/factor_tuning.tres" id="3_m11x7"]
+[ext_resource type="Script" path="res://Audience/FactorBasedCrowdActorConfig.cs" id="4_u5py5"]
+
+[sub_resource type="Resource" id="Resource_t5avl"]
+script = ExtResource("1_03n7d")
+GlobalMultiplier = 0.2
+RagePerSecond = 0.0
+StuporPerSecond = 2.0
+StinkyToAttractivePerSecond = 2.0
+HornyPerSecond = 5.0
+IntrovertToExtrovertPerSecond = -2.0
+
+[resource]
+script = ExtResource("4_u5py5")
+Tuning = ExtResource("3_m11x7")
+OverrideSource = ExtResource("2_66gnd")
+Archetype = SubResource("Resource_t5avl")

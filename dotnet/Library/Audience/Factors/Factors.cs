@@ -22,10 +22,12 @@ public struct Factors
         
         for (int i = 0; i < factors.Length; i++)
         { // this can be tuned. doesn't need to be cartesian normalization, could be linear/average
+            //sum += Mathf.Abs(factors[i]);
             sum += factors[i] * factors[i];
             normalizedFactors[i] = factors[i];
         }
 
+        //float distance = sum;
         float distance = Mathf.Sqrt(sum);
 
         for (int i = 0; i < factors.Length; i++)
@@ -106,6 +108,8 @@ public enum FactorType
     StinkyToAttractive = 2,
     /// <summary>
     /// 0..1
+    /// how affected an actor is by the stinky matrix. 0 means they are not affected at all.
+    /// 1 means they are strongly attracted to attractive, and repelled from stinky.
     /// </summary>
     Horny = 3,
     /// <summary>
