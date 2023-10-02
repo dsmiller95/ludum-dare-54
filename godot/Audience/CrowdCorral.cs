@@ -37,6 +37,8 @@ public partial class CrowdCorral: Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+        var floatDelta = (float)delta;
+        var currentSeconds = Time.GetTicksMsec() / 1000f;
         var children = AllActors;
         var shouldUseCalculation = SettingsSingleton.Settings?.UseNeighborCalculation ?? true;
         if (shouldUseCalculation)
@@ -59,13 +61,23 @@ public partial class CrowdCorral: Node2D
                 GD.PrintErr("null child in crowd corral internal tracker");
                 continue;
             }
+            child.OwnedUpdateFactors(floatDelta);
+        }
+
+        foreach (var child in children)
+        {
+            if (child is null)
+            {
+                GD.PrintErr("null child in crowd corral internal tracker");
+                continue;
+            }
             
             if (shouldUseCalculation)
             {
                 workingNeighborList.Clear();
                 GetNeighbors(child, workingNeighborList);
             }
-            child.OwnedPhysicsProcess(delta, CollectionsMarshal.AsSpan(workingNeighborList));
+            child.OwnedPhysicsProcess(floatDelta, currentSeconds,CollectionsMarshal.AsSpan(workingNeighborList));
         }
 
     }

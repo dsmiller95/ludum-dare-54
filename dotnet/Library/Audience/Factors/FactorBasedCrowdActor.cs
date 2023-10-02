@@ -30,8 +30,8 @@ public class FactorBasedCrowdActor
         factors = overrideSource?.GetOverrideFactor() ?? new Factors(0.5f);
         this.overrideSource = overrideSource is { UseLiveOverride: true } ? overrideSource : null;
     }
-    
-    public void Update(double deltaTime, double currentSeconds, Span<AiNeighbor?> neighbors)
+
+    public void UpdateFactors(float deltaTime)
     {
         if (overrideSource is { UseLiveOverride: true })
         {
@@ -39,15 +39,19 @@ public class FactorBasedCrowdActor
         }
         else
         {
-            this.factors.AccumulateFactors(accumulation, (float)deltaTime);
-            this.factors.DecayFactors((float)deltaTime, tuning.FactorDecayRate);
+            this.factors.AccumulateFactors(accumulation, deltaTime);
+            this.factors.DecayFactors(deltaTime, tuning.FactorDecayRate);
         }
-        
-        
+
+        this.factors.HintNormalizeNow();
+    }
+    
+    public void Update(float deltaTime, float currentSeconds, Span<AiNeighbor?> neighbors)
+    {   
         var aiParams = new AiParams
         {
-            deltaTime = (float)deltaTime,
-            currentTime = (float)currentSeconds,
+            deltaTime = deltaTime,
+            currentTime = currentSeconds,
             SelfFactors = this.factors,
             Neighbors = neighbors,
         };

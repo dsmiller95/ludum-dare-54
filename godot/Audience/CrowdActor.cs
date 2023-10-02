@@ -77,15 +77,19 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         }
     }
 
-    public void OwnedPhysicsProcess(double delta, Span<AiNeighbor?> neighbors)
+    public void OwnedUpdateFactors(float delta)
     {
-        ManagedPhysicsProcess(delta, neighbors);
+        CrowdActorImpl.UpdateFactors(delta);
+    }
+    public void OwnedPhysicsProcess(float delta, float currentSeconds, Span<AiNeighbor?> neighbors)
+    {
+        ManagedPhysicsProcess(delta, currentSeconds, neighbors);
         personBody._PhysicsProcess();
     }
     
-    private void ManagedPhysicsProcess(double delta, Span<AiNeighbor?> neighbors)
+    private void ManagedPhysicsProcess(float delta, float currentSeconds,  Span<AiNeighbor?> neighbors)
     {
-        CrowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighbors);
+        CrowdActorImpl.Update(delta, currentSeconds, neighbors);
         
         var selfMoveForce = CrowdActorImpl.GetCurrentSelfMoveForce() * moveForceMultiplier;
         
@@ -97,6 +101,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
             CrowdActorImpl.GetFirmness());
         integrationResult.ApplyTo(this);
     }
+
 
     public void OnBodyEntered(Node bodyGeneric)
     {
