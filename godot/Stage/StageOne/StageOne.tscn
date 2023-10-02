@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=32 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
@@ -349,4 +349,7 @@ player = NodePath("../WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Pl
 
 [connection signal="body_entered" from="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area/Goal" to="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" method="_on_goal_body_entered"]
 
+[connection signal="body_entered" from="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area/Goal" to="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Stage" method="_on_goal_body_entered"]
+
 [editable path="WeNeedThisToHaveTilemapAndPlayerSortingHappilyEverAfter/Players/Goal area"]
+[editable path="HUD"]
