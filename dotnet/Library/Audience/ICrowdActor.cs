@@ -1,3 +1,4 @@
+using DotnetLibrary.Audience.Factors;
 using Godot;
 
 namespace DotnetLibrary.Audience;
@@ -40,26 +41,9 @@ namespace DotnetLibrary.Audience;
 ///     queueing actors. if you interrupt their queue, they get real mad
 /// 
 /// </summary>
-public interface ICrowdActor
-{
-    /// <summary>
-    /// must be called before interacting with any other methods, with the correct delta time since this function was last called
-    /// </summary>
-    public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors);
-    public void ReceivePushEvent(PushEvent pushEvent);
-    public float GetFirmness();
-    public Vector2 GetCurrentSelfMoveForce();
-    
-    public CrowdActorEffect GetCrowdEffectLevels();
-}
 
 public record struct PushEvent(Vector2 PushForce);
 
-public record struct NeighborCrowdActor
-{
-    public Vector2 relativePosition;
-    public ICrowdActor actor;
-}
 
 public record struct CrowdActorEffect
 {

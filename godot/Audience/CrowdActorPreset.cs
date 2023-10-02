@@ -1,9 +1,10 @@
 using DotnetLibrary.Audience;
+using DotnetLibrary.Audience.Factors;
 using Godot;
 
 namespace LudumDare54.Audience;
 
 public interface ICrowdActorPreset
 {
-    public ICrowdActor ConstructConfiguredActor();
+    public FactorBasedCrowdActor ConstructConfiguredActor();
 }

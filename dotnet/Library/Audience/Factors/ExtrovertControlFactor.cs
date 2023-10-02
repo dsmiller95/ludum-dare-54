@@ -78,6 +78,10 @@ public class AttractorControlFactor : IFactorEffect
             totalSamples++;
         }
 
+        if (totalSamples == 0)
+        {
+            return AiResult.Default;
+        }
         var averageAttractionForce = totalAttractionForce / totalSamples;
         var totalAttractiveForce = averageAttractionForce * attractionScale * attractionMultiplier;
         totalAttractiveForce = totalAttractiveForce.Clamped(maxForce);

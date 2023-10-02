@@ -33,7 +33,7 @@ public partial class PathRepellent : Area2D
         var delta = other.GlobalPosition - RepellentShapeDefinition.GlobalPosition;
         var deltaDir = delta.Normalized();
         var deltaInMinorAxis = deltaDir.Dot(minorAxisGlobal);
-        if(Mathf.Abs(deltaInMinorAxis) <= 0.00001f) return Vector2.Zero;
+        if(float.IsNaN(deltaInMinorAxis) || Mathf.Abs(deltaInMinorAxis) <= 0.00001f) return Vector2.Zero;
         
         return minorAxisGlobal * Mathf.Sign(deltaInMinorAxis) * RepellentForce;
     }

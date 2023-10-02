@@ -1,8 +1,9 @@
+using DotnetLibrary.Audience.Factors;
 using Godot;
 
 namespace DotnetLibrary.Audience;
 
-public class CalmCrowdActor : ICrowdActor
+public class CalmCrowdActor
 {
     private Vector2 DecayingPushForceRecord { get; set; }
     private float DecayingPushMagnitudeRecord { get; set; }
@@ -23,7 +24,7 @@ public class CalmCrowdActor : ICrowdActor
         this.frictionMultiplier = frictionMultiplier;
     }
 
-    public void Update(double deltaTime, double currentSeconds, NeighborCrowdActor[] neighbors)
+    public void Update(double deltaTime, double currentSeconds)
     {
         var exponentialDecay = (float)Mathf.Pow(Mathf.E, -PushExponentialDecayConstant * deltaTime);
         DecayingPushForceRecord *= exponentialDecay;

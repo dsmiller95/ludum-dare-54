@@ -11,7 +11,7 @@ public partial class FactorBasedCrowdActorConfig : Resource, ICrowdActorPreset
     [Export] public FactorOverrideSource OverrideSource;
     [Export] public FactorArchetype Archetype;
     
-    public ICrowdActor ConstructConfiguredActor()
+    public FactorBasedCrowdActor ConstructConfiguredActor()
     {
         var tuningParams = Tuning.FactorTuningParams();
         var accumulationParams = Archetype.GetAccumulation();
