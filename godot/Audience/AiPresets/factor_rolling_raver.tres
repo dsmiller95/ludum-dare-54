@@ -7,6 +7,7 @@
 
 [sub_resource type="Resource" id="Resource_t5avl"]
 script = ExtResource("1_03n7d")
+GlobalMultiplier = 2.0
 RagePerSecond = 0.0
 StuporPerSecond = 0.01
 StinkyToAttractivePerSecond = 0.02
