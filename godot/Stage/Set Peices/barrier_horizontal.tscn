@@ -1,5 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dedyy4ro7iyhc"]
+[gd_scene load_steps=4 format=3 uid="uid://dqvmaqnoi2rse"]
 
+[ext_resource type="Script" path="res://Stage/Set Peices/barrier_horizontal.cs" id="1_b5ef5"]
 [ext_resource type="Texture2D" uid="uid://b8l5qfru24t3y" path="res://Assets/barrier_side_and_backstage.png" id="1_fw2cl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rldea"]
@@ -7,8 +8,10 @@ radius = 5.5
 height = 48.9999
 
 [node name="Barrier Horizontal" type="Node2D"]
+script = ExtResource("1_b5ef5")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 4000
 texture_filter = 1
 position = Vector2(0, -10)
 scale = Vector2(5, 5)

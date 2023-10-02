@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://d0qbantr4o4o5"]
+[gd_scene load_steps=3 format=3 uid="uid://dkxj4rn4byvae"]
 
 [ext_resource type="Texture2D" uid="uid://dt20roqo673sm" path="res://Assets/car_shitty.png" id="1_ylg1h"]
 
@@ -7,6 +7,7 @@ radius = 26.0
 height = 128.0
 
 [node name="Car" type="Node2D"]
+z_index = -1495
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

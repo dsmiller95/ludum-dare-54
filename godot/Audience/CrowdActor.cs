@@ -24,6 +24,9 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export]
     private Array<Resource> crowdActorPresetOptions;
     
+
+    private AnimatedSprite2D sprite;
+
     private ICrowdActor crowdActorImpl;
     private PersonBody personBody;
     private PersonPhysics myPhysics;
@@ -33,6 +36,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     [Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
     public override void _Ready()
     {
+        sprite = (AnimatedSprite2D)GetNode("AnimatedSprite2D");
         ProcessPriority = 11;
         var options = crowdActorPresetOptions.Cast<ICrowdActorPreset>().Where(x => x != null).ToArray();
         if (options.Length <= 0)
@@ -54,6 +58,7 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     }
     public override void _PhysicsProcess(double delta)
     {
+        sprite.ZIndex = (int)Position.Y/10;
         var neighborCrowdActors = NeighborCrowdActors();
 
         crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighborCrowdActors);

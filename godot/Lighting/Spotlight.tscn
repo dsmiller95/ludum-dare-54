@@ -8,6 +8,7 @@ texture_filter = 1
 position = Vector2(606, 293)
 scale = Vector2(50, 50)
 color = Color(0.788235, 0.294118, 0.631373, 1)
+range_z_min = -1600
 texture = ExtResource("1_oh83x")
 script = ExtResource("2_o6hh4")
 MaxDistance = 100.0
