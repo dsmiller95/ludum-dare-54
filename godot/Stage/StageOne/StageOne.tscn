@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://jp7er7rcrpsc"]
+[gd_scene load_steps=28 format=3 uid="uid://jp7er7rcrpsc"]
 
 [ext_resource type="Script" path="res://Level.gd" id="1_cyt7s"]
 [ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="2_x4jc6"]
@@ -20,6 +20,9 @@
 [sub_resource type="Curve" id="Curve_dgqs3"]
 _data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
 point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fyawr"]
+size = Vector2(221.1, 71.7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
 size = Vector2(1935, 883)
@@ -65,11 +68,6 @@ play_event = 1
 stop_event = 3
 event = ExtResource("12_u4y1s")
 position = Vector2(1156, -3753)
-
-[node name="Stage" type="Sprite2D" parent="Stage"]
-position = Vector2(1172, -3873)
-scale = Vector2(10, 10)
-texture = ExtResource("9_x17ly")
 
 [node name="Lighting" type="Node2D" parent="Stage"]
 
@@ -253,6 +251,18 @@ position = Vector2(708, -3270)
 rotation = 1.57079
 
 [node name="Walls" type="Node2D" parent="Stage"]
+
+[node name="Stage" type="StaticBody2D" parent="Stage/Walls"]
+
+[node name="Stage" type="Sprite2D" parent="Stage/Walls/Stage"]
+position = Vector2(1172, -3873)
+scale = Vector2(10, 10)
+texture = ExtResource("9_x17ly")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Stage/Walls/Stage"]
+position = Vector2(1165.5, -4476.5)
+scale = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_fyawr")
 
 [node name="Wall" parent="Stage/Walls" instance=ExtResource("5_mhn7y")]
 

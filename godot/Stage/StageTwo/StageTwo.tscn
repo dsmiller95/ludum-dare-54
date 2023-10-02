@@ -1,0 +1,565 @@
+[gd_scene load_steps=23 format=3 uid="uid://chkdjgq485618"]
+
+[ext_resource type="Script" path="res://Level.gd" id="1_jeoxr"]
+[ext_resource type="EventAsset" uid="uid://cnmpaywf4pt24" path="res://addons/FMOD/editor/resources/events/{5a5614a1-fdac-4790-b069-e886cb208d0e}.tres" id="2_i7qdb"]
+[ext_resource type="EventAsset" uid="uid://bkawqwthm5qai" path="res://addons/FMOD/editor/resources/events/{a8566619-a0bd-4cb7-98ba-66069c16162b}.tres" id="3_o7g6a"]
+[ext_resource type="Script" path="res://Lighting/StageLight.cs" id="4_p35dh"]
+[ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="5_3m52a"]
+[ext_resource type="PackedScene" uid="uid://cpx4h0mhovneq" path="res://Stage/floor.tscn" id="6_43vxe"]
+[ext_resource type="PackedScene" uid="uid://bm0pximd300b0" path="res://Stage/Set Peices/wall.tscn" id="8_o7yrb"]
+[ext_resource type="PackedScene" uid="uid://bcnvfslpm7ybr" path="res://Player/Player.tscn" id="9_66iq5"]
+[ext_resource type="PackedScene" uid="uid://d0qbantr4o4o5" path="res://Stage/Set Peices/car.tscn" id="9_pxsd0"]
+[ext_resource type="PackedScene" uid="uid://dc2u66hu32vaq" path="res://goal.tscn" id="10_31f83"]
+[ext_resource type="PackedScene" uid="uid://dceowknfrxknn" path="res://Stage/Set Peices/car_tint.tscn" id="10_34ufy"]
+[ext_resource type="PackedScene" uid="uid://dedyy4ro7iyhc" path="res://Stage/Set Peices/barrier_horizontal.tscn" id="11_2di1r"]
+[ext_resource type="Script" path="res://Audience/CrowdCorral.cs" id="11_bn27e"]
+[ext_resource type="PackedScene" uid="uid://dagjn7kmu8eyo" path="res://Stage/Spawner.tscn" id="12_07thv"]
+[ext_resource type="PackedScene" uid="uid://btq7q4jw0keww" path="res://UI/HUD.tscn" id="13_i5lvd"]
+[ext_resource type="PackedScene" uid="uid://dgjj7ekxo45o" path="res://Stage/Set Peices/barrier_vertical.tscn" id="13_k1pvp"]
+[ext_resource type="BankAsset" uid="uid://dsy7oeyg7hx8e" path="res://addons/FMOD/editor/resources/banks/{dc0586a7-aaeb-4e2e-ad16-4839bf1bde92}.tres" id="14_ddsik"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7wftx"]
+size = Vector2(1935, 815)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6swx1"]
+size = Vector2(1932, 836)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ka12c"]
+size = Vector2(1935, 935)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4apn8"]
+size = Vector2(1935, 1185)
+
+[sub_resource type="Curve" id="Curve_dgqs3"]
+_data = [Vector2(0, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.505155, 0.778947), 0.0, 0.0, 0, 0, Vector2(1, 0.2), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Game" type="Node"]
+
+[node name="Crowd" type="Node2D" parent="."]
+
+[node name="CrowdCorral" type="Node2D" parent="Crowd"]
+script = ExtResource("11_bn27e")
+
+[node name="Spawners" type="Area2D" parent="Crowd"]
+y_sort_enabled = true
+
+[node name="Spawner" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("12_07thv")]
+position = Vector2(1189, 562.5)
+shape = SubResource("RectangleShape2D_7wftx")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 75
+
+[node name="Spawner2" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("12_07thv")]
+position = Vector2(1190, -273)
+shape = SubResource("RectangleShape2D_6swx1")
+CrowdCorral = NodePath("../../CrowdCorral")
+SpawnNum = 75
+
+[node name="Spawner3" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("12_07thv")]
+position = Vector2(1190.5, -1119.5)
+shape = SubResource("RectangleShape2D_ka12c")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="Spawner5" parent="Crowd/Spawners" node_paths=PackedStringArray("CrowdCorral") instance=ExtResource("12_07thv")]
+position = Vector2(1179, -2183.5)
+shape = SubResource("RectangleShape2D_4apn8")
+CrowdCorral = NodePath("../../CrowdCorral")
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="Player" parent="Players" instance=ExtResource("9_66iq5")]
+position = Vector2(1169, 885)
+
+[node name="Goal area" parent="Players" instance=ExtResource("10_31f83")]
+position = Vector2(560, -2390)
+
+[node name="Stage" type="Node2D" parent="."]
+y_sort_enabled = true
+script = ExtResource("1_jeoxr")
+
+[node name="Audio" type="Node2D" parent="Stage"]
+
+[node name="CrowdEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+play_event = 1
+event = ExtResource("2_i7qdb")
+
+[node name="GuitarEmitter" type="StudioEventEmitter2D" parent="Stage/Audio"]
+play_event = 1
+stop_event = 3
+event = ExtResource("3_o7g6a")
+position = Vector2(1156, -3753)
+
+[node name="Lighting" type="Node2D" parent="Stage"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Stage/Lighting"]
+color = Color(0.235294, 0.235294, 0.235294, 1)
+
+[node name="StageLight" type="DirectionalLight2D" parent="Stage/Lighting"]
+script = ExtResource("4_p35dh")
+LightIntensity = SubResource("Curve_dgqs3")
+
+[node name="Spotlight" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(2074, -555)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight2" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight3" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(750, -3310)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight4" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(1946, -2477)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight5" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(1397, -2847)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight6" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(1711, -1302)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight7" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(948, -690)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight8" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(750, -2349)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight9" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(579, -1601)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight10" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(1845, 251)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight11" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(558, -1152)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight12" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(1305, -3609)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight13" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(393, -2740)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight14" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(1327, -2006)
+scale = Vector2(5, 5)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight15" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(1119, -1074)
+scale = Vector2(5, 5)
+color = Color(0.207843, 0.294118, 0.631373, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Spotlight16" parent="Stage/Lighting" instance=ExtResource("5_3m52a")]
+position = Vector2(921, -2733)
+scale = Vector2(5, 5)
+color = Color(0.262745, 0.776471, 0.576471, 1)
+energy = 7.0
+MaxDistance = 1000.0
+MaxSpeed = 30.0
+
+[node name="Floor" parent="Stage" instance=ExtResource("6_43vxe")]
+position = Vector2(1219, -1465)
+
+[node name="Paths" type="Node2D" parent="Stage"]
+
+[node name="Walls" type="Node2D" parent="Stage"]
+
+[node name="Wall" parent="Stage/Walls" instance=ExtResource("8_o7yrb")]
+position = Vector2(146, -1013)
+scale = Vector2(89.5, 4000)
+
+[node name="Wall2" parent="Stage/Walls" instance=ExtResource("8_o7yrb")]
+position = Vector2(1178, 1067)
+rotation = 1.57079
+scale = Vector2(89.5, 2300)
+
+[node name="Wall4" parent="Stage/Walls" instance=ExtResource("8_o7yrb")]
+position = Vector2(1140, -2829)
+rotation = 1.57079
+scale = Vector2(89.5, 2300)
+
+[node name="Wall3" parent="Stage/Walls" instance=ExtResource("8_o7yrb")]
+position = Vector2(2203, -958)
+scale = Vector2(89.5, 4000)
+
+[node name="Cars" type="Node2D" parent="Stage"]
+
+[node name="Car" parent="Stage/Cars" instance=ExtResource("9_pxsd0")]
+position = Vector2(967, 227)
+
+[node name="Car2" parent="Stage/Cars" instance=ExtResource("9_pxsd0")]
+position = Vector2(1309, 221)
+
+[node name="Car14" parent="Stage/Cars" instance=ExtResource("9_pxsd0")]
+position = Vector2(1702, 212)
+
+[node name="Car3" parent="Stage/Cars" instance=ExtResource("9_pxsd0")]
+position = Vector2(783, 232)
+
+[node name="Car4" parent="Stage/Cars" instance=ExtResource("9_pxsd0")]
+position = Vector2(598, 222)
+rotation = 3.14159
+
+[node name="Car15" parent="Stage/Cars" instance=ExtResource("9_pxsd0")]
+position = Vector2(1878, 207)
+rotation = 3.14159
+
+[node name="Car10" parent="Stage/Cars" instance=ExtResource("9_pxsd0")]
+position = Vector2(792, -160)
+
+[node name="Car5" parent="Stage/Cars" instance=ExtResource("9_pxsd0")]
+position = Vector2(394, 226)
+rotation = 3.14159
+
+[node name="Car6" parent="Stage/Cars" instance=ExtResource("10_34ufy")]
+position = Vector2(1465, 220)
+
+[node name="Car7" parent="Stage/Cars" instance=ExtResource("10_34ufy")]
+position = Vector2(966, -152)
+rotation = -3.14159
+
+[node name="Car8" parent="Stage/Cars" instance=ExtResource("10_34ufy")]
+position = Vector2(1314, -134)
+rotation = -3.14159
+
+[node name="Car12" parent="Stage/Cars" instance=ExtResource("10_34ufy")]
+position = Vector2(1494, -152)
+rotation = -3.14159
+
+[node name="Car13" parent="Stage/Cars" instance=ExtResource("10_34ufy")]
+position = Vector2(1704, -149)
+rotation = -3.14159
+
+[node name="Car9" parent="Stage/Cars" instance=ExtResource("10_34ufy")]
+position = Vector2(595, -164)
+rotation = -3.14159
+
+[node name="Car11" parent="Stage/Cars" instance=ExtResource("10_34ufy")]
+position = Vector2(385, -164)
+rotation = -3.14159
+
+[node name="Barriers" type="Node2D" parent="Stage"]
+
+[node name="Barrier Horizontal" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1472, -540)
+
+[node name="Barrier Horizontal2" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1561, -540)
+
+[node name="Barrier Horizontal3" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1655, -541)
+
+[node name="Barrier Horizontal4" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1752, -540)
+
+[node name="Barrier Horizontal5" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1843, -541)
+
+[node name="Barrier Horizontal10" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(774, -544)
+
+[node name="Barrier Horizontal11" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(863, -544)
+
+[node name="Barrier Horizontal12" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(957, -545)
+
+[node name="Barrier Horizontal20" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(742, -1029)
+
+[node name="Barrier Horizontal21" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(836, -1030)
+
+[node name="Barrier Horizontal22" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(926, -1031)
+
+[node name="Barrier Horizontal23" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1020, -1032)
+
+[node name="Barrier Horizontal24" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1110, -1030)
+
+[node name="Barrier Horizontal25" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1204, -1031)
+
+[node name="Barrier Horizontal32" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1296, -1031)
+
+[node name="Barrier Horizontal33" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1390, -1032)
+
+[node name="Barrier Horizontal34" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1480, -1030)
+
+[node name="Barrier Horizontal35" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1574, -1031)
+
+[node name="Barrier Horizontal36" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1651, -1036)
+
+[node name="Barrier Horizontal37" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1745, -1037)
+
+[node name="Barrier Horizontal38" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1835, -1035)
+
+[node name="Barrier Horizontal26" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1844, -1972)
+
+[node name="Barrier Horizontal27" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1938, -1973)
+
+[node name="Barrier Horizontal28" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(2026, -1972)
+
+[node name="Barrier Horizontal29" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(2120, -1973)
+
+[node name="Barrier Horizontal39" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1697, -1438)
+
+[node name="Barrier Horizontal40" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1791, -1439)
+
+[node name="Barrier Horizontal41" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1879, -1438)
+
+[node name="Barrier Horizontal42" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1973, -1439)
+
+[node name="Barrier Horizontal30" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1119, -1243)
+
+[node name="Barrier Horizontal31" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1213, -1244)
+
+[node name="Barrier Horizontal13" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1054, -544)
+
+[node name="Barrier Horizontal14" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1145, -545)
+
+[node name="Barrier Horizontal15" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(159, -548)
+
+[node name="Barrier Horizontal16" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(248, -548)
+
+[node name="Barrier Horizontal17" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(342, -549)
+
+[node name="Barrier Horizontal18" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(439, -548)
+
+[node name="Barrier Horizontal19" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(530, -549)
+
+[node name="Barrier Horizontal6" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(1937, -539)
+
+[node name="Barrier Horizontal7" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(2026, -539)
+
+[node name="Barrier Horizontal8" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(2114, -538)
+
+[node name="Barrier Horizontal9" parent="Stage/Barriers" instance=ExtResource("11_2di1r")]
+position = Vector2(2198, -539)
+
+[node name="Barrier Vertical" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1193, -614)
+
+[node name="Barrier Vertical2" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1193, -736)
+
+[node name="Barrier Vertical3" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1432, -613)
+
+[node name="Barrier Vertical4" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1432, -735)
+
+[node name="Barrier Vertical11" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1446, -1545)
+
+[node name="Barrier Vertical12" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1446, -1667)
+
+[node name="Barrier Vertical13" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1448, -1321)
+
+[node name="Barrier Vertical14" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1448, -1443)
+
+[node name="Barrier Vertical15" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1201, -1547)
+
+[node name="Barrier Vertical16" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1201, -1669)
+
+[node name="Barrier Vertical17" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(989, -1552)
+
+[node name="Barrier Vertical18" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(989, -1674)
+
+[node name="Barrier Vertical19" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(991, -1790)
+
+[node name="Barrier Vertical20" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(991, -1912)
+
+[node name="Barrier Vertical21" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1200, -1795)
+
+[node name="Barrier Vertical22" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1200, -1917)
+
+[node name="Barrier Vertical23" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1450, -1788)
+
+[node name="Barrier Vertical24" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1450, -1910)
+
+[node name="Barrier Vertical25" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(765, -1553)
+
+[node name="Barrier Vertical26" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(765, -1675)
+
+[node name="Barrier Vertical27" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(769, -1796)
+
+[node name="Barrier Vertical28" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(769, -1918)
+
+[node name="Barrier Vertical29" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(538, -1549)
+
+[node name="Barrier Vertical30" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(538, -1671)
+
+[node name="Barrier Vertical31" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(542, -1792)
+
+[node name="Barrier Vertical32" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(542, -1914)
+
+[node name="Barrier Vertical33" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1674, -1534)
+
+[node name="Barrier Vertical34" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1674, -1656)
+
+[node name="Barrier Vertical35" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1678, -1777)
+
+[node name="Barrier Vertical36" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1678, -1899)
+
+[node name="Barrier Vertical37" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1906, -1536)
+
+[node name="Barrier Vertical38" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1906, -1658)
+
+[node name="Barrier Vertical39" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1910, -1779)
+
+[node name="Barrier Vertical40" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(1910, -1901)
+
+[node name="Barrier Vertical5" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(574, -614)
+
+[node name="Barrier Vertical6" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(574, -736)
+
+[node name="Barrier Vertical7" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(730, -611)
+
+[node name="Barrier Vertical8" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(730, -733)
+
+[node name="Barrier Vertical9" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(605, -854)
+rotation = 0.523598
+
+[node name="Barrier Vertical10" parent="Stage/Barriers" instance=ExtResource("13_k1pvp")]
+position = Vector2(664, -963)
+rotation = 0.523598
+
+[node name="HUD" parent="." node_paths=PackedStringArray("Goal", "player") instance=ExtResource("13_i5lvd")]
+Goal = NodePath("../Players/Goal area")
+player = NodePath("../Players/Player")
+
+[node name="StudioBankLoader" type="StudioBankLoader" parent="."]
+load_on = 1
+num_banks = 1
+bank_0 = ExtResource("14_ddsik")
+
+[connection signal="body_entered" from="Players/Goal area/Goal" to="Stage" method="_on_goal_body_entered"]
+
+[editable path="Players/Goal area"]

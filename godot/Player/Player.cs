@@ -7,6 +7,7 @@ public partial class Player : RigidBody2D, IHavePersonBody
 {
 	[Signal] public delegate void SoftCollisionEventHandler();
 	[Signal] public delegate void HealthDepletedEventHandler();
+	[Signal] public delegate void YouDiedEventHandler();
 
 	[Export] public float AccelerationForce { get; set; } = 400; // How fast to accelerate (pixels/sec^2).
 	[Export] public PersonPhysicsDefinition PersonMovement { get; set; } = null!;
@@ -105,17 +106,23 @@ public partial class Player : RigidBody2D, IHavePersonBody
 	{
 		if (bodyGeneric is RigidBody2D otherBody)
 		{
-			Health.AdjustHealth(-5);
 			var impactVector = otherBody.LinearVelocity - LinearVelocity;
 			var impact = impactVector.Length();
 			if (impact > 100)
 			{
+				Health.AdjustHealth(-5);
 				EmitSignal("HealthDepleted");
 				var spill = GetNode<CpuParticles2D>("SpillParticles");
 				spill.Direction = new Vector2(impactVector.Y, -impactVector.X);
 				spill.InitialVelocityMin = impact;
 				spill.InitialVelocityMax = impact * 5;
 				spill.Emitting = true;
+
+				if (Health.HealthValue <= 0)
+				{
+					EmitSignal("YouDied");
+					GetTree().ChangeSceneToFile("res://MenuScenes/GameOverScene.tscn");
+				}
 			}
 			else
 			{
