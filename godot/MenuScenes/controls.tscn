@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://s3dnd85emw40"]
+
+[node name="controls" type="HBoxContainer"]
+offset_left = 412.0
+offset_top = 349.0
+offset_right = 691.0
+offset_bottom = 427.0
+alignment = 1
+
+[node name="controls - left" type="Label" parent="."]
+layout_mode = 2
+text = "WASD / Left Joystick -
+Space -
+Shift -"
+horizontal_alignment = 2
+
+[node name="controls - right" type="Label" parent="."]
+layout_mode = 2
+text = "Move
+Brace yourself!
+Dash"

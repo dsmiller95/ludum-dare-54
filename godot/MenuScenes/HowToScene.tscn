@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cavseml1tjcuh"]
+[gd_scene load_steps=5 format=3 uid="uid://cavseml1tjcuh"]
 
 [ext_resource type="Texture2D" uid="uid://btl17hyr6dstm" path="res://Venues/Background.png" id="1_n4pi8"]
 [ext_resource type="Script" path="res://MenuScenes/HowToScene.gd" id="1_ypcl7"]
 [ext_resource type="PackedScene" uid="uid://cyk3ystmg5yn5" path="res://Lighting/Spotlight.tscn" id="2_hb3in"]
+[ext_resource type="PackedScene" uid="uid://s3dnd85emw40" path="res://MenuScenes/controls.tscn" id="4_qdfw8"]
 
 [node name="HowToScene" type="Node2D"]
 script = ExtResource("1_ypcl7")
@@ -63,13 +64,17 @@ There's nothing worse than being at a concert with an empty beer! Luckily the ba
 
 But be careful! The crowd is getting wild and all those flailing arms are a serious threat to that brewski. And be sure not to just force your way through... you don't want the concert goers to get angry now, would you?
 
-WASD / Left Joystick - Move
+
+
+
 
 The redder an attendee is, the more aggressive they are.
 
 Good Luck!"
 horizontal_alignment = 1
 autowrap_mode = 2
+
+[node name="controls" parent="." instance=ExtResource("4_qdfw8")]
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
