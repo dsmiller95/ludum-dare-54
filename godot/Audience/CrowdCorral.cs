@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Godot;
+using LudumDare54.Settings;
 
 namespace LudumDare54.Audience;
 
@@ -16,6 +17,12 @@ public partial class CrowdCorral: Node2D
 
     public override void _PhysicsProcess(double delta)
     {
+        var shouldSkip = SettingsSingleton.Settings?.UseNeighborCalculation ?? false;
+        if (shouldSkip)
+        {
+            crowdHash = null;
+            return;
+        }
         // TODO performance : use a 2d array, specify exact size in crowd coral. reuse list contents frame to frame.
         crowdHash = new();
         var children = GetChildren();
@@ -45,6 +52,7 @@ public partial class CrowdCorral: Node2D
 
     public List<CrowdActor> GetNeighbors(CrowdActor crowdActor)
     {
+        if (crowdHash == null) return null;
         var hashedPosition = crowdActor.GlobalPosition / _segmentSize;
         var neighbors = new List<CrowdActor>();
 

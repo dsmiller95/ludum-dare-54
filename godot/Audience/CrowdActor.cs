@@ -54,19 +54,9 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
     }
     public override void _PhysicsProcess(double delta)
     {
-        var neighbors = CrowdCorral.GetNeighbors(this);
-        var neighborCrowdActors = new List<NeighborCrowdActor>();
+        var neighborCrowdActors = NeighborCrowdActors();
 
-        foreach (var neighbor in neighbors)
-        {
-            neighborCrowdActors.Add(new NeighborCrowdActor
-            {
-                actor = neighbor.crowdActorImpl,
-                relativePosition = neighbor.GlobalPosition - this.GlobalPosition
-            });
-        }
-        
-        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighborCrowdActors.ToArray());
+        crowdActorImpl.Update(delta, Time.GetTicksMsec() / 1000f, neighborCrowdActors);
         
         // calculate friction force manually, rather than instantiating a unique physics material per actor
         // var frictionFactor = myPhysics.ActiveFrictionCoefficient;
@@ -90,6 +80,24 @@ public partial class CrowdActor : RigidBody2D, IHavePersonBody
         {
             effectsRenderer.RenderDebugRawFactors(factorBased.GetRawFactorsUnnormalized());
         }
+    }
+
+    private NeighborCrowdActor[] NeighborCrowdActors()
+    {
+        var neighbors = CrowdCorral.GetNeighbors(this);
+        if (neighbors == null) return null;
+        var neighborCrowdActors = new List<NeighborCrowdActor>();
+
+        foreach (var neighbor in neighbors)
+        {
+            neighborCrowdActors.Add(new NeighborCrowdActor
+            {
+                actor = neighbor.crowdActorImpl,
+                relativePosition = neighbor.GlobalPosition - this.GlobalPosition
+            });
+        }
+
+        return neighborCrowdActors.ToArray();
     }
 
     public void OnBodyEntered(Node bodyGeneric)
