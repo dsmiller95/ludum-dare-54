@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="Workspace" id="{76502376-f1c8-48d5-b0b4-b70dafb30d91}">
+		<property name="builtBanksOutputDirectory">
+			<value>../LudemDare54/godot/banks</value>
+		</property>
+		<relationship name="masterEventFolder">
+			<destination>{e88d6486-1e6b-442f-9660-47e9c9eb1f9d}</destination>
+		</relationship>
+		<relationship name="masterTagFolder">
+			<destination>{be1fa6d0-7db3-4e73-8207-7bd1c1364a22}</destination>
+		</relationship>
+		<relationship name="masterEffectPresetFolder">
+			<destination>{5b2b326d-5723-4754-aa66-900dcf7c4b26}</destination>
+		</relationship>
+		<relationship name="masterParameterPresetFolder">
+			<destination>{e1b52774-376b-4937-b21e-9e1f71e9ad5a}</destination>
+		</relationship>
+		<relationship name="masterBankFolder">
+			<destination>{ca51f477-1a88-4e54-91a8-62b98687f046}</destination>
+		</relationship>
+		<relationship name="masterSandboxFolder">
+			<destination>{b4d4a692-e9aa-4967-add1-641dc12dd287}</destination>
+		</relationship>
+		<relationship name="masterAssetFolder">
+			<destination>{63129eae-a3ba-4e4f-abd3-2575e880171a}</destination>
+		</relationship>
+		<relationship name="mixer">
+			<destination>{4051340c-d98d-48a5-bbf5-1a4fe0604457}</destination>
+		</relationship>
+		<relationship name="profilerSessionFolder">
+			<destination>{237859f2-53f9-46b6-8ff7-82d568cd952a}</destination>
+		</relationship>
+		<relationship name="platforms">
+			<destination>{18f91559-2263-4edc-8c9b-6325dca71b85}</destination>
+		</relationship>
+	</object>
+</objects>
