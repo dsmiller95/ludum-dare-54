@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <objects serializationModel="Studio.02.02.00">
-	<object class="AudioFile" id="{db9db56a-38f5-43a4-a8bb-82975b7dc8ad}">
+	<object class="AudioFile" id="{29be61a1-6f64-47c8-8bfb-e2ad487ed6da}">
 		<property name="assetPath">
-			<value>Hurt_1.wav</value>
+			<value>Glass/GlassClinks-03.wav</value>
 		</property>
 		<property name="frequencyInKHz">
-			<value>44.0999985</value>
+			<value>48</value>
 		</property>
 		<property name="channelCount">
 			<value>1</value>
 		</property>
 		<property name="length">
-			<value>0.51083900226757373</value>
+			<value>0.176625</value>
 		</property>
 		<relationship name="masterAssetFolder">
 			<destination>{63129eae-a3ba-4e4f-abd3-2575e880171a}</destination>
