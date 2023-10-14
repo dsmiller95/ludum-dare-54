@@ -5,10 +5,6 @@ The C# solution root is this directory, containing the godot scripts at /godot a
 
 [project board here](https://trello.com/b/SRqaRI8K/ludum-dare-54)
 
-[fmod repo here](https://github.com/dsmiller95/ludum-dare-54-fmod)
-
-
-
 
 ### LFS 
 
